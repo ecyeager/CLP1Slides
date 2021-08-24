@@ -18,6 +18,7 @@
 *.bbl
 *.blg
 *.dvi
+*.fls
 *.glg
 *.gls
 *.ilg
