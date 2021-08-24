@@ -70,6 +70,7 @@ The file Review.pdf has a list of questions from Chapters 1-3.
 \end{frame}
 %----------------------------------------------------------------------------------------
 \section{Compiling}
+\frame{\tableofcontents[currentsection]}
 %----------------------------------------------------------------------------------------
 \begin{frame}{Compiling Options}
 There are many files, so we included options for compiling them efficiently. The files can be compiled using pdflatex (in the usual way you probably compile LaTeX); using a Python script to compile many files in one go; and using a Python script with parallel processing and latexmk to quickly compile many files in one go.
@@ -142,11 +143,12 @@ There are no further customization options after the lists of sections and weeks
 \texttt{BuildPDFs\_parallel.py} uses parallel processing to speed things up. It also uses latexmk, which requires Perl to be installed. The parallel file has the option to delete auxiliary files. You only need to run \texttt{BuildPDFs\_parallel.py} once.
 \vfill
 
-\texttt{BuildPDFs\_slow.py} compiles files one-at-a-time using pdflatex. It is slower, but might work out-of-the-box on more machines -- for example, Windows machines without Perl installed. The repository does not track auxiliary files, so using this option you will initially have to compile twice to generate the navigation bars in the header and to make the internal references work.
+\texttt{BuildPDFs\_slow.py} compiles files one-at-a-time using pdflatex. It is slower, but might work out-of-the-box on more machines -- for example, Windows machines without Perl installed. The repository does not track auxiliary files, so using this option you will initially have to compile twice to generate the navigation bars in the headers and to make the internal references work.
 \end{frame}
 
 %----------------------------------------------------------------------------------------
 \section{Philosophy}
+\frame{\tableofcontents[currentsection]}
 %----------------------------------------------------------------------------------------
 \begin{frame}{A Note on Repetition}
 I have observed in my 100-level classes the usefulness of repeated concrete examples. At this stage in their development, many students have a hard time applying theorems in the way mathematicians usually want to state them, but are adept at noticing patterns.\vfill
