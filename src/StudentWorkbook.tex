@@ -1,0 +1,91 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%Handouts for students to write on for entire semester
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,handout]{beamer} 
+ 
+\usepackage{header100}
+\usepackage{header_maps}
+
+\setbeamertemplate{headline}{ %no ToC in headline -- too many chapters
+%  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+%  \end{beamercolorbox}
+}
+
+\usepackage{pgfpages}
+\pgfpagesuselayout{4 on 1}[letterpaper,border shrink=1mm,landscape,]
+ %several slides per page, sized for printing
+
+
+%https://tex.stackexchange.com/questions/75393/pgfpages-outer-border-instead-of-border-shrink
+\newlength{\pageborder}
+\setlength{\pageborder}{5mm}
+\newlength{\pageborderBCOR}
+\setlength{\pageborderBCOR}{10mm}
+\pgfpagesphysicalpageoptions{
+	   %border code=\pgfusepath{stroke}
+	   }
+
+\pgfpageslogicalpageoptions{1}{
+          border code=\pgfusepath{stroke}
+        , resized height=\dimexpr.5\pgfphysicalheight-\pageborder-.5\pageborderBCOR
+        , resized width=\dimexpr.5\pgfphysicalwidth-\pageborder-.5\pageborderBCOR
+        , center = \pgfpoint{.25\pgfphysicalwidth+\pageborder}%
+                                  {.75\pgfphysicalheight-.5\pageborder-.75\pageborderBCOR}
+}
+\pgfpageslogicalpageoptions{2}{
+          border code=\pgfusepath{stroke}
+        , resized height=\dimexpr.5\pgfphysicalheight-\pageborder-.5\pageborderBCOR
+        , resized width=\dimexpr.5\pgfphysicalwidth-\pageborder-.5\pageborderBCOR
+        , center = \pgfpoint{.75\pgfphysicalwidth-\pageborder}%
+                                  {.75\pgfphysicalheight-.5\pageborder-.75\pageborderBCOR}
+}
+\pgfpageslogicalpageoptions{3}{
+          border code=\pgfusepath{stroke}
+        , resized height=\dimexpr.5\pgfphysicalheight-\pageborder-.5\pageborderBCOR
+        , resized width=\dimexpr.5\pgfphysicalwidth-\pageborder-.5\pageborderBCOR
+        , center = \pgfpoint{.25\pgfphysicalwidth+\pageborder}%
+                                  {.25\pgfphysicalheight+.5\pageborder-.25\pageborderBCOR}
+}
+\pgfpageslogicalpageoptions{4}{
+          border code=\pgfusepath{stroke}
+        , resized height=\dimexpr.5\pgfphysicalheight-\pageborder-.5\pageborderBCOR
+        , resized width=\dimexpr.5\pgfphysicalwidth-\pageborder-.5\pageborderBCOR
+        , center = \pgfpoint{.75\pgfphysicalwidth-\pageborder}%
+                                  {.25\pgfphysicalheight+.5\pageborder-.25\pageborderBCOR}
+}
+
+
+
+\begin{document}
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%%chapter 1
+\foreach \n in {1,...,6}{
+\input{sections/1_\n.tex}
+}
+%optional sections
+%\input{sections/1_8.tex}
+%\input{sections/1_7.tex}
+%%chapter 2
+\foreach \n in {1,2,3,4,7,8,9,10,11,12,13,14}{
+\input{sections/2_\n.tex}
+}
+%%chapter 3
+\foreach \n in {1,...,7}{
+\input{sections/3_\n.tex}
+}
+%chapter 4
+\input{sections/4_1.tex}
+\input{sections/review.tex}
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\LastPage
+\end{document}
+

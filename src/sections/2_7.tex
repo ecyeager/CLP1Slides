@@ -1,0 +1,196 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+%----------------------------------------------------------------------------------------
+\section*{2.7: Derivs of Exponential Functions}
+
+ \begin{frame}{Table of Contents}
+\mapofcontentsBB{\bh}
+ \end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Exponential Functions}
+\begin{center}\begin{tikzpicture}
+\draw (-2,3.5)node{Consider \color{M4}$\diff{}{x}\left\{17^x\right\}$};
+\myaxis{x}{4}{2}{y}{0}{4}
+\draw (.2,1)--(-.2,1) node[left]{$1$};
+\draw[ultra thick, C1] plot[domain=-4:2](\x,{pow(2,\x)}) node[right]{$f(x)=17^x$};
+\draw (4,0) node{};
+
+\onslide<3->{
+\draw[M4, ultra thick, ->] (-3.5,-.5)--(-3.5,-.25);}
+\onslide<4->{\draw[M4] (-3.5,-.5) node[below]{small};}
+\onslide<5->{
+\draw[M4, ultra thick, ->] (1.5,-.5)--(1.5,-.25);}
+\onslide<6->{\draw[M4] (1.5,-.5) node[below]{large};}
+
+\end{tikzpicture}\end{center}
+
+
+
+\onslide<2->{$f(x)$ is always increasing, so $f'(x)$ is always positive.}
+
+\onslide<7->{$f'(x)$ might look similar to $f(x)$.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Exponential Functions}
+\begin{align*}
+\diff{}{x}\{17^x\}&=\answer{\onslide<2->{\displaystyle\lim_{h \rightarrow 0}\dfrac{17^{x+h}-17^x}{h}\\
+&=\lim_{h \rightarrow 0}\dfrac{17^x17^h-17^x}{h}\\
+&=\lim_{h \rightarrow 0}\dfrac{17^x(17^h-1)}{h}\\
+&=17^x\displaystyle\lim_{h \rightarrow 0}\dfrac{(17^h-1)}{h}\\
+&=17^x(\mbox{ times a constant })
+}}
+\end{align*}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\[\diff{}{x}\{17^x\} =17^x\cdot\displaystyle\underbrace{\lim_{h \rightarrow 0}\dfrac{(17^h-1)}{h}}_{\text{constant}} \]\vfill
+
+Given what you know about $\diff{}{x}\{17^x\}$, \textbf{is it possible} that $\displaystyle\lim_{h \rightarrow 0} \dfrac{17^h-1}{h}=$\only<1|handout:1>{ $0$? \AnswerNo}\only<2|handout:2>{ $\infty?$\AnswerNo}\vfill
+\begin{itemize}
+\item[A.] Sure, there's no reason we've seen that would make it impossible.
+\item[B.] No, it couldn't be \only<1|handout:1>{$0$}\only<2|handout:2>{$\infty$}, that wouldn't make sense.
+\item[C.] I do not feel equipped to answer this question.
+\end{itemize}\vfill
+\note<1>{The second question is there as a second chance for students who missed the first one}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\[\diff{}{x}\{17^x\} =17^x\cdot\displaystyle\underbrace{\lim_{h \rightarrow 0}\dfrac{(17^h-1)}{h}}_{\text{constant}} \]
+
+\only<beamer>{How could we find out what $\lim\limits_{h \rightarrow 0}\dfrac{(17^h-1)}{h}$ is?}
+
+\onslide<2->{\begin{tabular}{l|l}
+$h$ & $\dfrac{17^h-1}{h}$\\[1em]
+\hline
+0.001&2.83723068608\\
+0.00001&2.83325347992\\
+0.0000001&2.83321374583\\
+0.000000001&2.83321344163
+\end{tabular}}
+\note<2>{``It's not clear what constant this is, but it is a constant."}
+
+\unote{Example~\eref{text}{eg log est}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\note<1>{Point out that 17 could have been replaced with any other number. Go through and cross out 17, write in a.}
+\begin{align*}
+\diff{}{x}\{17^x\}&=\displaystyle\lim_{h \rightarrow 0}\dfrac{17^{x+h}-17^x}{h}\\
+&=\lim_{h \rightarrow 0}\dfrac{17^x17^h-17^x}{h}\\
+&=\lim_{h \rightarrow 0}\dfrac{17^x(17^h-1)}{h}\\
+&=17^x\displaystyle\lim_{h \rightarrow 0}\dfrac{(17^h-1)}{h}
+\end{align*}\pause
+In general, for any positive number $a$, \[\diff{}{x}\{a^x\} = a^x \displaystyle\lim_{h \rightarrow 0} \frac{a^h-1}{h}\]
+
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+%-------------------------------------------------------------
+\begin{frame}[t]{Exponential Functions}
+\begin{center}	
+\begin{tikzpicture}
+\myaxis{x}{4}{4}{y}{1}{4}
+\onslide<1|handout:1>{\draw[thick, C1] plot[domain=-4:.774, samples=100](\x,{8^\x}) node[right]{$y=8^x$};
+\draw[thick, C4] plot[domain=-4:.422, samples=100](\x,{2.079*(8^\x)}) node[left]{$y=\diff{}{x}\left\{8^x\right\} $};
+\draw (-3,2) node{$\diff{}{x}\left\{8^x\right\}= 8^x\ds\lim_{h \to 0}\frac{8^h-1}{h}$};}
+\onslide<2|handout:0>{\draw[thick, C1] plot[domain=-4:1, samples=100](\x,{5^\x}) node[right]{$y=5^x$};
+\draw[thick, C4] plot[domain=-4:.704, samples=100](\x,{1.609*(5^\x)}) node[left]{$y=\diff{}{x}\left\{5^x\right\}$};
+\draw (-3,2) node{$\diff{}{x}\left\{5^x\right\}= 5^x\ds\lim_{h \to 0}\frac{5^h-1}{h}$};}
+\onslide<3|handout:0>{\draw[thick, C1] plot[domain=-4:1.161, samples=100](\x,{4^\x}) node[right]{$y=4^x$};
+\draw[thick, C4] plot[domain=-4:0.925, samples=100](\x,{1.386*(4^\x)}) node[left]{$y=\diff{}{x}\left\{4^x\right\}$};
+\draw (-3,2) node{$\diff{}{x}\left\{4^x\right\}= 4^x\ds\lim_{h \to 0}\frac{4^h-1}{h}$};}
+\onslide<4|handout:0>{\draw[thick, C1] plot[domain=-4:1.465, samples=100](\x,{3^\x}) node[right]{$y=3^x$};
+\draw[thick, C4] plot[domain=-4:1.379, samples=100](\x,{1.099*(3^\x)}) node[left]{$y=\diff{}{x}\left\{3^x\right\}$};
+\draw (-3,2) node{$\diff{}{x}\left\{3^x\right\}= 3^x\ds\lim_{h \to 0}\frac{3^h-1}{h}$};}
+\onslide<5|handout:2>{\draw[thick, C1] plot[domain=-4:2.322, samples=100](\x,{2^\x}) node[left]{$y=2^x$};
+\draw[thick, C4] plot[domain=-4:2.851, samples=100](\x,{.693*(2^\x)}) node[right]{$y=\diff{}{x}\left\{2^x\right\}$};
+\draw (-3,2) node{$\diff{}{x}\left\{2^x\right\}= 2^x\ds\lim_{h \to 0}\frac{2^h-1}{h}$};}
+\end{tikzpicture}
+\end{center}
+
+\color{black}
+\end{frame}
+%-------------------------------------------------------------
+
+%-------------------------------------------------------------
+\begin{frame}[t]
+In general, for any positive number $a$, $\diff{}{x}\{a^x\} = a^x \displaystyle\lim_{h \rightarrow 0} \frac{a^h-1}{h}$ \pause
+
+\begin{block}{Euler's Number -- Theorem~\eref{text}{thm_2_7_1}}
+We define $e$ to be the unique number satisfying 
+\[\displaystyle\lim_{h \rightarrow 0} \frac{e^h-1}{h}=1\]
+\end{block}
+\pause
+$e \approx 2.7182818284590452353602874713526624...$
+(Wikipedia)
+\end{frame}
+%--------------------------------------------------------------------
+\begin{frame}
+\begin{block}{Theorem~\eref{text}{thm_2_7_1} and Corollary~\eref{text}{cor_2_10}}
+Using this definition of $e$,
+\[\diff{}{x}\{e^x\} = e^x\underbrace{\lim_{h \rightarrow 0}\frac{e^h-1}{h}}_1=e^x\]
+\pause
+
+In general, $\displaystyle\lim_{h \rightarrow 0} \frac{a^h-1}{h} = \log_e (a)$, so
+$\diff{}{x}\{a^x\}=a^x\log_e(a)$
+\end{block}
+
+That $\displaystyle\lim_{h \rightarrow 0} \frac{a^h-1}{h} = \log_e (a)$ and
+$\diff{}{x}\{a^x\}=a^x\log_e(a)$ are consequences of
+
+\[\displaystyle a^x = {\big(e^{\log_e(a)}\big)}^x
+                    =e^{x\log_e(a)}\]
+For the details, see the end of Section \eref{text}{sec exp func}.
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\AnswerSpace\only<3>{\MoreSpace\AnswerYes}
+\begin{block}{Things to Have Memorized}
+\[\diff{}{x}\left\{e^x\right\}=e^x\]\pause
+
+When $a$ is any constant, \[\diff{}{x}\left\{a^x\right\}=a^x\log_e(a)\]
+\end{block}\pause
+
+Let $f(x)=\dfrac{e^x}{3x^5}$. When is the tangent line to $f(x)$ horizontal?
+ \end{frame}
+%----------------------------------------------------------------------------------------
+\answer{\begin{frame}[t]\AnswerSpace
+\only<1>{\AnswerYes}
+Let $f(x)=\dfrac{e^x}{3x^5}$. When is the tangent line to $f(x)$ horizontal?\vfill\pause
+
+\color{answercolor}
+Horizontal tangent line $\Leftrightarrow$ slope of tangent line is zero $\Leftrightarrow$ $f'(x)=0$
+\begin{align*}
+0&=f'(x)=\frac{3x^5e^x-e^x(15x^4)}{\left(3x^5\right)^2}=\left(\frac{e^x}{9x^{10}}\right)\left(3x^4\right)\left(x-5\right)\\
+x&=0 \mbox{ or }x=5
+\intertext{But, since $f(x)$ is not defined at zero, the  tangent line is only horizontal at}
+x&=5
+\end{align*}
+\end{frame}}
+%--------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+Evaluate $\diff{}{x}\left\{e^{3x}\right\}$\AnswerNo
+\note{2 ways: product rule with $e^x \cdot e^x \cdot e^x$, or previous rule with $\left(e^3\right)^x$}
+\end{frame}
+%--------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\AnswerNo
+Suppose the deficit, in millions, of a fictitious country is given by
+\[f(x)=e^x(4x^3-12x^2+14x-4)\]
+where $x$ is the number of years since the current leader took office.
+
+Suppose the leader has been in power for exactly two years.
+\begin{itemize}
+\item[1.] Is the deficit increasing or decreasing?\pause
+\vfill
+\item[2.] Is the rate at which the deficit is growing increasing or decreasing?
+\vfill
+\end{itemize}
+
+
+\end{frame}

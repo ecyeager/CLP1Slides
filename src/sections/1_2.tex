@@ -1,0 +1,207 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+ %------------------------------------
+\section{1.2 Computing Velocity}
+ \begin{frame}{Table of Contents}
+\mapofcontentsA{\ab}
+ \end{frame}
+ %--------
+
+%----------------------------------------------------------------------------------------
+\newcommand{\bikegraphbase}{%I want to include the same picture with different scales
+\myaxis{t}{0}{10.5}{}{0}{4.25}
+\draw (-1.5,4) node[left, rotate=90]{km};
+\draw[C2, ultra thick, domain=0:4] plot ({\x*\x/1.5876},\x) node[above left]{$y=s(t)$};
+\xcoord{0}{8:00}
+\xcoord{10}{8:30}
+\ycoord{2}{3}
+\ycoord{4}{6}
+	}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{tikzpicture}[scale=0.8]
+\bikegraphbase
+\onslide<2|handout:0>{\draw (2.5,0)--(2.5,-.5) node[below]{8:07};
+\draw[dashed] (2.5,0)--(2.5,2)--(0,2);}
+\end{tikzpicture}
+
+\note<2>{8:07 is highlighted to emphasize that I was not ravelling at a constant speed: half the distance was covered in only 7 minutes, the other half took 23. 
+
+I've found that the bike example is a good concept check. When students answer the multiple choice question there's usually a lot who get it wrong, so it's an opportunity to fix misconceptions.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{tikzpicture}[scale=0.8]
+\bikegraphbase
+\onslide<handout:0>{
+\onslide<2-6>{\draw (0,0) node[vertex]{};
+\draw (10,4) node[vertex]{};}
+\onslide<5-6>{\draw[C3, thick] (0,0)--(10,4);}
+\onslide<3-6>{\draw[<->, thick, dashed, C3] (10,0.25)--(10,3.75);
+\onslide<4-6>{\draw[<->, thick, dashed, C3] (.25,4)--(9.75,4);
+\draw[C3] (5,4) node[above]{1/2 hour};}
+\draw (10,2) node[right, C3]{6};}}
+\end{tikzpicture}
+\vfill
+
+It took $\frac12$ hour to bike 6 km. 12 kph represents the:\only<1-5>{\AnswerYes}
+\begin{itemize}
+\item[A.] secant line to $y=s(t)$ from $t=8:00$ to $t=8:30$
+\alert<6|handout:0>{\item[B.] slope of the secant line to $y=s(t)$ from $t=8:00$ to $t=8:30$}
+\item[C.] tangent line to $y=s(t)$ at $t=8:30$
+\item[D.] slope of the tangent line to $y=s(t)$ at $t=8:30$
+\end{itemize}
+\StatusBar{1}{6}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{tikzpicture}[scale=0.8]
+\bikegraphbase
+\onslide<handout:0>{
+\onslide<3->{\draw[C3, thick] (0,1.8)--(10.5,4.15);}
+\onslide<2->{\draw (8.3,0)--(8.3,-.25) node[below]{8:25};
+\draw[dashed] (8.3,0)--(8.3,3.6)--(0,3.6);
+\draw (8.3,3.6) node[ vertex]{};}}
+\end{tikzpicture}
+\vfill
+At 8:25, the speedometer on my bike reads 5 kph. 5 kph represents the: \only<1-3>{\AnswerYes}
+\begin{itemize}
+\item[A.] secant line to $y=s(t)$ from $t=8:00$ to  $t=8:25$
+\item[B.] slope of the secant line to $y=s(t)$ from $t=8:00$ to $t=8:25$
+\item[C.] tangent line to $y=s(t)$ at $t=8:25$
+\alert<4-|handout:0>{\item[D.] slope of the tangent line to $y=s(t)$ at $t=8:25$}
+\end{itemize}
+\StatusBar{1}{4}
+\end{frame}
+ %--------
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\note{Now we move into using limits for instantaneous rates of change. Students are usually tired of the bike by now so we change the example.
+
+For next slide: in "one way," remind verbally that instantaneous rate of change is slope of tangent line. Use a straight edge to draw the tangent and make use of the graph paper to get a decent approximation.
+
+We use $y$ for the vertical axis instead of $h$ because $h$ is used later for something else}
+\begin{frame}
+Suppose the distance from the ground $s$ (in meters) of a helium-filled balloon at time $t$ over a 10-second interval is 
+given by $s(t)=t^2$. Try to estimate how fast the balloon is rising when $t=5$. 
+\pause
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+\myaxis{t}{0}{10.2}{y}{0}{10.2}
+\draw[step=1cm, ultra thin] (0,0) grid (10,10);
+   \draw[domain=0:10,smooth,variable=\x,C2, ultra thick] plot ({\x},{\x*\x*.1})
+   node[left,inner sep=0,fill=white] {$y=s(t)$};
+   
+   \foreach \x in {1,...,10}
+   	{\xcoord{\x}{\x}
+	\MULTIPLY{\x}{10}{\y}
+	\ycoord{\x}{\y}}
+	\draw[C3] (5,2.5)node[vertex]{};
+\onslide<handout:0>{\onslide<2>{\color{C3}\draw (11,8) node[right]{\parbox{2.75cm}{\raggedright One way:\\ Estimate the slope of the tangent line to the curve}};
+\color{black}}
+\onslide<3->{\color{C3}\draw (11,5) node[right]{\parbox{2.75cm}{\raggedright Another way:\\ Calculate average rate of change for intervals around 5 that get smaller and smaller.}};
+\color{black}}
+\onslide<3-7>{\draw (4,1.6) node[C3,vertex]{};}
+\foreach \t in {3,...,7}{
+	\only<\t>{\draw[thick, C3] plot[domain=3:10](\x,{1.6+(\x-4)*(-\t/10+1.7)});
+		\draw (13-\t,{(13-\t)*(13-\t)/10)}) node[C3, vertex]{};}}
+\onslide<8>{
+	\draw[C3, thick] plot[domain=2:9](\x,{\x-2.5}); }
+	}
+\end{tikzpicture}\end{center}
+\StatusBar{3}{8}
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{ Let's look for an algebraic way of determining the velocity of the balloon when $t=5$.}
+\onslide<handout:0>{
+
+\only<2-3>{Suppose the interval $[5,~~]$ has length $h$. What is the right endpoint of the interval?}
+\only<beamer:2|handout:0>{\QuestionBar{1}{4} \AnswerYes}
+\only<beamer:3|handout:0>{\AnswerBar{1}{4}}
+%
+\only<4-5>{Write the equation for the average (vertical) velocity from $t=5$ to $t=5+h$.}
+\only<beamer:4|handout:0>{\QuestionBar{2}{4}\AnswerYes}
+\only<beamer:5|handout:0>{\AnswerBar{2}{4}}
+%
+\only<6-8>{What happens to the velocity when $h$ is very, very small?}
+\only<beamer|beamer:6>{\MoreSpace  \AnswerYes}
+\only<beamer|beamer:7>{\QuestionBar{3}{4} \AnswerYes}
+
+
+%
+\only<9>{What do you think is the slope of the \emph{tangent} line to the graph when $t=5$? \AnswerNo}
+\only<beamer|beamer:9>{\QuestionBar{4}{4}}
+%
+\only<1-6,9->{\begin{tikzpicture}[scale=.8]
+\myaxis{t}{0}{6.5}{y}{0}{3.5}
+   \draw[scale=1,domain=0:6,smooth,variable=\x,C2, ultra thick] plot ({\x},{\x*\x*.1})
+   node[right] {$y=s(t)=t^2$};
+      \foreach \x in {4}
+   	{\draw (\x,0)--(\x,-.25) node[below] {$5$};}
+   \onslide<2->{
+   	\xcoord{6}{}
+	\draw[decorate, decoration={brace, amplitude=8pt, mirror}] (4,-1)--(6,-1) node[midway, below, yshift=-.3cm]{$h$};}
+\onslide<3->{
+	\draw (6,-.2) node[below]{\alert<3|handout:0>{$5+h$}};
+	\draw (6,3.6) node[vertex]{};}
+\draw (4,1.6) node[vertex]{};
+\end{tikzpicture}}
+}
+%
+\only<5-8>{\color{answercolor}
+\begin{align*}
+\text{vel} &=\frac{\Delta \mbox{ height}}{\Delta \mbox{ time}}= \frac{s(5+h)-s(5)}{(5+h)-5} = \frac{(5+h)^2-5^2}{h}\\
+\only<beamer|beamer:8>{&=10+h \text{~when~}h \neq 0
+\intertext{When $h$ is very small,}
+&\approx 10
+}
+\end{align*}
+}
+\only<beamer|beamer:8>{\AnswerBar{3}{4}}
+
+\vfill
+\end{frame}
+ %--------
+
+%--------------------------------------------
+\begin{frame}{Our First Limit}
+\note<1>{Now we recap what we did:  the informal calculation first, then using it to introduce limit notation}
+Average Velocity, $t=5$ to $t=5+h$:
+\begin{align*}
+\frac{\Delta s}{\Delta t}&=\frac{s(5+h)-s(5)}{h}\\
+\onslide<2->{&=\frac{(5+h)^2-5^2}{h}\\}
+\onslide<3->{&=10+h \qquad \mbox{when $h \neq 0$}}
+\end{align*}
+\onslide<4->{When $h$ is very small,}
+\onslide<5->{\[\mbox{Vel} \approx 10\]}
+\StatusBar{1}{5}
+\end{frame}
+%------
+\begin{frame}{Limit Notation}
+We write:
+\[\lim_{h \to 0}(10+h)=10\]
+\vfill\pause
+We say:
+``The limit as $h$ goes to 0 of $(10+h)$ is  10."
+\vfill\pause
+It means:
+As $h$ gets extremely close to 0, $(10+h)$ gets extremely close to 10.
+
+\StatusBar{1}{3}
+\end{frame}
+ %--------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------

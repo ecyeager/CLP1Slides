@@ -1,0 +1,513 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+\begin{frame}{Table of Contents}
+\mapofcontentsC{\cg}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section*{3.7: L'H\^{o}pital's Rule and Indeterminate Forms}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}{Back to Limits!}
+\AnswerSpace
+\only<1-4>{\AnswerYes}
+$\displaystyle\dlimx{\infty} \dfrac{x^2}{5}$ \onslide<2-|handout:0>{$=\infty$}
+\hfill
+$\displaystyle\dlimx{\infty} \dfrac{5}{x^2}$\onslide<3-|handout:0>{$=0$}
+\hfill
+$\displaystyle\dlimx{0} \dfrac{x^2}{5}$\onslide<4-|handout:0>{$=0$}
+\hfill
+$\displaystyle\dlimx{0} \dfrac{5}{x^2}$\onslide<5-|handout:0>{$=\infty$}
+\hfill~
+
+\onslide<6->{\begin{block}{Indeterminate Forms -- Definition~\eref{text}{def_3_7_1}}
+Suppose $\displaystyle\dlimx{a} f(x)=\displaystyle\dlimx{a} g(x)=0$. Then the limit
+\[\displaystyle\dlimx{a} \frac{f(x)}{g(x)}\]
+is an \textcolor{M4}{indeterminate form} of the type \textcolor{M4}{$\frac{0}{0}$}.
+
+Suppose $\displaystyle\dlimx{a} F(x)=\displaystyle\dlimx{a} G(x)=\infty$ (or $-\infty$). Then the limit
+\[\displaystyle\dlimx{a} \frac{F(x)}{G(x)}\]
+is an \textcolor{M4}{indeterminate form} of the type \textcolor{M4}{$\frac{\infty}{\infty}$}.
+\end{block}}
+\onslide<7->{\textcolor{M4}{\textbf{When you see an indeterminate form, you need to do more work.}}}
+\note<7>{Often students misinterpret the phrase ``indeterminate" as ``unknowable," so I like to emphasize the ``more work needed" part.  This is one of two common mistakes, the other being the assumption that $n/n=1$ even when $n=0$ or $n$ is not a number.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Indeterminate Forms}
+\only<1>{\QuestionBar{1}{3}\AnswerYes}
+\only<2>{\AnswerBar{1}{3}}
+\only<3>{\QuestionBar{2}{3}\AnswerYes}
+\only<4>{\AnswerBar{2}{3}}
+
+$\displaystyle\dlimx{5}\dfrac{x^2-3x-10}{x-5}$ \hfill\textcolor{M4}{indeterminate form of the type $\frac{0}{0}$}\\ \vfill \pause
+\answer{\textcolor{answercolor}{To evaluate, factor the top:\\\vfill
+$\displaystyle\dlimx{5}\dfrac{x^2-3x-10}{x-5} = 
+\displaystyle\dlimx{5}\dfrac{(x-5)(x+2)}{x-5}=\displaystyle\dlimx{5}x+2=\boxed{7}$}}\pause\vfill
+
+
+$\displaystyle\dlimx{\infty}\dfrac{3x^2-4x+2}{8x^2-5}$ \hfill\textcolor{M4}{indeterminate form of the type $\frac{\infty}{\infty}$}\\ \vfill \pause\color{answercolor}
+
+\answer{To evaluate, pull out $x^2$:\\
+$\displaystyle\dlimx{\infty}\dfrac{3x^2-4x+2}{8x^2-5} = 
+\displaystyle\dlimx{\infty}
+\dfrac{x^2(3-\frac{4}{x}+\frac{2}{x^2})}{x^2(8-\frac{5}{x^2})}=
+\displaystyle\dlimx{\infty}
+\dfrac{3-\frac{4}{x}+\frac{2}{x^2}}{8-\frac{5}{x^2}}=\displaystyle\dlimx{\infty}\dfrac{3-0+0}{8-0}=\boxed{\frac{3}{8}}$\vfill}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Indeterminate Forms and the Derivative}
+\only<1>{\QuestionBar{3}{3}\AnswerYes}
+\only<2->{\AnswerBar{3}{3}}
+
+
+$\displaystyle\dlimx{0}\dfrac{3\sin x -x^4}{x^2+\cos x -e^x}$ \hfill\textcolor{M4}{indeterminate form of the type $\frac{0}{0}$}\\ \vfill \color{answercolor}
+
+\only<2|handout:0>{Suppose $\dlimx{a} f(x)=\dlimx{ a} g(x)=0$. Suppose also that $f$ and $g$ are continuous and differentiable at $a$, and $g'(a) \neq 0$. Then:
+\begin{align*}
+\dlimx{a} \frac{f(x)}{g(x)}
+ &=
+\dlimx{a} \frac{f(x)-0}{g(x)-0}
+=\dlimx{a} \frac{f(x)-f(a)}{g(x)-g(a)}\\
+&=\dlimx{a} \frac{f(x)-f(a)}{g(x)-g(a)}\frac{(x-a)^{-1}}{(x-a)^{-1}}\\
+&=\dlimx{a} \left(
+\frac{\frac{f(x)-f(a)}{x-a}}{\frac{g(x)-g(a)}{x-a}}\right)
+=\frac{f'(a)}{g'(a)}
+ \end{align*}}
+ 
+ \only<3-|handout:0>{
+ \begin{align*}
+\dlimx{0}\dfrac{3\sin x -x^4}{x^2+\cos x -e^x} 
+&=\dfrac{\diff{}{x}[3\sin x -x^4]|_{x=0}}{\diff{}{x}[x^2+\cos x -e^x]|_{x=0}}
+\\
+&=\dfrac{[3\cos x -4x^3]|_{x=0}}{[2x-\sin x - e^x]|_{x=0}}
+\\
+&=\dfrac{3-0}{0-0-1}=\boxed{-3} 
+\end{align*}
+}
+
+\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]%{\hosp's Rule}
+\begin{block}{\hosp's Rule: First Part -- Theorem~\eref{text}{thm:APPlhopital}}
+Let $f$ and $g$ be functions such that  $\dlimx{a} f(x)  = 0 = \dlimx{a}g(x)$.\\[1em]
+
+
+If $f'(a)$ and $g'(a)$ exist and $g'(a) \neq 0$, then
+\textcolor{M3}{$\dlimx{a}\frac{f(x)}{g(x)} =\frac{f'(a)}{g'(a)}$}.\\[2em]
+
+
+If $f$ and $g$ are differentiable on an open interval containing $a$, and if $\displaystyle\dlimx{a} \dfrac{f'(x)}{g'(x)}$ exists, then
+\textcolor{C1}{$\dlimx{a}\frac{f(x)}{g(x)} =\dlimx{a}\frac{f'(x)}{g'(x)}$}.\\[1em]
+
+This works even for $a = \pm \infty$.
+\end{block}
+\vfill
+
+\color{M4} Extremely Important Note:\\ \hosp's Rule only works on indeterminate forms.
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]%{\hosp's Rule}
+\begin{block}{\hosp's Rule: Second Part -- Theorem~\eref{text}{thm:APPlhopital}}
+Let $f$ and $g$ be functions such that  $\dlimx{a} f(x)  = \alert{\infty} = \dlimx{a}g(x)$.\\[1em]
+
+
+If $f'(a)$ and $g'(a)$ exist and $g'(a) \neq 0$, then
+\textcolor{M3}{$\dlimx{a}\frac{f(x)}{g(x)} =\frac{f'(a)}{g'(a)}$}.\\[2em]
+
+
+If $f$ and $g$ are differentiable on an open interval containing $a$, and if $\displaystyle\dlimx{a} \dfrac{f'(x)}{g'(x)}$ exists, then
+\textcolor{C1}{$\dlimx{a}\frac{f(x)}{g(x)} =\dlimx{a}\frac{f'(x)}{g'(x)}$}.\\[1em]
+
+This works even for $a = \pm \infty$.
+\end{block}
+\vfill
+
+\color{M4} Extremely Important Note:\\ \hosp's Rule only works on indeterminate forms.
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{1}{4}\AnswerYes}
+\only<2->{\AnswerBar{1}{4}}
+Evaluate:
+\[\dlimx{2}\frac{3x\tan(x-2)}{x-2}\]\pause\color{answercolor}\vfill
+\answer{\begin{align*}
+\dlimx{2} &\frac{3x\tan (x-2)}{x-2} \hspace{1cm}\mbox{form }\frac{0}{0}\\
+\lheq&\frac{3\left[x \sec^2(x-2) + \tan(x-2)\right]_{x=2}}{1}\\
+=&3\left[ 2\sec^2 0 + \tan 0\right]  = \boxed{6}
+\end{align*}}
+\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Little Harder}
+\unote{Example~\eref{text}{eg:hopitalC}}
+\only<1>{\QuestionBar{2}{4}\AnswerYes}
+\only<2->{\AnswerBar{2}{4}}
+
+$\displaystyle\dlimx{0}\dfrac{x^4}{e^x-\cos x - x}$ \hfill\textcolor{M4}{indeterminate form of the type $\frac{0}{0}$}\\ \vfill \pause\color{answercolor}
+
+\answer{$\dlimx{0}\dfrac{x^4}{e^x-\cos x - x} ~^?_?=^?_?
+\left.\frac{4x^3}{e^x+\sin x -1}\right|_{x=0} = \frac{0}{0}$\hfill\textcolor{M4}{oops} \pause\vfill
+
+Iterate!
+
+\begin{align*}
+\dlimx{0}\dfrac{x^4}{e^x-\cos x - x}
+&\lheq \dlimx{0}\frac{4x^3}{e^x+\sin x -1} \\
+&\lheq \dlimx{0}\frac{12x^2}{e^x+\cos x}
+=\frac{0}{2}=\boxed{0}
+\end{align*}
+\hfill}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{3}{4}\AnswerYes}
+\only<2->{\AnswerBar{3}{4}}
+
+Evaluate:
+
+\[\dlimx{\infty} \frac{\log x}{\sqrt{x}}\]\pause\color{answercolor}
+
+\answer{\begin{align*}
+\dlimx{\infty} \frac{\log x}{x} &\lheq \dlimx{\infty}\frac{\frac{1}{x}}{\frac{1}{2\sqrt{x}}}\\
+&=\dlimx{\infty}\frac{2\sqrt{x}}{x}\\
+&=\dlimx{\infty}\frac{2}{\sqrt{x}}=\boxed{0}
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Other Indeterminate Forms}
+\only<1>{\QuestionBar{4}{4}\AnswerYes}
+\only<2->{\AnswerBar{4}{4}}
+
+$\displaystyle\dlimx{\infty} e^{-x}\log x$ \hfill \textcolor{M4}{form $0 \cdot \infty$}
+
+\vfill
+\pause\color{answercolor}
+
+\answer{\begin{align*}
+\displaystyle\dlimx{\infty} e^{-x}\log x 
+&=\dlimx{\infty}\frac{\log x}{e^x} & \mbox{ form }\frac{\infty}{\infty}\\
+&\lheq \dlimx{\infty} \frac{1/x}{e^x}\\
+&=\dlimx{\infty} \frac{1}{xe^x}=\boxed{0}
+\end{align*}
+\vfill}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Vote Vote Vote}
+\only<1>{\QuestionBar{1}{4}\AnswerYes}
+\only<2->{\AnswerBar{1}{4}}
+
+Which of the following can you \emph{immediately} apply \hosp's rule to?
+
+\begin{itemize}
+\item[A.] $\dfrac{e^x}{2e^x+1}$
+\item[B.] $\displaystyle\dlimx{0}\frac{e^x}{2e^x+1}$
+\alert<2|handout:0>{\item[C.] $\displaystyle\dlimx{\infty}\frac{e^x}{2e^x+1}$}
+\item[D.] $\displaystyle\dlimx{\infty}e^{-x}(2e^x+1)$
+\item[E.] $\displaystyle\dlimx{0} \frac{e^x}{x^2}$
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Votey McVoteface}
+\only<1>{\QuestionBar{2}{4}\AnswerYes}
+\only<2->{\AnswerBar{2}{4}}
+
+Suppose you want to use \hosp's rule to evaluate $\displaystyle\dlimx{a} \frac{f(x)}{g(x)}$, which has the form $\frac{0}{0}$.
+How does the quotient rule fit into this problem? \vfill
+\begin{itemize}
+\item[A.] You should use the quotient rule because the function you are differentiating is a quotient.
+\item[B.] You will not use the quotient rule because you differentiate the numerator and the denominator separately
+\alert<2|handout:0>{\item[C.] You may use the quotient rule because perhaps $f(x)$ or $g(x)$ is itself in the form of a quotient}
+\item[D.] You will not use \hosp's rule because $\frac{0}{0}$ is not an appropriate indeterminate form
+\item[E.] You will not use \hosp's rule because, since the top has limit zero, the whole function has limit 0
+\end{itemize}\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{More Questions}
+\only<1>{\QuestionBar{3}{4}\AnswerYes}
+\only<2->{\AnswerBar{3}{4}}
+
+Which of the following is NOT an indeterminate form?
+\begin{itemize}
+\item[A.] \textcolor{M3}{$\frac{\infty}{\infty}$}\hspace{3cm} for example, $\displaystyle\dlimx{\infty} \frac{e^x}{x^2}$
+\item[B.] \textcolor{M3}{$\frac{0}{0}$} \hspace{3cm} for example, $\displaystyle\dlimx{0} \frac{e^x-1}{x}$
+\alert<2|handout:0>{\item[C.] \textcolor{M3}{$\frac{0}{ \infty}$} \hspace{2.8cm} for example, $\displaystyle\dlimx{0^+} 
+\frac{x}{\log x}\onslide<2|handout:0>{$=0$}$}
+\item[D.] \textcolor{M3}{$0\cdot \infty$}\hspace{2.5cm} for example, $\displaystyle\dlimx{\infty} 
+x(\arctan(x)-\pi/2)$
+\item[E.] all of the above are indeterminate forms
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{I have so many questions}
+\only<1>{\QuestionBar{4}{4}\AnswerYes}
+\only<2->{\AnswerBar{4}{4}}
+
+Which of the following is NOT an indeterminate form?
+\begin{itemize}
+\item[A.] \textcolor{M3}{$1^\infty$}\hspace{3cm} for example, $\displaystyle\dlimx{\infty} \left( \frac{x+1}{x}\right)^x$
+\alert<2|handout:0>{\item[B.] \textcolor{M3}{$0^{\infty}$}\hspace{3cm} for example, $\displaystyle\dlimx{\infty} \left( \frac{1}{x}\right)^x$\onslide<2|handout:0>{$=0$}}
+\item[C.] \textcolor{M3}{$\infty^0$} \hspace{2.8cm} for example, $\displaystyle\dlimx{\infty} x^{\frac{1}{x}}$
+\item[D.] \textcolor{M3}{$0^0$} \hspace{3cm} for example, $\displaystyle\dlimx{0^+} x^x$
+\item[E.] all of the above are indeterminate forms
+\item[F.] none of the above are indeterminate forms
+\end{itemize}
+\note<2>{$1^\infty$ definitely takes some explaining}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Exponential Indeterminate Forms}
+\only<1>{\QuestionBar{1}{10}\AnswerYes}
+\only<2->{\AnswerBar{1}{10}}
+
+
+\[\dlimx{\infty} x^{1/x}\]\pause
+\color{answercolor}
+
+\answer{\begin{align*}
+\dlimx{\infty} x^{1/x} &= \dlimx{\infty}e^{\left(\log \left(x^{1/x}\right)\right)}\\
+ &= \dlimx{\infty}e^{\left(\frac{\log x}{x}\right)}\\
+ &=e^{\left( \displaystyle\dlimx{\infty}\frac{\log x}{x}\right)}
+ \\
+&\lheq e^{\left(\displaystyle\dlimx{\infty}\frac{1}{x}\right)}\\
+ &=e^0=\boxed{1}
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Exponential Indeterminate Forms}
+\unote{Example~\eref{text}{eg:hopitalL}}
+\only<1>{\QuestionBar{2}{10}\AnswerYes}
+\only<2->{\AnswerBar{2}{10}}
+
+
+\[\dlimx{\infty} \left( 
+1+\frac{2}{x}\right)^{3x}\]\pause
+\color{answercolor}\footnotesize
+\answer{First we calculate:
+\begin{align*}
+\dlimx{\infty}\log\left(
+\left(1+\frac{2}{x}\right)^{3x} \right)&=
+\dlimx{\infty}3x\log\left(
+1+\frac{2}{x} \right)
+\\&=\dlimx{\infty}\frac{3\log\left(
+1+\frac{2}{x} \right)}{x^{-1}}
+\\&\lheq\dlimx{\infty} \frac{3\left(\frac{-2x^{-2}}{1+2/x}\right)}{-x^{-2}}\\
+&=\dlimx{\infty} \frac{6}{1+2/x}=6
+\intertext{So, now:}
+\dlimx{\infty} \left( 
+1+\frac{2}{x}\right)^{3x}&=\boxed{e^6}
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{3}{10}\QuestionBar{5}{10}\QuestionBar{4}{10}\AnswerYes}
+\only<2->{\AnswerBar{3}{10}\AnswerBar{5}{10}\AnswerBar{4}{10}}
+
+Evaluate:
+\[\dlimx{\infty} \frac{\log x}{\log \sqrt{x}}\]
+
+\answer{\onslide<2>{\textcolor{answercolor}{Easier to simplify first.}}}
+
+\vfill
+
+\[\dlimx{\infty} (\log x)^{\sqrt{x}}\]
+
+\onslide<2|handout:0>{\textcolor{answercolor}{Not an indeterminate form: huge number to a huge power. Limit is infinity.}}
+
+\vfill
+
+\[\dlimx{0}\frac{\arcsin x}{x}\]
+
+\onslide<2|handout:0>{\textcolor{answercolor}{\hosp: $\displaystyle\dlimx{0}\frac{\frac{1}{\sqrt{1-x^2}}}{1}=1$}}
+\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{More Examples}
+\only<1>{\QuestionBar{6}{10}\QuestionBar{7}{10}\QuestionBar{8}{10}\AnswerYes\MoreSpace}
+
+
+%{  (CLP \#14, 3.7)}
+\[\lim_{x \to \infty}\sqrt{2x^2+1}-\sqrt{x^2+x}\]
+\vfill
+%{  (CLP \#19, 3.7)}
+\[\lim_{x \to 0}\sqrt[x^2]{\sin^2x}\]
+\vfill
+
+%{  (CLP \#20, 3.7)}
+\[\lim_{x \to 0}\sqrt[x^2]{\cos x}\]
+\vfill
+
+\unote{Problem Book Section~\eref{text}{sec_3_7}\quad  Questions \eref{prob}{lhopA}, \eref{prob}{lhopB}, \eref{prob}{lhopC}}
+\end{frame}
+
+%------------------------------------------------------------------
+\begin{frame}<handout:0>[t]
+\AnswerBar{6}{10}
+
+\only<1>{\[\lim_{x \to \infty}\sqrt{2x^2+1}-\sqrt{x^2+x}\]}\pause
+
+
+
+\color{answercolor}
+
+$\ds\lim_{x \to \infty}\sqrt{2x^2+1}-\sqrt{x^2+x}$ has the indeterminate form $\infty - \infty$. To get a better idea of what's going on, let's rationalize.
+\begin{align*}
+&\lim_{x \to \infty}\sqrt{2x^2+1}-\sqrt{x^2+x}\\
+=&
+\lim_{x \to \infty}\left(\sqrt{2x^2+1}-\sqrt{x^2+x}\right)\left(
+\frac{\sqrt{2x^2+1}+\sqrt{x^2+x}}{\sqrt{2x^2+1}+\sqrt{x^2+x}}\right)\\
+=&\lim_{x \to \infty}
+\frac{(2x^2+1)-(x^2+x)}{\sqrt{2x^2+1}+\sqrt{x^2+x}}=
+\lim_{x \to \infty}
+\frac{x^2-x+1}{\sqrt{2x^2+1}+\sqrt{x^2+x}}
+\end{align*}
+Here, we have the indeterminate form $\frac{\infty}{\infty}$, so l'H\^opital's Rule applies. However, if we try to use it here, we quickly get a huge mess. Instead, remember how we dealt with these kinds of limits in the past: factor out the highest power of the denominator, which is $x$.
+\end{frame}
+
+%------------------------------------------------------------------
+\begin{frame}<handout:0>[t]
+\AnswerBar{6}{10}
+\color{answercolor}
+\begin{align*}
+\lim_{x \to \infty}
+\frac{x^2-x+1}{\sqrt{2x^2+1}+\sqrt{x^2+x}}&=\lim_{x \to \infty}
+\frac{x\left(x-1+\frac{1}{x}\right)}{\sqrt{x^2(2+\frac{1}{x^2})}+\sqrt{x^2(1+\frac{1}{x})}}\\
+&=\lim_{x \to \infty}
+\frac{x\left(x-1+\frac{1}{x}\right)}{x\left(\sqrt{2+\frac{1}{x^2}}+\sqrt{1+\frac{1}{x}}\right)}\\
+&=\lim_{x \to \infty}
+\underbrace{\frac{x-1+\frac{1}{x}}{\sqrt{2+\frac{1}{x^2}}+\sqrt{1+\frac{1}{x}}}}_{\substack
+	{\mathrm{num}\to \infty\\
+	 \mathrm{den}\to \sqrt{2}+1}}\\
+&=\infty
+\end{align*}
+\color{answercolor}
+
+\end{frame}
+%------------------------------------------------------------------
+\begin{frame}<handout:0>[t]\AnswerBar{7}{10}
+\[\lim_{x \to 0}\sqrt[x^2]{\sin^2x}\]\pause
+
+
+\color{answercolor}
+ $\ds\lim_{x \to 0} \sin^2 x = 0$, and $\ds\lim_{x \to 0}\frac{1}{x^2}=\infty$, so we have the form $0^\infty$. (Note that $\sin^2 x$ is positive, so our root is defined.) This is not an indeterminate form: $\lim\limits_{x \to 0}\sqrt[x^2]{\sin^2 x}=0$.
+\end{frame}
+%------------------------------------------------------------------
+\begin{frame}<handout:0>\AnswerBar{8}{10}
+\[\lim_{x \to 0}\sqrt[x^2]{\cos x}\]\pause
+\color{answercolor}
+ $\ds\lim_{x \to 0} \cos x =1$ and $\ds\lim_{x \to 0}\frac{1}{x^2}=\infty$, so $\ds\lim_{x \to 0}(\cos x)^{\frac{1}{x^2}}$ has the indeterminate form $1^\infty$. We want to use l'H\^opital, but we need to get our function into a fractional indeterminate form. So, we'll use a logarithm.
+\begin{align*}
+y:&=(\cos x)^{\frac{1}{x^2}}\\
+\log y &= \log \left((\cos x)^{\frac{1}{x^2}}\right)
+=\frac{1}{x^2}\log(\cos x)=\frac{\log \cos x}{x^2}\\
+\lim_{x \to 0}\log y &=\lim_{x \to 0}\underbrace{\frac{\log \cos x}{x^2}}_{\substack
+	{\mathrm{num}\to0\\
+	 \mathrm{den}\to 0}}
+	=
+	\lim_{x \to 0} \frac{\frac{-\sin x}{\cos x}}{2x}=
+	\lim_{x \to 0} \underbrace{\frac{-\tan x}{2x}}_{\substack
+	{\mathrm{num}\to0\\
+	 \mathrm{den}\to 0}}
+	=
+	\lim_{x \to 0}\frac{-\sec^2x}{2}\\
+	&=\lim_{x \to 0}\frac{-1}{2\cos^2 x}=-\frac{1}{2}\\
+\mbox{Therefore, } \lim_{x \to 0} y &=\lim_{x \to 0}e^{\log y}=e^{-1/2}=\frac{1}{\sqrt{e}}
+\end{align*}
+\color{answercolor}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+%------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{9}{10}\QuestionBar{10}{10}\AnswerYes\MoreSpace}
+
+
+Sketch the graph of $f(x)=x\log x$.\\
+
+Note: when you want to know $\displaystyle\dlimx{0} f(x)$, you'll need to use \hosp.
+
+\vfill
+Evaluate $\displaystyle\dlimx{0^+}(\csc x)^{x}$
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}<handout:0>[t]
+\unote{Example~\eref{text}{eg:hopitalJ}}
+\AnswerBar{9}{10}
+\[f(x)=x\log x\]\pause\color{answercolor}
+
+\begin{itemize}\color{answercolor}
+\item Domain: $x>0$
+\item HA: none
+\item Intercepts: $(1,0)$
+\item $y=\log x$ has a VA at $x=0$. For our function, let's see what its behaviour is near 0:
+\begin{align*}
+\dlimx{0^+} x\log x&=\dlimx{0^+}\frac{\log x}{1/x} \hspace{1cm}\mbox{ \color{M4} form $\frac{\infty}{\infty}$}\\
+&\lheq\dlimx{0^+} \frac{1/x}{-1/x^2}=\dlimx{0^+}-x=0
+\end{align*}
+\item $f'(x) = 1+\log x$;\\ CP at $x=\frac1e$ (and $y=-\frac1e$);\\
+ As $x$ gets close to 0, $f'(x)$ goes to negative infinity, so near $x=0$ our line looks vertical.\\
+Decreasing on $(0,\frac1e)$ and increasing on $(1/e,\infty)$
+\item $f''(x)=\frac1x$; concave up on entire domain
+\end{itemize}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}<handout:0>[t]\AnswerBar{9}{10}
+\color{answercolor}
+\vfill
+\begin{center}
+\begin{tikzpicture}
+\myaxis{x}{0}{3}{y}{1}{3}
+\draw[C1,thick] plot[smooth,domain=0.005:3](\x,{\x*ln(\x)});
+\end{tikzpicture}
+\end{center}
+\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}<handout:0>[t]\AnswerBar{10}{10}
+Evaluate $\displaystyle\dlimx{0^+}(\csc x)^{x}$\pause
+\begin{multicols}{2}\small
+\color{M4} Indeterminate form: $\infty^{0}$
+\color{answercolor}
+\begin{align*}
+y&=(\csc x)^x\\
+\log y &= x \log (\csc x)\\
+\dlimx{0^+}\log y &=\dlimx{0^+}x \log (\csc x) \\
+&=\dlimx{0^+}x \log \left(\frac1{\sin x}\right)\\
+&=\dlimx{0^+}-x \log \left({\sin x}\right)\intertext{\color{M4} indeterminate form $0 \cdot \infty$}
+&=\dlimx{0^+} \frac{\log(\sin x)}{-1/x}\\
+&\lheq\dlimx{0^+}\frac{\frac{\cos x}{\sin x}}{-1/x^2}\\
+&=\dlimx{0^+}\frac{-x^ 2}{\tan x}
+\intertext{\color{M4} indeterminate form $\frac00$}
+ &\lheq\dlimx{0^+}\frac{-2x}{\sec^2 x} \\&= \frac{0}{1}=0
+\intertext{\color{M4} conclusion}
+ \dlimx{0^+} \log y &= 0\\
+  \dlimx{0^+} y &= e^0=\boxed 1\\
+\end{align*}
+\end{multicols}
+\end{frame}
+%----------------------------------------------------------------------------------------

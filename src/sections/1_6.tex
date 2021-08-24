@@ -1,0 +1,498 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+%------------------------------------------------------
+\section[1.6 Continuity]{1.6 Continuity}
+
+ \begin{frame}{Table of Contents}
+\mapofcontentsA{\af}
+ \end{frame}
+ %--------
+
+%----------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
+%------------------------------------------------
+\begin{frame}[t]{Continuity}
+\begin{block}{Definition~\eref{text}{def_1_6_1}}
+A function $f(x)$ is continuous  at a point $a$ if 
+$\dlimx{a}f(x)$ exists AND is equal to $f(a)$.
+\end{block}
+
+\only<2-5>{
+\begin{multicols}{2}
+\begin{tikzpicture}[scale=0.8]
+\myaxis{}{2.2}{2.2}{}{0}{4.2}
+\draw[step=1cm, ultra thin] (-2,0) grid (2,4);
+   \draw[scale=1,domain=-2:2,smooth,variable=\x,C2, ultra thick] plot ({\x},{\x*\x})
+   node[above] {$y=f(x)$};
+      	
+\draw (1,1) node[C2, opendot]{};
+\draw (1,2) node[C2, vertex]{};
+
+
+\foreach \x in {-2,-1,1,2}{
+	\draw (\x,0) node[below]{$\x$};}
+\foreach \x in {1,...,4}{
+	\draw (0,\x) node[above left]{$\x$};}
+\end{tikzpicture}\pause
+\columnbreak
+
+
+Does $f(x)$ exist at $x=1$? \onslide<3->{\answer{\alert{Yes.}}}\\
+Is $f(x)$ continuous at $x=1$? \onslide<4->{\answer{\alert{No.}}}\\[1em]
+
+\answer{\onslide<5->{This kind of discontinuity is called \alert{removable}.\vfill}}
+\end{multicols}}
+\only<2-4>{\AnswerYes}
+\unote{Example~\eref{text}{eg_1_6_1}}
+\end{frame}
+ %--------
+%------------------------------------------------
+
+\begin{frame}[t]
+\begin{block}{Definitions~\eref{text}{def_1_6_1} and ~\eref{text}{def_1_6_2}}
+\only<1-2|handout:0>{A function $f(x)$ is continuous  at a point $a$ if 
+$\dlimx{a}f(x)$ exists AND is equal to $f(a)$.
+}
+\only<3->{A function $f(x)$ is continuous \alert{from the left} at a point $a$ if 
+$\dlimx{a^-}f(x)$ exists AND is equal to $f(a)$.}
+\end{block}
+
+
+\begin{multicols}{2}
+\begin{tikzpicture}[scale=0.7]
+\myaxis{}{0}{5.2}{}{0}{5.2}
+\draw[step=1cm, ultra thin] (0,0) grid (5,5);
+   \draw[scale=1,domain=0:2.9,smooth,variable=\x,C2, ultra thick] plot ({\x},{\x});
+   \draw[scale=1,domain=3.1:5,smooth,variable=\x,C2, ultra thick] plot ({\x},{\x-1})
+   node[above left] {$y=f(x)$};
+\draw (3,2) node[C2, opendot]{};
+\draw (3,3) node[C2, vertex]{};
+\foreach \x in {0,...,5}{	\xcoord{\x}{\x}	\ycoord{\x}{\x}}
+\end{tikzpicture}
+\columnbreak
+
+
+Is $f(x)$ continuous at $x=3$? \only<2->{\answer{\alert{No.}}}\\[1em]
+\only<4->{Is $f(x)$ continuous from the left at $x=3$? \onslide<5|handout:0>{\alert{Yes.}}\vspace{1em}
+
+Is $f(x)$ continuous from the right at $x=3$? \onslide<6-|handout:0>{\alert{No.}}}\vspace{1em}
+ 
+\onslide<2|handout:0>{ This kind of discontinuity is called a \alert{jump}.}
+ 
+\end{multicols}
+
+\note<3>{Writing down strict def of jump discontinuity doesn't seem super helpful. Can still say it's when the limit from the left and right both exist but don't match. Also, rather than writing down def of ``cont from right," can use pen to change the def of ``from the left".
+
+Good time to emphasize limits as expectations. From the right, you \textit{expect} to hit $y=2$, but you don't, so it's discontinuous. From the right, you \textit{expect} to hit $y=3$, \textit{and you do}, so it's continuous.}
+
+\only<1,4-5>{\AnswerYes}
+\unote{Example~\eref{text}{eg_1_6_1}}
+\end{frame}
+%-------------------------------------
+\begin{frame}
+\begin{block}{Definition}
+A function $f(x)$ is continuous  at a point $a$ if 
+$\dlimx{a}f(x)$ exists AND is equal to $f(a)$.
+\end{block}
+
+
+\begin{multicols}{2}
+\begin{tikzpicture}[scale=0.7]
+\myaxis{}{2}{5}{}{0}{6}
+%\draw[->] (-2,0) -- (6.2,0) node[right] {$x$};
+%\draw[->] (0,0) -- (0,6.2) node[above] {$y$};
+\draw[step=1cm, ultra thin] (-2,0) grid (5,6);
+\draw[scale=1,domain=-2:0.591,smooth,variable=\x,C2, ultra thick] plot ({\x},{1/((\x-1)*(\x-1))})   node[above right] {$y=f(x)$};
+\draw[scale=1,domain=1.409:5,smooth,variable=\x,C2, ultra thick] plot ({\x},{1/((\x-1)*(\x-1))});
+      	
+\foreach \x in {1,...,5}{	\xcoord{\x}{\x}	\ycoord{\x}{\x}}
+\end{tikzpicture}
+
+\columnbreak
+
+\onslide<2|handout:0>{
+Since no one-sided limits exist at $x=1$, there's no hope for continuity there -- not even ``from the left" or ``from the right." \vspace{1em}
+
+This is called an \alert{infinite discontinuity}}
+\end{multicols}
+\unote{Example~\eref{text}{eg_1_6_1}}
+\end{frame}
+%-------------------------------------
+\begin{frame}[t]
+\begin{block}{Definition}
+A function $f(x)$ is continuous  at a point $a$ if 
+$\dlimx{a}f(x)$ exists AND is equal to $f(a)$.
+\end{block}
+
+\[f(x)=\left\{\begin{array}{l c r}
+x^2\sin\left(\frac{1}{x}\right)&,&x \neq 0\\
+0&,&x=0
+\end{array}\right.\]
+
+Is $f(x)$ continuous at 0?
+\note{``Sometimes, especially without a graph, it can be very difficult to tell. Remember that we already sketched this example. If we hadn't, answering would be tough.}
+\AnswerNo
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+
+%---------------------------------------------------------------------------------------
+\begin{frame}[t]{Continuous Functions}
+Functions made by adding, subtracting, multiplying, dividing, and taking appropriate powers of polynomials are continuous for every point \alert{in their domain}.
+\only<2->{
+\[f(x)=\frac{x^2}{2x-10}-\left(\frac{{x^2+2x-1}}{x-1}+\frac{\sqrt[5]{25-x}-\frac{1}{x}}{x+2}\right)^{1/3}\]
+\only<3-4|handout:0>{\textcolor{answercolor}{$f(x)$ is continuous at every real number \alert{except} $5, 1, 0$, and $-2$.}}}
+
+
+\only<4>{\vfill A \alert{continuous function} is continuous for every point in $\mathbb R$.}
+
+\only<5>{\vfill We say $f(x)$ is \alert{continuous over $(a,b)$} if it is continuous at every point in $(a,b)$.}
+\only<5|handout:0>{So, $f(x)$ is \alert{continuous over its domain}, 
+$(-\infty,-2) \cup (-2,0) \cup (0,1) \cup (1,5) \cup (5,\infty)$.}
+\end{frame}
+ %--------
+ %---------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{block}{Common Functions -- Theorem~\eref{text}{thm_1_6_2}}
+Functions of the following types are continuous over their domains:
+\begin{itemize}
+\item[-] polynomials and rationals
+\item[-] roots and powers
+\item[-] trig functions and their inverses
+\item[-] exponential and logarithm
+\item[-] The products, sums, differences, quotients, powers, and compositions of continuous functions
+\end{itemize}
+\end{block}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+Where is the following function continuous?
+\[f(x)=\left(\frac{\sin x}{(x-2)(x+3)} + e^{\sqrt{x}}\right)^3\]
+
+\onslide<2|handout:0>{\color{C3}
+Over its domain: $[0,2) \cup (2, \infty)$.
+}
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{A Technical Point}
+\begin{block}{Definition~\eref{text}{def_1_6_3}}A function $f(x)$ is continuous on the closed interval $[a,b]$ if:
+\begin{itemize} \item $f(x)$ is continuous over $(a,b)$, and
+\item $f(x)$ is continuous from the \textcolor{C3}{left} at \onslide<3->{\textcolor{C3}{b}}, and
+\item $f(x)$ is continuous from the \textcolor{C4}{right} at \onslide<4->{\textcolor{C4}{a}}
+\end{itemize}\end{block}
+\vfill
+\center
+\begin{tikzpicture}
+\draw (0,0)--(8,0);
+\draw (0,.5)--(0,-.5) node[below]{$a$};
+\onslide<2->{\draw[C3, ->, ultra thick] (6.5,.5)--(7.5,.5); }
+\draw (8,.5)--(8,-.5) node[below]{$b$};
+\onslide<4->{\draw[C4, ->, ultra thick] (1.5,.5)--(.5,.5); }
+\end{tikzpicture}
+\vfill
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{block}{Intermediate Value Theorem (IVT) -- Theorem~\eref{text}{thm ivt}}
+Let $a<b$ and let $f(x)$ be continuous over $[a,b]$. If $y$ is any number between $f(a)$ and $f(b)$, then there exists $c$ in $(a,b)$ such that $f(c)=y$. 
+\end{block}
+
+\only<1-7|handout:1>{
+\center
+\begin{tikzpicture}[yscale=0.6]
+\myaxis{x}{0}{6.2}{}{0}{6.2}
+\draw[ultra thick, C2] (0,0) .. controls (1.5,4) and (2,5) .. (2.5,6) .. controls (3,3) and (4,3) .. (6,5);
+\draw[C2] (0,0) node[vertex]{};    	
+\draw[C2] (6,5) node[vertex]{};
+
+\onslide<2-|handout:0>{\draw[dashed] (1,2.6)--(1,-.25) node[below]{$a$};
+\draw[dashed] (6,5)--(6,-.25) node[below]{$b$};}
+\onslide<3-|handout:0>{
+\draw[dashed] (1,2.6)--(-.25,2.6) node[left]{$f(a)$};
+\draw[dashed] (6,5)--(-.25,5) node[left]{$f(b)$};
+}
+
+\onslide<4-5|handout:0>{
+\draw[dashed, C3, thick] (1.2,3)--(-1.25,3) node[left]{$y$};
+\onslide<5|handout:0>{
+\draw[C3] (1.2,3) node[vertex](c1){};
+\draw[dashed, C3] (c1)--(1.2,-1) node[below]{c};
+}}
+\onslide<6,7|handout:0>{
+\draw[dashed, C3, thick] (4.9,4)--(-1.25,4) node[left]{$y$};
+\onslide<7|handout:0>{
+\draw[C3] (4.9,4) node[vertex](c2){};
+\draw[dashed, C3] (c2)--(4.9,-.5) node[below]{c};
+}}
+\end{tikzpicture}}
+
+\only<8-|handout:2>{Suppose your favourite number is 45.54. At noon, your car is parked, and at 1pm you're driving 100kph. \answer{By the Intermediate Value Theorem, at some point between noon and 1pm you were going exactly 45.54 kph.} }
+
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Using IVT to Find Roots: ``Bisection Method''}
+Let $f(x)=x^5-2x^4+2$.
+Find any value $x$ for which $f(x)=0$.
+\hfill  \pause
+\textcolor{answercolor}{Let's find some points:}\vfill
+
+\begin{center}
+\onslide<3->{ $f(0)=2$} \hfill \onslide<4->{$f(1)=1$}\hfill\onslide<5->{ $f(-1)=-1$ }
+\vfill
+\only<2->{ \begin{tikzpicture}
+\myaxis{x}{4.1}{4.1}{y}{1.3}{2.3}
+%\draw[<->, thick] (-4.2,0)--(4.2,0) node[right]{$x$};
+%\draw[<->, thick] (0,-1.3)--(0,2.3) node[right]{$y$};
+\foreach \x in {-1,1,2}{\ycoord{\x}{\x}}
+\onslide<3->{\draw[C2] (0,2) node[vertex]{};}
+\onslide<4->{\draw[C2] (3,1) node[vertex]{}; \xcoord{3}{1};}
+\onslide<5->{\draw[C2] (-3,-1) node[vertex]{}; \xcoord{-3}{-1};}
+\end{tikzpicture}}
+\end{center}
+\unote{Example~\eref{text}{eg pre bisection}}
+\end{frame}
+ %--------%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Using IVT to Find Roots: ``Bisection Method''}
+Let $f(x)=x^5-2x^4+2$.
+Find any value $x$ for which $f(x)=0$.
+\vfill
+
+\textcolor{answercolor}{$f(0)=2$,  $f(-1)=-1$}\onslide<2-|handout:0>{, $f\left(-\frac12\right)\approx 1.84$}\onslide<3-|handout:0>{, $f\left(-\frac34\right)\approx 1.13$}\onslide<4-|handout:0>{, $f(-.9)=0.097$}\\
+%\onslide<14->{$f(-.95) \approx -0.4$}
+%\vfill
+%\center
+ \begin{tikzpicture}
+ \myaxis{x}{8}{0}{y}{1.3}{2.3}
+\foreach \x in {-1,1,2}{\ycoord{\x}{\x}}
+\xcoord{-6}{-1}
+\draw[C2] (0,2) node[vertex]{};
+\draw[C2] (-6,-1) node[vertex]{};
+\onslide<2-|handout:0>{\draw[C2](-3,1.8)node[vertex]{}; \xcoord{-3}{-\frac12}}
+\onslide<3-|handout:0>{\draw[C2] (-4.5,1.1) node[vertex]{};  \xcoord{-4.5}{-\frac34}}
+\onslide<4-|handout:0>{\draw[C2] (-5.4,0.1) node[vertex]{};\xcoord[yshift=-1cm]{-5.4}{-0.9}
+}
+\end{tikzpicture}
+\end{frame}
+
+ %--------
+
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{QuestionSet}
+\SetQuestion{
+Use the Intermediate Value Theorem to show that there exists some solution to the  equation
+\textcolor{C3}{$\ln x \cdot e^x = 4$},
+and give a reasonable interval where that solution might occur.
+
+
+\AnswerYes}
+
+\SetAnswer{
+Use the Intermediate Value Theorem to show that there exists some solution to the  equation
+\textcolor{C3}{$\ln x \cdot e^x = 4$}, and give a reasonable interval where that solution might occur.
+\vfill
+\begin{itemize}\color{answercolor}
+\item[-] The function $f(x)=\ln x \cdot e^x$ is continuous over its domain, which is $(0,\infty)$. In particular, then, it is continuous over the interval $(1,e)$.
+\item[-] $f(1)=\ln(1)e=0\cdot e = 0$ and $f(e)=\ln(e)\cdot e^e = e^e$. Since $e>2$, we know $f(e)=e^e>2^2=4$.
+\item[-] Then $4$ is between $f(1)$ and $f(e)$.
+\item[-] By the Intermediate Value Theorem, $f(c)=4$ for some $c$ in $(1,e)$.
+\end{itemize}}
+
+\SetQuestion{
+\NowYou Use the Intermediate Value Theorem to give a reasonable interval where the following is true:
+\textcolor{C3}{$e^x=\sin(x)$}. (Don't use a calculator -- use numbers you can easily evaluate.)
+\AnswerYes}
+
+\SetAnswer{\NowYou Use the Intermediate Value Theorem to give a reasonable interval where the following is true:
+\textcolor{C3}{$e^x=\sin(x)$}. (Don't use a calculator -- use numbers you can easily evaluate.)
+\vfill
+
+\color{answercolor}
+We can rearrange this: let $f(x)=e^x-\sin(x)$, and note $f(x)$ has roots exactly when \textcolor{C3}{$e^x=\sin(x)$}.
+\begin{itemize}\color{answercolor}
+\item[-] The function $f(x)=e^x-\sin x$ is continuous over its domain, which is all real numbers. In particular, then, it is continuous over the interval $\left(-\frac{3\pi}{2},e\right)$.
+\item[-] $f(0)=e^0-\sin 0=1-0=1>0$ and $f\left(-\frac{3\pi}{2}\right)=e^{-\frac{3\pi}{2}}-\sin\left(\frac{-3\pi}{2}\right)=e^{-\frac{3\pi}{2}}-1<e^0-1=1-1=0$.
+\item[-] Then $0$ is between $f(0)$ and $f\left(-\frac{3\pi}{2}\right)$.
+\item[-] By the Intermediate Value Theorem, $f(c)=0$ for some $c$ in $\left(-\frac{3\pi}{2},0\right)$.
+\item[-] Therefore, $e^c=\sin c$ for some $c$ in $\left(-\frac{3\pi}{2},0\right)$.
+\end{itemize}
+\color{black}}
+\note<4>{Often doing this once isn't enough for it to stick, hence the second student-work problem}
+\SetQuestion{
+\NowYou Is there any value of $x$ so that \textcolor{C3}{$\sin x = \cos(2x)+\frac{1}{4}$}?
+\AnswerYes}
+
+\SetAnswer{\NowYou Is there any value of $x$ so that \textcolor{C3}{$\sin x = \cos(2x)+\frac{1}{4}$}?\vfill
+
+\textcolor{answercolor}{Yes, somewhere between 0 and $\frac{\pi}{2}$.}}
+\end{QuestionSet}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\NowYou Is the following reasoning correct?
+\AnswerSpace\only<1>{\AnswerYes}\vfill\vfill
+
+\begin{itemize}\color{C1}
+\item[-] $f(x)=\tan x$ is continuous over its domain, because it is a trigonometric function.\vfill
+
+\item[-]In particular, $f(x)$ is continuous over the interval $\left[\frac{\pi}{4},\frac{3\pi}{4}\right]$. \only<2-|handout:0>{\qquad \alert{false}}\vfill
+
+\item[-]$f\left(\frac{\pi}{4}\right) = 1$, and $f\left(\frac{3\pi}{4}\right)=-1$.\vfill
+
+\item[-]Since $f\left(\frac{3\pi}{4}\right)<0<f\left(\frac{\pi}{4}\right)$, by the Intermediate Value Theorem, there exists some number $c$ in the interval $\left(\frac{\pi}{4},\frac{3\pi}{4}\right)$ such that $f(c)=0$.\vfill
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\begin{center}
+\begin{tikzpicture}
+\myaxis{x}{1.5}{4.5}{y}{2}{2};
+\draw[thick] plot[domain=-1.1:1.1, samples=100](\x,{tan(\x r)});
+\draw[thick, dashed] (1.57,-2)--(1.57,2) node[above]{$\frac{\pi}{2}$};
+\draw[thick] plot[domain=2.04:4.24, samples=100](\x,{tan(\x r)}) node[right]{$y=\tan x$};
+\draw (0.78,1) node[vertex]{};
+\draw (2.37,-1) node[vertex]{};
+\xcoord{.78}{\frac{\pi}{4}}
+\xcoord{2.37}{\frac{3\pi}{4}}
+\ycoord{1}{1}
+\ycoord{-1}{-1}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+%\section[Review]{Review}
+\begin{frame}{Continuity}
+Section 1.6 Review
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{QuestionSet}
+\SetQuestion{Suppose $f(x)$ is continuous at $x=1$. Does $f(x)$ have to be defined at $x=1$?\AnswerYes}
+\SetAnswer{Suppose $f(x)$ is continuous at $x=1$. Does $f(x)$ have to be defined at $x=1$?\\[1em]
+
+\textcolor{answercolor}{Yes. Since $f(x)$ is continuous at $x=1$, $\dlimx{1}f(x)=f(1)$, so $f(1)$ must exist.}}
+
+\SetQuestion{Suppose $f(x)$ is continuous at $x=1$ and $\dlimx{1^-}f(x)=30$.\\[1em]
+
+True or false: $\dlimx{1^+}f(x)=30$. \AnswerYes}
+\SetAnswer{Suppose $f(x)$ is continuous at $x=1$ and $\dlimx{1^-}f(x)=30$.\\[1em]
+True or false: $\dlimx{1^+}f(x)=30$.\\[1em]
+
+\textcolor{answercolor}{True. Since $f(x)$ is continuous at $x=1$, $\dlimx{1}f(x)=f(1)$, so $\dlimx{1}f(x)$ must exist. That means  both one-sided limits exist, and are equal to each other.}}
+
+\SetQuestion{
+Suppose $f(x)$ is continuous at $x=1$ and $f(1)=22$. What is $\dlimx{1}f(x)?$\AnswerYes}
+
+\SetAnswer{Suppose $f(x)$ is continuous at $x=1$ and $f(1)=22$. What is $\dlimx{1}f(x)?$\\[1em]
+\textcolor{answercolor}{$22=f(1)=\dlimx{1}f(x)$.}}
+
+\SetQuestion{
+Suppose $\dlimx{1}f(x)=2$.  Must it be true that $f(1)=2$? \AnswerYes}
+\SetAnswer{Suppose $\dlimx{1}f(x)=2$. 
+Must it be true that $f(1)=2$?\\[1em]
+
+\textcolor{answercolor}{No. In order to determine the limit as $x$ goes to 1, we ignore $f(1)$. (Perhaps $f(x)$ is not even defined at 1.)}}
+\end{QuestionSet}
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{QuestionSet}
+\SetQuestion{
+\[f(x)=\left\{  
+\begin{array}{lr}
+ax^2&x \geq 1\\
+3x&x<1
+\end{array}
+\right.\]
+\vspace{1cm}
+For which value(s) of $a$ is $f(x)$ continuous?
+\AnswerYes}
+
+\SetAnswer{
+\[f(x)=\left\{  
+\begin{array}{lr}
+ax^2&x \geq 1\\
+3x&x<1
+\end{array}
+\right.\]
+\vspace{1cm}
+For which value(s) of $a$ is $f(x)$ continuous?\\[1em]
+
+\textcolor{answercolor}{We need $ax^2=3x$ when $x=1$, so \alert{$a=3$}.}}
+
+
+
+\SetQuestion{
+\[f(x)=\left\{  
+\begin{array}{lr}
+\frac{\sqrt{3}x+3}{x^2-3}&x \neq \pm\sqrt{3}\\
+a&x=\pm\sqrt{3}
+\end{array}
+\right.\]
+
+\vspace{1cm}
+For which value(s) of $a$ is $f(x)$ continuous at $x=-\sqrt{3}$?
+\AnswerYes}
+
+\SetAnswer{
+
+{\color{answercolor}\small
+By the definition of continuity, if $f(x)$ is continuous at $x=-\sqrt{3}$, then $f(-\sqrt{3})=\ds\lim_{x \rightarrow -\sqrt{3}}f(x)$. Note $f(-\sqrt{3})=a$, and when $x$ is close to (but not equal to) $-\sqrt{3}$, then $f(x)=\frac{\sqrt{3}x+3}{x^2-3}$.
+\begin{align*}
+f(-\sqrt{3})&=\lim_{x \rightarrow -\sqrt{3}}f(x)\\
+a&=\lim_{x \rightarrow -\sqrt{3}}\frac{\sqrt{3}x+3}{x^2-3} = \lim_{x \rightarrow -\sqrt{3}}\frac{\sqrt{3}(x+\sqrt{3})}{(x+\sqrt{3})(x-\sqrt{3})}\\
+&=\lim_{x \rightarrow -\sqrt{3}}\frac{\sqrt{3}}{x-\sqrt{3}}=\frac{\sqrt{3}}{-\sqrt{3}-\sqrt{3}}=-\frac{1}{2}
+\end{align*}
+So we can use $a=-\frac{1}{2}$ to make $f(x)$ continuous at $x=-\sqrt{3}$.
+\color{black}}
+}
+
+\SetQuestion{
+\[f(x)=\left\{  
+\begin{array}{lr}
+\frac{\sqrt{3}x+3}{x^2-3}&x \neq \pm\sqrt{3}\\
+a&x=\pm\sqrt{3}
+\end{array}
+\right.\]
+
+For which value(s) of $a$ is $f(x)$ continuous at $x=\sqrt{3}$?
+\AnswerYes}
+
+
+\SetAnswer{
+\[f(x)=\left\{  
+\begin{array}{lr}
+\frac{\sqrt{3}x+3}{x^2-3}&x \neq \pm\sqrt{3}\\
+a&x=\pm\sqrt{3}
+\end{array}
+\right.\]
+
+For which value(s) of $a$ is $f(x)$ continuous at $x=\sqrt{3}$?\\[1em]
+
+
+
+\textcolor{answercolor}{\small
+By the definition of continuity, if $f(x)$ is continuous at $x=\sqrt{3}$, then $f(\sqrt{3})=\ds\lim_{x \rightarrow \sqrt{3}}f(x)$. When $x$ is close to (but not equal to) $\sqrt{3}$, then $f(x)=\frac{\sqrt{3}x+3}{x^2-3}$. However, as $x$ approaches $\sqrt{3}$, the denominator of this expression gets closer and closer to zero, while the top gets closer and closer to 6. So, this limit does not exist.  Therefore, no value of $a$ will make $f(x)$ continuous at $x=\sqrt{3}$.}
+}
+\end{QuestionSet}
+\end{frame}
+ %--------
+

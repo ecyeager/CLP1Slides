@@ -1,0 +1,130 @@
+
+
+
+%add page numbers into footline
+%modify "authorinstitutetitle" footline option for miniframes outer theme
+\def\beamer@theme@footline@CLPfoot{
+  \defbeamertemplate*{footline}{miniframes theme}
+  {%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      {\usebeamerfont{title in head/foot} \insertpagenumber /\insertpresentationendpage  \qquad \insertshorttitle}\hfill{\usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+    \end{beamercolorbox}
+  }
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\useinnertheme[shadow]{rounded}
+\useinnertheme{circles}
+
+\usefonttheme{serif}
+\usepackage{palatino}
+
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+
+\useoutertheme[compress, subsection=false, footline=CLPfoot]{miniframes}
+
+\definecolor{_deepskyblue4}{HTML}{00688B}
+\definecolor{_deepgreen}{HTML}{006070}
+\definecolor{_burntorange}{HTML}{cc5500}
+
+\setbeamercolor*{upper separation line head}{bg=_deepgreen}
+\setbeamercolor*{lower separation line foot}{bg=_deepgreen}
+
+\setbeamercolor*{normal text}{fg=black,bg=white}
+\setbeamercolor*{alerted text}{fg=_burntorange}
+\setbeamercolor*{example text}{fg=black}
+\setbeamercolor*{structure}{fg=black}
+
+\setbeamercolor*{block title}{fg=white, bg=_deepgreen}
+\setbeamercolor*{block body}{fg=black, bg=black!10}
+
+\setbeamercolor*{titlelike}{fg=white, bg=_deepgreen}
+
+\setbeamercolor*{Title bar}{fg=black,bg=black!10}
+\setbeamercolor*{frametitle}{parent=Title bar}
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!10}
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10}
+
+\setbeamercolor*{button}{bg=_deepgreen,fg=white}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamercovered{invisible}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle
+right.bg]{beamer@frametitleshade}{\paperheight}{%
+  color(0pt)=(frametitle.bg);
+  color(\paperwidth)=(frametitle right.bg)}
+
+\AtBeginDocument{
+  \pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
+    color(0pt)=(bg);
+    color(4pt)=(black!50!bg)}
+}
+
+\addtobeamertemplate{headline}
+{}
+{%
+  \vskip-0.2pt
+  \pgfuseshading{beamer@topshade}
+  \vskip-2pt
+}
+
+
+\defbeamertemplate*{frametitle}{shadow theme}
+{%
+  \nointerlineskip%
+  \vskip-2pt%
+  \hbox{\leavevmode
+    \advance\beamer@leftmargin by -12bp%
+    \advance\beamer@rightmargin by -12bp%
+    \beamer@tempdim=\textwidth%
+    \advance\beamer@tempdim by \beamer@leftmargin%
+    \advance\beamer@tempdim by \beamer@rightmargin%
+    \hskip-\Gm@lmargin\hbox{%
+      \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+          \vbox{}\vskip-.75ex%
+          \leftskip0.3cm%
+          \rightskip0.3cm plus1fil\leavevmode
+          \insertframetitle%
+          \ifx\insertframesubtitle\@empty%
+            \strut\par%
+          \else
+
+\par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}
+\insertframesubtitle}\strut\par}%
+          \fi%
+          \nointerlineskip
+          \vbox{}%
+          \end{minipage}}%
+      \beamer@tempdim=\ht\beamer@tempbox%
+      \advance\beamer@tempdim by 2pt%
+      \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+        \usebeamercolor{frametitle right}
+
+\pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+        \pgfusepath{clip}
+        \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+      \end{pgfpicture}
+      \hskip-\paperwidth%
+      \box\beamer@tempbox%
+    }%
+    \hskip-\Gm@rmargin%
+  }%
+  \nointerlineskip
+    \vskip-0.2pt
+    \hbox
+to\textwidth{\hskip-\Gm@lmargin\pgfuseshading{beamer@topshade}\hskip-\Gm@rmargin
+}
+    \vskip-2pt
+}
+
+\setbeamertemplate{items}[default]

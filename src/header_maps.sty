@@ -1,0 +1,229 @@
+
+\graphicspath{{./fig/}}%header100 uses different folders, eg for clipart
+
+%Table of Contents. The usual package for using mindmaps in a ToC is incompatible with Beamer, so we use the following kludge. You need to label each section twice: put then in the slides as you usually would, then copy them here.
+\usetikzlibrary{mindmap, backgrounds, calc}
+\definecolor{contentscolor}{HTML}{ccdfe2}%deepgreen mixed with white
+\definecolor{highlightcolor}{RGB}{255,255,109}%W5
+
+
+\newcommand{\highlightselected}[1]{
+	\renewcommand{#1}{highlightcolor}
+	}
+\newcommand{\unhighlightselected}[1]{
+	\renewcommand{#1}{contentscolor}
+	}
+
+
+%%Table of Contents as a mindmap
+%e.g.: \mapofcontants{\aa,\ab,\ac} will print a frame with the map, and highlight 1.1, 1.2, and 1.3
+
+
+%CHAPTER 1
+\renewcommand{\aa}{contentscolor} 
+\newcommand{\ab}{contentscolor} 
+\newcommand{\ac}{contentscolor} 
+\newcommand{\ad}{contentscolor} 
+\renewcommand{\ae}{contentscolor}
+\newcommand{\af}{contentscolor} 
+\newcommand{\ag}{contentscolor}
+\newcommand{\roc}{contentscolor} 
+
+
+\newcommand{\mapofcontentsA}[1]{
+\forcsvlist\highlightselected{#1}
+	\begin{center}\begin{tikzpicture}[rotate=-90,
+	    small mindmap, 
+	    concept color = contentscolor,
+	    every node/.style = {concept}, 
+	    grow cyclic
+	]
+	\node (root)[minimum size=1cm,inner sep=0, concept color=contentscolor!50] {Limits}
+	    child [concept color=\roc,text=_darkred] {node (1) {Rates of Change}
+	        child[concept color=\aa,text=_darkred] {node (11) {1.1 Tangent Lines}}	        child [concept color=\ab,text=_darkred]{node (12) {1.2 Velocity}}
+	    }
+	    child [concept color=\ac,text=_deepskyblue] {node (2) {1.3 Limits of functions}
+	        child[concept color=\ad] {node (21) {1.4 Limit Laws}}
+	        child[concept color=\ae] {node (22) {1.5 Limits at infinity}}
+	        child[concept color=\af] {node (23) {1.6 Continuity}}
+	    }
+	    ;
+	\end{tikzpicture}\end{center}
+\forcsvlist\unhighlightselected{#1}
+}
+
+%CHAPTER 2
+%%Table of Contents as a mindmap
+%e.g.: \mapofcontants{\aa,\ab,\ac} will print a frame with the map, and highlight 1.1, 1.2, and 1.3
+\newcommand{\ba}{contentscolor}%2.1
+\newcommand{\bb}{contentscolor}%2.2
+\newcommand{\bc}{contentscolor}%2.3
+\newcommand{\bd}{contentscolor}%2.4
+\newcommand{\be}{contentscolor}%2.5
+%bf
+\newcommand{\bg}{contentscolor}%2.6
+\newcommand{\bh}{contentscolor}%2.7
+\newcommand{\bi}{contentscolor}%2.8
+\newcommand{\bj}{contentscolor}%2.9
+\newcommand{\bk}{contentscolor}%2.10
+\newcommand{\bl}{contentscolor}%2.11
+\newcommand{\bm}{contentscolor}%2.12
+\newcommand{\bn}{contentscolor}%2.13
+\newcommand{\bo}{contentscolor}%2.14
+\newcommand{\invf}{C2!30}%inverse functions
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mapofcontentsB}[1]{
+\forcsvlist\highlightselected{#1}
+	\begin{center}\begin{tikzpicture}[rotate=-90,
+	    small mindmap, 
+	    concept color = contentscolor,
+	    every node/.style = {concept}, 
+	    grow cyclic
+	]
+
+\node (root) [concept color=contentscolor!50]{Derivatives}
+    child  [concept color = \bb,text=_deepskyblue]{node (22) {Definition\\2.2}
+        child [concept color=\ba] {node (21) {Revisiting tangent lines\\2.1}}
+        child [concept color=\bo] {node (214) {Higher Order Derivatives \\ 2.14}}
+    }
+    child [concept color = contentscolor,text=_darkred] {node (2) {Applica-tions}
+        child [concept color=\bc] {node (23) {Interpreta-tions\\2.3}}
+        child [concept color=\bn] {node (213) {Mean Value Theorem \\ 2.13}}
+    }
+    child [concept color = _deepgreen!45]  {node(3) {Computing Derivatives\\2.4-2.12}
+         };
+
+\end{tikzpicture}\end{center}
+\forcsvlist\unhighlightselected{#1}
+}
+
+%CHAPTER 2 computations
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mapofcontentsBB}[1]{
+\forcsvlist\highlightselected{#1}
+\vspace{-1cm}
+	\begin{center}\begin{tikzpicture}[rotate=-90,
+	    small mindmap, 
+	    concept color = contentscolor,
+	    every node/.style = {concept},  
+	     level 1/.append style = {
+	        level distance = 2.5cm,
+	        sibling angle = 90
+		    },
+		 level 3/.append style = {
+	        level distance = 2cm,
+	        sibling angle = 50
+		    },
+	    grow cyclic]
+\node (root) [concept color=contentscolor!50, scale=0.75] {Computing Derivatives}
+	   child [concept color=_deepgreen, text=_deepgreen] {node[text=white] (3a) {General Rules}
+	            child [concept color = \bl]{node  (34) {Implicit Differentiation\\ 2.11}}
+	            child  [concept color = \bj] {node (34) {Chain Rule \\ 2.9}}
+		    child  [concept color = \bd] {node(31) {Arithmetic of Derivatives \\ 2.4}
+	            child  [concept color = \bg]{node(41){Examples\\2.6}}
+	            child  [concept color = \be]{node(41){Proof of arithmetic of derivatives\\2.5}}
+	            }
+	   }
+	   child [concept color=_darkred, text=_darkred] {node[text=white] (3b) {Particular Functions}
+           	 child [concept color = \bh] {node  (32) {Derivatives of Exponential Functions\\2.7}
+	 		child  [concept color = \bk] {node (34) {Natural Logarithm \\ 2.10}}    
+			}
+           	 child  [concept color = \bi]  {node(35) {Derivatives of Trigonometric Functions\\2.8}
+	 		child [concept color = \bm] {node (36) {Inverse Trigonometric Functions \\ 2.12}}
+			}        
+           	 }         ;
+ \node[extra concept, concept color=\invf] (06)at ($(36) + (2.5,-0.5)$) 
+{
+   Inverse Functions\\0.6, A.13
+};
+\draw [concept connection]
+    (06) edge[thick,contentscolor] (34)
+    (06) edge[thick,contentscolor] (36);
+\end{tikzpicture}\end{center}
+\forcsvlist\unhighlightselected{#1}
+}
+
+
+%CHAPTER 3
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ca}{contentscolor}%3.1
+\newcommand{\cb}{contentscolor}%3.2
+\newcommand{\cc}{contentscolor}%3.3
+\newcommand{\cd}{contentscolor}%3.4
+\newcommand{\ce}{contentscolor}%3.5
+\newcommand{\cf}{contentscolor}%3.6
+\newcommand{\cg}{contentscolor}%3.7
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\mapofcontentsC}[1]{
+\forcsvlist\highlightselected{#1}
+	\begin{center}\begin{tikzpicture}[
+	rotate=-15,
+	    small mindmap, 
+	    concept color = contentscolor,
+	    every node/.style = {concept},  
+	     level 1/.append style = {
+	        level distance = 2.75cm,
+	        sibling angle = 90
+		    },
+	    	grow cyclic]
+
+\node (root)[concept color=contentscolor!50] {Applications of Derivatives}
+    child  [concept color =contentscolor,text=_deepskyblue]{node (1) {Rates of Change}
+        child [concept color = \ca] {node(11) {Velocity and Acceleration \\ 3.1}}
+        child [concept color = \cb] {node (12) {Related Rates \\ 3.2}}
+        child [concept color = \cc] {node (13) {Exponential growth and decay \\ 3.3}}
+    }
+    child [concept color = contentscolor,sibling angle=60,text=_darkred] {node (2) {Function Approximation}
+        child [concept color = \cd] {node (21) {Taylor polynomials \\ 3.4}}
+        child [concept color = \cf] {node (22) {Sketching graphs \\ 3.6}}
+    }
+    child  [concept color = \ce]{node (3) {Optimisa-tion\\3.5} } 
+    child  [concept color = \cg,sibling angle=110]{node (4) {\hosp's Rule\\3.7}}
+    ;
+\draw [concept connection]
+    (3) edge[thick,contentscolor] (22)
+	;
+\end{tikzpicture}\end{center}
+\forcsvlist\unhighlightselected{#1}
+}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%CHAPTER 4
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\mapofcontentsD}{
+
+\begin{center}\begin{tikzpicture}
+\draw (0,0) node[shape=circle,fill=highlightcolor,inner sep=1mm](r){\parbox{2.5cm}{\footnotesize\centering Introduction to Antidifferentiation\\ 4.1}};	
+
+
+\draw[->,_deepgreen,very thick](-4,-3)node[shape=circle,fill=contentscolor,inner sep=1mm]{\parbox{1.5cm}{\scriptsize\centering Arithmetic of Derivatives \\ 2.4}}--(r);
+\draw[->,_darkred,very thick](-1.5,-4)node[shape=circle,fill=contentscolor,inner sep=1mm]{\parbox{1.5cm}{\scriptsize\centering Derivatives of Exponential Functions \\ 2.7}}--(r);
+\draw[->,_darkred,very thick](1.5,-4)node[shape=circle,fill=contentscolor,inner sep=1mm]{\parbox{1.5cm}{\scriptsize\centering Derivatives of Trigonometric Functions \\ 2.8}}--(r);
+\draw[->,_darkred,very thick](4,-3)node[shape=circle,fill=contentscolor,inner sep=1mm]{\parbox{1.5cm}{\scriptsize\centering Inverse Trigonometric Functions \\ 2.12}}--(r);
+
+
+\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+\end{center}
+
+}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%
+

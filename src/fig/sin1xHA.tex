@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+
+\draw plot[domain=0.01:5,smooth,samples=5000](\x,{sin(.5/\x r)});
+\draw plot[domain=0.01:5,smooth,samples=5000,xscale=-1](\x,{sin(.5/\x r)});
+
+\end{tikzpicture}
+\end{document}

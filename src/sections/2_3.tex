@@ -1,0 +1,159 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+%------------------------------------------------------
+\section*{2.3 Interpretations of the Derivative}
+
+ \begin{frame}{Table of Contents}
+\mapofcontentsB{\bc}
+ \end{frame}
+ %--------
+
+%------------------------------------------------------------------
+%\subsection*{2.3: Interpreting the Derivative}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{block}{Interpreting the Derivative}
+The derivative of $f(x)$ at $a$, written $f'(a)$, is the instantaneous rate of change of $f(x)$ when $x=a$.
+\end{block}\pause
+
+\begin{QuestionSet}
+\SetQuestion{Suppose $P(t)$ gives the number of people in the world at $t$ minutes past midnight, January 1, 2012. Suppose further that $P'(0)=156$. How do you interpret $P'(0)=156?$}
+\SetAnswer{Suppose $P(t)$ gives the number of people in the world at $t$ minutes past midnight, January 1, 2012. Suppose further that $P'(0)=156$. How do you interpret $P'(0)=156?$\\\vfill
+
+\textcolor{answercolor}{At midnight of January 1, 2012, the world population was increasing at a rate of 156 people each minute}}
+
+%
+
+\SetQuestion{
+Suppose $P(n)$ gives the total profit, in dollars, earned by selling $n$ widgets. How do you interpret $P'(100)$?}
+\SetAnswer{
+Suppose $P(n)$ gives the total profit, in dollars, earned by selling $n$ widgets. How do you interpret $P'(100)$?\\\vfill
+\textcolor{answercolor}{How fast your profit is increasing as you sell more widgets, measured in dollars per widget, at the time you sell Widget \#100. So, roughly the profit earned from the sale of the 101st widget.}
+}
+
+%
+
+\SetQuestion{Suppose $h(t)$ gives the height of a rocket $t$ seconds after liftoff. What is the interpretation of $h'(t)$?}
+\SetAnswer{Suppose $h(t)$ gives the height of a rocket $t$ seconds after liftoff. What is the interpretation of $h'(t)$?\\\vfill
+\textcolor{answercolor}{The speed at which the rocket is rising at time $t$.}}
+
+%
+
+\SetQuestion{Suppose $M(t)$ is the number of molecules of a chemical in a test tube $t$ seconds after a reaction starts. Interpret $M'(t)$.}
+\SetAnswer{Suppose $M(t)$ is the number of molecules of a chemical in a test tube $t$ seconds after a reaction starts. Interpret $M'(t)$.\\\vfill
+\textcolor{answercolor}{The rate (measured in molecules per second) at which the number of molecules of a certain type is changing. Roughly, how many molecules of that type are being added (or taken away, if negative) per second at time $t$.}
+}
+
+%
+
+\SetQuestion{Suppose $G(w)$ gives the diameter  in millimetres of steel wire needed to safely support a load of $w$ kg. Suppose further that $G'(100)=0.01$. How do you interpret $G'(100)=0.01?$}
+\SetAnswer{Suppose $G(w)$ gives the diameter  in millimetres of steel wire needed to safely support a load of $w$ kg. Suppose further that $G'(100)=0.01$. How do you interpret $G'(100)=0.01?$\\\vfill
+\textcolor{answercolor}{When your load is about 100 kg, you need to increase the diameter of your wire by about 0.01 mm for each kg increase in your load.}
+}
+\end{QuestionSet}
+\end{frame}
+%------------------------------------------------------------------
+
+\begin{frame}
+\index{Natasha Deshpande, Anoosha Kumar, Rohini Ramaswami. (2014). The Effect of National Healthcare Expenditure on Life Expectancy, page 12. \textit{College of Liberal Arts - Ivan Allen College (IAC), School of Economics: Econometric Analysis Undergraduate Research Papers.}  \url{https://smartech.gatech.edu/handle/1853/51648} (accessed July 2021)}
+A paper\footnote{Natasha Deshpande, Anoosha Kumar, Rohini Ramaswami, \textit{The Effect of National Healthcare Expenditure on Life Expectancy}, page 12. 
+%Originally accessed 2015 or 2016 via \url{https://smartech.gatech.edu/bitstream/handle/1853/51648/The+Effect+of+National+Healthcare+Expenditure+on+Life+Expectancy.pdf}, but in July 2021 link was broken. 
+\\ Remark: physician density is measured as number of doctors per 1000 members of the population.} on the impacts of various factors in average life expectancy contains the following:
+\begin{quote}\small
+The only statistically significant variable in the model is
+physician density. The coefficient for this variable 20.67 indicating that a one unit increase in
+physician density leads to a 20.67 unit increase in life expectancy. This variable is also statistically
+significant at the 1\% level demonstrating that this variable is very strongly and positively correlated
+with quality of healthcare received. This denotes that
+access to healthcare is very impactful in terms
+of increasing the quality of health in the country. 
+\end{quote}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+If $L(p)$ is the average life expectancy in an area with a density $p$ of physicians, write the statement as a derivative: ``a one unit increase in
+physician density leads to a 20.67 unit increase in life expectancy."\pause\vfill
+
+\answer{\textcolor{answercolor}{$L'(p) = 20.67$}}
+\end{frame}
+
+
+%------------------------------------------------------------------
+
+\begin{frame}[t]{Equation of the Tangent Line}
+The \alert{tangent line} to $f(x)$ at $a$ has slope $f'(a)$ and passes through the point $(a,f(a))$.\vfill
+
+\answer{\only<-3>{\begin{center}
+\begin{tikzpicture}[scale=0.75]
+\myaxis{x}{0}{10.5}{y}{0}{4}
+\draw[C2, ultra thick, domain=0:3.19] plot[samples=100] ({\x^2}, {\x}) node[below]{$y=f(x)$};
+\draw[M4, ultra thick, domain=0:10.2] plot (\x, {.25*\x+1});
+\draw[M4] (4,2) node[vertex]{};
+\draw[M4] (4,2) node[above]{$(a,f(a))$};
+
+\onslide<2->{
+\draw[M4] (10,3.5) node[vertex]{};
+\draw[M4] (10,3.5) node[above]{$(x,y)$};}
+\end{tikzpicture}\end{center}}}
+
+\answer{\onslide<3->{
+Slope of the tangent line:
+{\color{M4}
+\[f'(a) = \frac{\textup{rise}}{\textup{run}}
+=\frac{y-f(a)}{x-a}\]}}
+\onslide<5->{Rearranging: 
+\textcolor{M4}{
+$y-f(a) = f'(a)(x-a)$}
+ (equation of tangent line)}}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\AnswerSpace
+\only<3>{\AnswerYes}
+\begin{block}{Tangent Line Equation -- Theorem~\eref{text}{thm:DIFFtangentLine}}
+The tangent line to the function $f(x)$ at point $a$ is:
+\[(y-\textcolor{C4}{f(a)})=\textcolor{M4}{f'(a)}(x-\textcolor{M3}{a})\]
+\end{block}\pause
+
+\begin{block}{Point-Slope Formula}
+In general, a line with slope $\textcolor{M4}{m}$ passing through point $(\textcolor{M3}{x_1},\textcolor{C4}{y_1})$ has the equation:
+\[(y-\textcolor{C4}{y_1})=\textcolor{M4}{m}(x-\textcolor{M3}{x_1})\]
+\end{block}\pause
+
+
+Find the equation of the tangent line to the curve $f(x)=\sqrt{x}$ at $x=9$. (Recall $\diff{}{x}\left[\sqrt{x}\right]=\frac{1}{2\sqrt{x}}$).\pause\color{answercolor}
+
+\answer{
+\begin{align*}
+a&=9,\quad f(a)=3,\quad
+f'(a) = \frac1{2\sqrt 9} = \frac16\\
+\alert{ y-3}&\alert {=\frac16(x-9)}
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\begin{block}{Memorize}
+The tangent line to the function $f(x)$ at point $a$ is:
+\[(y-f(a))=f'(a)(x-a)\]
+\end{block}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\AnswerSpace
+\only<1>{\AnswerYes}
+\NowYou~
+Let $s(t)=3-0.8t^2$. Then $s'(t)=-1.6t$.
+Find the equation for the tangent line to the function $s(t)$ when $t=1$.\pause\color{answercolor}
+\answer{\begin{align*}
+a&=1,\quad s(a)=2.2,\quad s'(a)=-1.6\\
+y-2.2&=-1.6(x-1)
+\end{align*}}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+%------------------------------------------------

@@ -1,0 +1,615 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+%------------------------------------------------------
+\section[1.7 Formal Limits]{1.7 (Optional) Making the Informal a Little More Formal}
+
+ \begin{frame}{Table of Contents}
+ \begin{center}1.7 (Optional) Making the Informal a Little More Formal
+ \end{center}
+\mapofcontentsA{}
+
+ \end{frame}
+%------------------------------------------------------
+%------------------------------------------------------
+
+%------------------------------------------------------
+
+\begin{frame}
+Now that we've seen the limits of functions as $x$ goes to positive and negative infinity, let's look at limits as $x$ approaches a real number.
+\note{The actual computations for limits as $x$ goes to infinity are generally easier, so I like to teach 1.8 before 1.7.\\[1em]
+
+A lot of the same language from the canning analogy can be re-used here: $\epsilon$ as error, for instance.}
+\end{frame}
+
+%------------------------------------------------------
+
+\begin{frame}[t]
+\StatusBar{1}{9}
+\[\lim_{x \to a} f(x) = L\]
+Informally: If $x$ is close enough (but not equal to) $a$, then $y$ is close enough to $L$.
+
+\begin{tikzpicture}
+
+%narrowing intervals
+\foreach \x in {1,2,3,4}{
+	\MULTIPLY{\x}{2}{\a}
+	\ADD{\a}{1}{\b}%slides \a and \b
+	%epsilon: 1/2^x
+	\POWER{2}{-\x}{\ep}
+	\onslide<\a-\b|handout:0>{
+		{\color{W1}
+		\ifnum \x<4
+			\ycoord{1+\ep}{L+\epsilon}
+			\ycoord{1-\ep}{L-\epsilon}
+		\fi
+		\draw[dashed] (.2,1+\ep) -- (4.5,1+\ep) (.2,1-\ep) -- (4.5,1-\ep);
+		}}
+	%delta: 2*ep^(1/3)
+	\EXP[\ep]{0.333}{\da}
+	\MULTIPLY{2}{\da}{\d}
+	\onslide<\b|handout:0>{
+		\fill[W5](2-\d,-0.2) rectangle (1.95,0.2) (2.05,-0.2) rectangle (2+\d,0.2);
+		\draw[M5, line width=4pt] plot[domain=2-\d:2+\d,smooth](\x,{(\x/2-1)^3+1});
+		\xcoord{2-\d}{a-\delta}
+		\xcoord{2+\d}{a+\delta}
+		}
+	}
+
+\myaxis{x}{1}{4.5}{y}{1}{3}
+
+\draw[C1, thick] plot[domain=-0.52:4.5,smooth](\x,{(\x/2-1)^3+1});
+\draw[C1] (2,1)node[thick,opendot]{};
+\xcoord{2}{a}
+\onslide<-5>{\ycoord{1}{L}}
+
+\end{tikzpicture}
+\end{frame}
+
+
+%------------------------------------------------------
+
+\begin{frame}[t]
+\AnswerSpace
+\only<2>{\QuestionBar{1}{3}\AnswerYes}
+\only<3-5>{\AnswerBar{1}{3}}
+\only<6>{\QuestionBar{2}{3}\AnswerYes}
+\only<7-8>{\AnswerBar{2}{3}}
+\only<9>{\QuestionBar{3}{3}\AnswerYes}
+\only<10-11>{\AnswerBar{3}{3}}
+Let $f(x) = \begin{cases}
+2x & \mbox{ if }x<1\\
+4-2x & \mbox{ if }x>1
+\end{cases}$. \quad Then 
+$\dlimx{1} |x| = 2$.
+
+
+\begin{multicols}{2}
+\begin{tikzpicture}
+
+%narrowing intervals
+
+\onslide<3-5|handout:0>{
+	{\color{W1}
+	\ycoord{5}{2.5}
+	\ycoord{3}{1.5}
+	\draw[dashed] (0.2,5)--(4,5) (0.2,3)--(4,3);
+}}
+\onslide<4-5|handout:0>{
+	\xcoord[below left]{1.5}{1-\frac14\!\!\!\!}
+	\xcoord[below right]{2.5}{\!\!\!\!1+\frac14}
+	\fill[W5] (1.5,-.2) rectangle (1.95,.2) (2.05,-.2) rectangle (2.5,.2);
+	\draw[M5,line width=4pt] (1.5,3)--(2,4)--(2.5,3);
+	}
+%
+\onslide<7-8|handout:0>{
+	{\color{W1}
+	\ycoord{4.5}{2.25}
+	\ycoord{3.5}{1.75}
+	\draw[dashed] (0.2,4.5)--(4,4.5) (0.2,3.5)--(4,3.5);
+}}
+\onslide<8|handout:0>{
+	\xcoord[below left]{1.75}{1-\frac18\!\!\!}
+	\xcoord[below right]{2.25}{\!\!\!1+\frac18}
+	\fill[W5] (1.75,-.2) rectangle (1.95,.2) (2.05,-.2) rectangle (2.25,.2);
+	\draw[M5,line width=4pt] (1.75,3.5)--(2,4)--(2.25,3.5);
+	}
+
+%
+\onslide<10-|handout:0>{
+	{\color{W1}
+	\ycoord{4.3}{2+\epsilon}
+	\ycoord{3.7}{2-\epsilon}
+	\draw[dashed] (0.2,4.3)--(4,4.3) (0.2,3.7)--(4,3.7);
+}}
+\onslide<11-|handout:0>{
+	\xcoord[below left]{1.85}{1-\frac\epsilon{2}\!\!}
+	\xcoord[below right]{2.15}{\!\!1+\frac\epsilon 2}
+	\fill[W5] (1.85,-.2) rectangle (1.95,.2) (2.05,-.2) rectangle (2.15,.2);
+	\draw[M5,line width=4pt] (1.85,3.7)--(2,4)--(2.15,3.7);
+	}
+
+
+\myaxis{x}{0}{4.1}{y}{0}{5.1}
+
+\draw[C1, thick] (0,0)--(2,4) node[midway,xshift=-3mm,rotate=60]{$y=2x$};
+\draw[C1, thick] (2,4)--(4,0) node[midway,xshift=3mm,rotate=-60]{$y=4-2x$};
+
+\draw[C1] (2,4)node[thick,opendot]{};
+\xcoord{2}{1}
+\ycoord{4}{2}
+
+\end{tikzpicture}
+\columnbreak
+
+\color{C1}
+
+\only<2-8>{Find a positive number $\delta$ such that $|f(x)-2|<\alert{\frac12}$ for all $x$ in the interval $(1-\delta,1+\delta)$, except possibly $x=1$.}
+
+\only<5-8|handout:0>{\textcolor{answercolor}{\[\delta = \frac14\]}}
+
+
+\only<6-8>{Find a positive number $\delta$ such that $|f(x)-2|<\alert{\frac14}$ for all $x$ in the interval $(1-\delta,1+\delta)$, except possibly $x=1$.}
+
+\only<8|handout:0>{\textcolor{answercolor}{\[\delta = \frac18\]}}
+
+
+\only<9-|handout:0>{Let $\epsilon>0$. Find a positive number $\delta$ such that $|f(x)-2|<\alert{\epsilon}$ for all $x$ in the interval $(1-\delta,1+\delta)$, except possibly $x=1$.}
+
+\only<11-|handout:0>{\textcolor{answercolor}{\[\delta = \frac\epsilon 2\]}}
+
+
+\end{multicols}
+\end{frame}
+
+%------------------------------------------------------
+
+\begin{frame}[t]
+\begin{block}{Definition~\eref{text}{def_1_7_1}}
+ Let $a \in \mathbb{R}$ and let $f(x)$ be a function defined everywhere in a
+neighbourhood of $a$, except possibly at $a$. We say that
+\begin{quote}
+ the limit as $x$ approaches $a$ of $f(x)$ is $L$
+\end{quote}\\
+and write
+\begin{align*}
+  \lim_{x \to a} f(x) &= L
+\end{align*}
+if and only if for every $\epsilon >0$ there exists $\delta>0$ so that
+\begin{align*}
+  |f(x) - L| <\epsilon & \text{ whenever } 0<|x-a| < \delta
+\end{align*}
+Note that an equivalent way of writing this very last statement is
+\begin{align*}
+  \text{if } 0<|x-a| < \delta \text{ then } |f(x) - L| <\epsilon.
+\end{align*}
+\end{block}
+\end{frame}
+
+%------------------------------------------------------
+
+\begin{frame}[t]
+\StatusBar{1}{6}
+\begin{tikzpicture}[xscale=2]
+\onslide<2->{ \ycoord{1}{L}}
+\onslide<3-|handout:0>{
+	{\color{W1}
+	\ycoord[xshift=-3mm]{.75}{L-\epsilon}
+	\ycoord[xshift=-3mm]{1.25}{L+\epsilon}
+	\draw[dashed] (0.2,0.75)--(4,0.75) (0.2,1.25)--(4,1.25);
+	}}
+\onslide<4-|handout:0>{\xcoord[yshift=-2mm]{1.5}{a-\delta} \xcoord[yshift=-2mm]{2.5}{a+\delta} }
+\onslide<5-|handout:0>{\fill[W5] (1.55,-.1) rectangle (1.95,0.1) (2.05,-.1) rectangle (2.45,0.1);
+	\draw[line width=4pt, M5] plot[domain=1.45:1.95](\x,{0.5+\x/4+0.1*sin(\x*12.566 r)});
+	\draw[line width=4pt, M5] plot[domain=2.05:2.45](\x,{0.5+\x/4+0.1*sin(\x*12.566 r)});
+	}
+%graph
+\myaxis{x}{0}{4}{y}{0}{2}
+\draw[C1, thick] plot[domain=0.25:3.75,samples=50,smooth](\x,{0.5+\x/4+0.1*sin(\x*12.566 r)})node[right]{$y=f(x)$};
+\xcoord{2}{a}
+\end{tikzpicture}
+
+\alert<1|handout:0>{ Let $a \in \mathbb{R}$ and let $f(x)$ be a function defined everywhere in a
+neighbourhood of $a$, except possibly at $a$. }\pause
+
+\alert<2|handout:0>{We write
+\[  \dlimx{a} f(x) = L\]
+}\pause
+\alert<3|handout:0>{if and only if for every $\epsilon >0$}\pause
+\alert<4|handout:0>{ there exists $\delta>0$ }\pause
+\alert<5|handout:0>{ so that \[  |f(x) - L| <\epsilon  \text{ whenever } 0<|x-a| < \delta\]
+}\pause
+
+\end{frame}
+
+%------------------------------------------------------
+
+\begin{frame}[t]
+\only<1>{\AnswerYes\QuestionBar{1}{3}}
+\only<2->{\AnswerBar{1}{3}}
+\only<1>{\begin{block}{Definition~\eref{text}{def_1_7_1}}
+Let $a \in \mathbb{R}$ and let $f(x)$ be a function defined everywhere in a
+neighbourhood of $a$, except possibly at $a$. We say that
+$  \dlimx{a} f(x) = L$
+if and only if for every $\epsilon >0$ there exists $\delta>0$ so that
+if $0<|x-a| < \delta$ then $|f(x) - L| <\epsilon$.
+\end{block}}
+
+\textcolor{C1}{Using Definition~\eref{text}{def_1_7_1}, prove that $\dlimx{-1}|x+1| = 0$.}\\
+\only<2|handout:0>{\color{answercolor}By inspection (look at the graph 
+of $y=|x+1|$),  we should use $\delta = \epsilon$.\vfill
+Proof: 
+Let $f(x)=|x+1|$ and for any positive $\epsilon$, let $\delta = \epsilon$.\\
+
+\begin{center}
+\begin{tikzpicture}\color{black}
+\draw[line width=4pt,W1] (-2.95,0)--(-0.05,0)node[midway,below]{$-1-\delta \le x \le -1$};
+\draw[line width=4pt,M5] (0.05,0)--(2.95,0)node[midway,below]{$-1<x<-1-\delta $};
+\draw[<->] (-4,0)--(4,0);
+\nxcoord{3}{-1+\delta}
+\nxcoord{-3}{-1-\delta}
+\nxcoord{0}{-1}
+\end{tikzpicture}\end{center}
+
+
+ If\quad\textcolor{M5}{ $-1<x<-1+\delta$}:
+\begin{align*}
+|f(x)-0|&=||x+1|-0| = |x+1|=x+1 < (-1+\delta)+1 = \delta =\epsilon
+\intertext{If \quad \textcolor{W1}{$-1-\delta<x<-1$}:}
+|f(x)-0|&=||x+1|-0| = |x+1|=-x-1 < -(-1-\delta)-1= \delta =\epsilon
+\end{align*}
+
+So if $0<|x-(-1)|<\delta$, then $|f(x)-0|<\epsilon$. That is, $  \dlimx{-1} f(x) = 0$.\qed
+}
+\end{frame}
+%%-----------------------------------------
+%%------------------------------------------------------
+%%------------------------------------------------------
+
+\begin{frame}[t]
+\unote{Example~\eref{text}{eg_1_7_1}}
+\only<1>{\AnswerYes\QuestionBar{2}{3}}
+\only<2->{\AnswerBar{2}{3}}
+\only<1>{\begin{block}{Definition~\eref{text}{def_1_7_1}}
+ Let $a \in \mathbb{R}$ and let $f(x)$ be a function defined everywhere in a
+neighbourhood of $a$, except possibly at $a$. We say that
+$  \dlimx{a} f(x) = L$
+if and only if for every $\epsilon >0$ there exists $\delta>0$ so that
+if $0<|x-a| < \delta$ then $|f(x) - L| <\epsilon$.
+\end{block}}
+%
+\only<1>{
+\textcolor{C1}{Let $f(x) = \begin{cases}
+x+1 & x <0\\
+1-x^2 & x>0
+\end{cases}$.\\
+Using Definition~\eref{text}{def_1_7_1}, prove that $\dlimx{0}f(x) = 1$.}}
+\only<2|handout:0>{
+\color{answercolor}
+First, we need to find $\delta$ for any given $\epsilon$. Suppose $x>0$ and $|f(x)-1|<\epsilon$:
+\begin{align*}
+|f(x)-1|&<\epsilon\\
+|1-x^2-1|&<\epsilon\\
+x^2&<\epsilon\\
+0< x&<\sqrt{\epsilon}
+\end{align*}
+Now, suppose $x<0$ and $|f(x)-1|<\epsilon$:
+\begin{align*}
+|f(x)-1|&<\epsilon\\
+|x+1-1|&<\epsilon\\
+|x|&<\epsilon\\
+-x&<\epsilon\\
+0>x&>-\epsilon
+\end{align*}
+}
+\only<3|handout:0>{
+\color{answercolor}
+Now we know the interval over which $|f(x)-1|<\epsilon$, but it's actually more information than we need. We don't need the exact interval; we just need some value of $\delta$ such that $0<|x-1|<\delta$ guarantees $|f(x)-1|<\epsilon$.
+\begin{center}\begin{tikzpicture}[xscale=2.5]
+\draw[M5,line width=4pt] (-.25,.75)-- (0,1) plot[domain=0:.5](\x,{1-\x*\x});
+\myaxis{x}{1.5}{1.5}{y}{1.1}{1.25}
+\draw[thick,C1] (-1.5,-.5)--(0,1);
+\draw[thick,C1] (0,1) node[opendot]{}plot[domain=0:1.5](\x,{1-\x*\x});
+\xcoord{.5}{\sqrt{\epsilon}}
+\xcoord{-.24}{-\epsilon}
+\end{tikzpicture}\end{center}
+
+If $0<|x-1|<\min\{\epsilon,\sqrt \epsilon\}$, then $0<|x-1|<\epsilon$ and 
+$0<|x-1|<\sqrt\epsilon$ are both true. So we set $\delta = \min\{\epsilon,\sqrt \epsilon\}$. (For $\epsilon<1$, that is $\delta=\epsilon$.)
+}
+\only<4|handout:0>{
+\color{answercolor}
+Proof: $f(x) = \begin{cases}
+x+1 & x <0\\
+1-x^2 & x>0
+\end{cases}$.\\
+ For any $\epsilon>0$, let $\delta = \min\{\epsilon,\sqrt{\epsilon}\}$. Suppose $0<|x-0|<\delta$.
+\begin{itemize}\color{answercolor}
+\item If $x>0$, then
+\begin{align*}
+|f(x)-1| &= |(1-x^2)-1|=|-x^2|=x^2\\
+&<\delta^2\le\sqrt{\epsilon}^2=\epsilon
+\end{align*}
+\item If $x<0$, then
+\begin{align*}
+|f(x)-1| &= |(x+1)-1|=|x|\\
+&<\delta\le\epsilon
+\end{align*}
+\end{itemize}
+So whenever $0<|x-0|<\delta$, then $|f(x)-1|<\epsilon$. So $\dlimx{0}f(x) = 1$. \qed
+}
+\end{frame}
+
+%------------------------------------------------------
+
+\begin{frame}[t]{General Principles}
+\StatusBar{1}{4}
+Suppose $|f(x)-L|<\epsilon$ whenever $a-\delta_1<x<a$ and whenever $a<x<a+\delta_2$.
+\begin{center}
+\begin{tikzpicture}
+\draw[line width=5 pt, M5] plot[domain=3.26:8,smooth](\x,{40/(\x*\x+16)});
+
+\onslide<3-|handout:0>{
+	\xcoord[W1]{6.5}{a+\delta_1}
+	\draw[line width=3 pt, W1] plot[domain=3.26:6.5,smooth](\x,{40/(\x*\x+16)});
+	}
+
+
+\myaxis{x}{0}{9}{y}{0}{3}
+\draw[thick, C1] plot[domain=0:9,smooth](\x,{40/(\x*\x+16)});
+\ycoord{1}{L}
+\ycoord{1/2}{L+\epsilon}
+\ycoord{1.5}{L-\epsilon}
+\draw[dashed] (.2,1.5)--(9,1.5) (.2,.5)--(9,.5);
+\xcoord{8}{a+\delta_2}
+\xcoord{4.88}{a}
+\xcoord{3.26}{a-\delta_1}
+\draw[C1] (4.88,1)node[opendot]{};
+
+\end{tikzpicture}
+\end{center}\pause
+Consider values of $x$ such that $0<|x-a|<\min\{\delta_1,\delta_2\}$. 
+\onslide<4|handout:0>{For these values, it is (still) the case that $|f(x)-L|<\epsilon$.}
+
+\end{frame}
+
+%------------------------------------------------------
+
+\begin{frame}[t]{General Principles}
+\note<1>{WLOG prove only for small epsilon. This doesn't really come up so often at this level, which is why there's a skip button.}
+\StatusBar{1}{7}
+Suppose $|f(x)-L|<\alert{\frac{1}{10}}$ for all $x$ such that $0<|x-a|<\delta$.\\
+\onslide<4-|handout:0>{Then also $|f(x)-L|<\alert{\only<4>{\frac{1}{5}}\only<5>{\frac12}\only<6>{1}\only<7>{100}}$ for all $x$ such that $0<|x-a|<\delta$.}
+
+\begin{center}
+\begin{tikzpicture}
+\draw[line width=5 pt, M5] plot[domain=3.:6.,smooth](\x,{3-\x/3});
+\myaxis{x}{0}{9}{y}{0}{3}
+\draw[thick, C1] plot[domain=0.25:8.5,smooth](\x,{3-\x/3});
+\ycoord{1.5}{L}
+\ycoord{1}{L-\frac{1}{10}}
+\ycoord{2}{L+\frac{1}{10}}
+\onslide<-2|handout:0>{\draw[dashed] (.2,1)--(9,1) (.2,2)--(9,2);}
+\xcoord{6}{a+\delta}
+\xcoord{4.5}{a}
+\xcoord{3}{a-\delta}
+\draw[C1] (4.5,1.5)node[opendot]{};
+
+\onslide<3-4|handout:0>{
+	\ycoord{.5}{L-\frac{1}{5}}
+	\ycoord{2.5}{L+\frac{1}{5}}
+	\draw[dashed] (0.2,.5)--(9,.5) (0.2,2.5)--(9,2.5);
+	}
+\end{tikzpicture}
+\end{center}
+\onslide<2-4>{
+Can you give values of $x$ where $|f(x)-L|<\alert{\frac{1}{5}}$?}
+
+\vfill\hfill \hyperlink{endWLOG}{\beamerskipbutton{skip $\epsilon$ small}}
+\end{frame}
+%------------------------------------------------------
+
+\begin{frame}[t]{General Principles}
+\begin{block}{Definition~\eref{text}{def_1_7_1}}
+ Let $a \in \mathbb{R}$ and let $f(x)$ be a function defined everywhere in a
+neighbourhood of $a$, except possibly at $a$. We say that
+$  \dlimx{a} f(x) = L$
+if and only if \alert{for every $\epsilon >0$} there exists $\delta>0$ so that
+if $0<|x-a| < \delta$ then $|f(x) - L| <\epsilon$.
+\end{block}\pause
+
+It is enough to show that \alert{for every $\epsilon$ such that $0<\epsilon<c$} (where $c$ is some constant) there exists $\delta>0$ so that
+if $0<|x-a| < \delta$ then $|f(x) - L| <\epsilon$.\vfill
+
+That means it doesn't hurt your proof if you say something like ``we assume $\epsilon < 1$".\pause\vfill
+
+In a previous example, we chose
+\[\delta = \min\{\epsilon, \sqrt \epsilon\}\]
+It would be OK to say ``we can assume $\epsilon<1$; set $\delta = \epsilon$."
+
+\end{frame}
+
+%------------------------------------------------------
+
+\begin{frame}[t]
+\label{endWLOG}%end of the section about how we can assume $\epsilon$ is sufficiently small
+\only<1>{\AnswerYes\QuestionBar{3}{3}}
+\only<2->{\AnswerBar{3}{3}}
+\only<1>{\begin{block}{Definition~\eref{text}{def_1_7_1}}
+ Let $a \in \mathbb{R}$ and let $f(x)$ be a function defined everywhere in a
+neighbourhood of $a$, except possibly at $a$. We say that
+$  \dlimx{a} f(x) = L$
+if and only if for every $\epsilon >0$ there exists $\delta>0$ so that
+if $0<|x-a| < \delta$ then $|f(x) - L| <\epsilon$.
+\end{block}}
+
+\only<1>{\textcolor{C1}{Using Definition~\eref{text}{def_1_7_1}, prove that $\dlimx{2}\frac{x-2}{x^2-4} = \frac14$.}}
+\only<2|handout:0>{\color{answercolor}\small
+\begin{multicols}{2}
+We start, as usual, by finding $\delta$. Note
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+\frac{x-2}{x^2-4}=\frac{x-2}{(x+2)(x-2)} &= \frac{1}{x+2}
+\intertext{whenever $x\neq 2$.}
+\left| \frac{1}{x+2}-\frac14\right|&<\epsilon\\
+-\epsilon< \frac{1}{x+2}-\frac14&<\epsilon\\
+\frac14-\epsilon< \frac{1}{x+2}&<\frac14+\epsilon\\
+\frac{1-4\epsilon}{4}< \frac{1}{x+2}&<\frac{1+4\epsilon}{4}\\
+\frac4{1-4\epsilon}> x+2&> \frac4{1+4\epsilon}\\
+\frac4{1-4\epsilon}-2> x&> \frac4{1+4\epsilon}-2\\
+\frac{2+8\epsilon}{1-4\epsilon}>x&>\frac{2-8\epsilon}{1+4\epsilon}
+\intertext{We want our bounds to look like $2-\delta_1$ and $2+\delta_2$.}
+\frac{2-8\epsilon+16\epsilon}{1-4\epsilon}>x&>\frac{2+8\epsilon-16\epsilon}{1+4\epsilon}\\
+2+\frac{16\epsilon}{1-4\epsilon}>x&>2-\frac{16\epsilon}{1+4\epsilon}
+\end{align*}
+\endgroup
+For $x$ in the interval found, $\left|f(x)-\frac14\right|<\epsilon$. The interval is not exactly in the form $2-\delta < x  <2+\delta$, but it's close. Remember a smaller interval will also have the property $\left|f(x)-\frac14\right|<\epsilon$. So, set \[\delta = \min\left\{\tfrac{16\epsilon}{1-4\epsilon}, \tfrac{16\epsilon}{1+4\epsilon}\right\} =  \tfrac{16\epsilon}{1+4\epsilon}.\]
+\end{multicols}
+}
+\only<3|handout:0>{\color{answercolor}
+Proof: For any $\epsilon>0$, let $\delta= \frac{16\epsilon}{1+4\epsilon}$. Suppose $0<|x-2|<\delta$. Note that since $x \neq 2$, we have $f(x) = \frac{x-2}{(x+2)(x-2)}  = \frac{1}{x+2}$.
+\begin{itemize}\color{answercolor}
+\item If $x>2$, then $2<x<2+\delta$:
+\begin{align*}
+\left|f(x) - \frac14\right|& =
+\left|\frac{1}{(x+2)} - \frac14\right| = \frac14-\frac{1}{(x+2)}\\
+&<\frac14-\frac{1}{(2+\delta)+2} = \frac14-\frac{1}{4+\delta} \\
+&=\frac14-\frac{1}{4+\frac{16\epsilon}{1+4\epsilon}}<\frac14-\frac{1}{4+\frac{16\epsilon}{1-4\epsilon}}
+\intertext{(using the fact that $\delta= \frac{16\epsilon}{1+4\epsilon}<\frac{16\epsilon}{1-4\epsilon}$)}
+&=\frac14-\frac{1}{\frac{4-16\epsilon+16\epsilon}{1-4\epsilon}} = \frac14 - \frac{1-4\epsilon}{4} = \frac{4\epsilon}{4}=\epsilon
+\end{align*}
+\end{itemize} 
+}
+\only<4|handout:0>{\color{answercolor}
+\begin{itemize}\color{answercolor}
+\item If $x<2$, then $2-\delta<x<2$:
+\begin{align*}
+\left|f(x) - \frac14\right|& =
+\left|\frac{1}{(x+2)} - \frac14\right| =\frac{1}{(x+2)}- \frac14\\
+&<\frac{1}{(2-\delta)+2}- \frac14 =\frac{1}{4-\delta} - \frac14\\
+&=\frac{1}{4-\frac{16\epsilon}{1+4\epsilon}}-\frac14
+=\frac{1}{\frac{4+16\epsilon-16\epsilon}{1+4\epsilon}}-\frac14\\
+& = \frac{1+4\epsilon}4-\frac14 = \epsilon
+\end{align*}
+We have shown that whenever $0<|x-2|<\delta$, then $\left|f(x)-\frac14\right|<\epsilon$. So,
+$\dlimx{2}\frac{x-2}{x^2-4} = \frac14$.
+\end{itemize} \qed
+}
+
+\end{frame}
+%------------------------------------------------------
+
+%------------------------------------------------------
+
+\begin{frame}[t]{Infinite Limits}
+\begin{block}{Definition~\eref{text}{def_1_8_1} (b)}
+Let $a$ be a real number and $f(x)$ be a function defined for all $x \neq a$. We write
+\[\lim_{x \to a}f(x) = \infty\]
+if and only if for every \alert<2|handout:0>{$P>0$} there exists \alert<3|handout:0>{$\delta>0$} so that \alert<4|handout:0>{$f(x)>P$ whenever $0<|x-a|<\delta$}.
+\end{block}
+
+
+\begin{tikzpicture}
+\myaxis{x}{0}{4}{}{0}{2.5}
+\xcoord{2}{a}
+
+\onslide<2-|handout:0>{\ycoord{2}{\alert<2>{P}}\draw[dashed] (.2,2)--(4,2);}
+\onslide<3-|handout:0>{\xcoord[xshift=4mm]{2.25}{\alert<3>{a+\delta}}\xcoord[xshift=-4mm]{1.75}{\alert<3>{a-\delta}}}
+\onslide<4-|handout:0>{\draw[M5,line width=4pt] plot[domain=2.16:2.25,smooth](\x,{1/(sqrt(\x-2))});
+\draw[M5,line width=4pt] plot[domain=1.75:1.84,smooth](\x,{1/(sqrt(2-\x))});
+}
+
+\draw[C1,thick] plot[domain=2.16:4,smooth](\x,{1/(sqrt(\x-2))});
+\draw[C1,thick] plot[domain=0:1.84,smooth](\x,{1/(sqrt(2-\x))});
+\end{tikzpicture}
+\end{frame}
+
+
+
+%------------------------------------------------------
+
+\begin{frame}[t]
+\AnswerSpace
+\begin{block}{Definition~\eref{text}{def_1_8_1} (b)}
+Let $a$ be a real number and $f(x)$ be a function defined for all $x \neq a$. We write
+\[\lim_{x \to a}f(x) = \infty\]
+if and only if for every $P>0$ there exists $\delta>0$ so that $f(x)>P$ whenever $0<|x-a|<\delta$.
+\end{block}
+
+
+\begin{multicols}{2}
+\note<1>{The generic picture is kept on the left, but it's nice to mention that it is, indeed, generic. In particular, the picture won't fit for $f(x) = \frac{1}{x-2}$.}
+\begin{QuestionSet}
+%Q1
+\SetQuestion{\begin{tikzpicture}
+\myaxis{x}{0}{4}{}{0}{2.5}
+\ycoord{2}{P}\draw[dashed] (.2,2)--(4,2);
+\xcoord[xshift=4mm]{2.25}{3+\delta}\xcoord[xshift=-4mm]{1.75}{3-\delta}
+\draw[M5,line width=4pt] plot[domain=2.16:2.25,smooth](\x,{1/(sqrt(\x-2))});
+\draw[M5,line width=4pt] plot[domain=1.75:1.84,smooth](\x,{1/(sqrt(2-\x))});
+
+
+\draw[C1,thick] plot[domain=2.16:4,smooth](\x,{1/(sqrt(\x-2))});
+\draw[C1,thick] plot[domain=0:1.84,smooth](\x,{1/(sqrt(2-\x))});
+\end{tikzpicture}
+\columnbreak
+
+Let $f(x) = \frac{1}{(x-3)^2}$. Using Definition~\eref{text}{def_1_8_1}, prove or disprove that
+\[\dlimx{3}f(x)=\infty\]
+\AnswerYes\MoreSpace}
+\SetAnswer{\AnswerYes}
+\SetAnswer{\color{answercolor}
+First, we find $\delta$.  Let $P>0$.
+\begin{align*}
+f(x)&>P\\
+\frac{1}{(x-3)^2}&>P\\
+(x-3)^2&<\frac1P\\
+|x-3|&<\frac1{\sqrt P}
+\end{align*}
+So we choose $\delta = \frac1{\sqrt P}$. 
+}
+\SetAnswer{
+\color{answercolor}
+\textbf{Proof: } For any $P>0$, set $\delta = \frac1{\sqrt P}$. If $0<|x-3|$, then $x \neq 3$, so $f(x)$ exists. If, furthermore, $|x-3|<\delta$, then: 
+\abovedisplayshortskip=0pt
+\begin{align*}
+f(x)&=\frac{1}{(x-3)^2} \\
+&>\frac{1}{\delta^2}
+=\frac{1}{\left(\frac{1}{\sqrt P}\right)^2}
+=P
+\end{align*}
+\columnbreak
+
+So, $\dlimx{3}\frac{1}{(x-3)^2} = \infty$.
+
+}
+
+%Q2
+\SetQuestion{Let $f(x) = \frac{1}{x-2}$. Using Definition~\eref{text}{def_1_8_1}, prove or disprove that
+\[\dlimx{2}f(x)=\infty\]
+\columnbreak
+\AnswerYes\MoreSpace}
+\SetAnswer{\AnswerYes}
+\SetAnswer{\color{answercolor}
+Note that $x-2<0$ when $x<2$. So for any $P>0$, whenever $x<2$, we have $f(x)<P$. That tells us that $\dlimx{2}f(x)\neq\infty$.\columnbreak
+
+\textbf{Proof: } Let $P=1$. For any $\delta>0$, set $x_0=2-\frac{\delta}{2}$. Then $0<|x_0-2|<\delta$, but since $x<2$, we have $\frac{1}{x-2}<0<P$. That is, there does not exist any $\delta>0$ such that $f(x)>P$ whenever $0<|x-2|<\delta$. Therefore $\dlimx{2}f(x)\neq\infty$.}
+\SetAnswer{
+\begin{tikzpicture}
+\myaxis{x}{0}{4}{}{2}{2}
+\draw[thick,C1]plot[domain=0:1.5](\x,{1/(\x-2)});
+\draw[thick,C1]plot[domain=2.5:4](\x,{1/(\x-2)});
+\xcoord{2}{2}
+\end{tikzpicture}
+}
+
+\end{QuestionSet}
+\end{multicols}
+\end{frame}
+
+
+%------------------------------------------------------
+

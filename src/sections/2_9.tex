@@ -1,0 +1,263 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+%----------------------------------------------------------------------------------------
+\section*{2.9: Chain Rule}
+
+\begin{frame}{Table of Contents}
+\mapofcontentsBB{\bj}
+\end{frame}
+ 
+%----------------------------------------------------------------------------------------
+\begin{frame}{Intuition: $\sin x$ versus $\sin (2x)$}
+\note<1>{Intuition: sin 2x changes its y-values ``twice as fast" as sin x, making it ``twice as steep." So it's not enough to differentiate the outside function -- something else has to happen.}
+\begin{tikzpicture}
+\myaxis{}{4}{4}{}{1.5}{1.5}
+\draw[C2, ultra thick] plot[domain=-3.9:3.9, samples=100] (\x,{sin(\x r)}) node[above right]{$f(x)=\sin x$};
+
+\onslide<3|handout:0>{\draw (0,0) node[vertex]{};}
+\onslide<4|handout:0>{\draw (3.1,0) node[vertex]{};}
+\onslide<5-|handout:0>{
+\draw[M4, ultra thick] plot[domain=-3.9:3.9, samples=100] (\x,{cos(\x r)}) node[below right]{$f'(x)=\cos x$};
+}
+\end{tikzpicture}\vfill
+
+\begin{tikzpicture}
+\myaxis{}{4}{4}{}{2}{2}
+%\onslide<2-|handout:0>{
+\onslide<2->{
+\draw[M2, ultra thick] plot[domain=-3.9:3.9, samples=100] (\x,{sin(2*\x r)}) node[below right]{$g(x)=\sin (2x)$};}
+
+\onslide<3|handout:0>{\draw (0,0) node[M2,  vertex]{};}
+\onslide<4|handout:0>{\draw (1.55,0) node[M2,  vertex]{};}
+\onslide<6-|handout:0>{
+\draw[M5, ultra thick] plot[domain=-3.9:3.9, samples=100] (\x,{2*cos(2*\x r)}) node[below right]{$g'(x)=2\cos (2x)$};
+}
+\end{tikzpicture}
+
+
+\end{frame}
+%----------------------------------------------------------------------------------------%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Compound Functions}
+\href{http://ww2.kqed.org/quest/2014/02/25/balancing-act-otters-urchins-and-kelp/}{Video: 2:27-3:50}
+
+\vfill
+Morton, Jennifer. (2014). \textit{Balancing Act: Otters, Urchins and Kelp}. Available from 
+ \url{https://www.kqed.org/quest/67124/balancing-act-otters-urchins-and-kelp}
+ 
+\note{Chain rule works on functions-of-functions; otters/urchins/kelp are a nice example}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Kelp Population}
+\[\begin{array}{ll}
+\color{M2}k & \color{M2}\mbox{kelp population}\\
+\color{M4}u &\color{M4} \mbox{urchin population}\\
+\color{M5}o & \color{M5}\mbox{otter population}
+\onslide<4->{\\\color{C2} p & \color{C2}\mbox{public policy}}
+\end{array}\]
+
+\pause
+
+$\textcolor{M2}{k(\textcolor{M4}{u})}$\hfil
+\pause
+$\textcolor{M2}{k(\textcolor{M4}{u (\textcolor{M5}{o})})}$\hfil
+\pause
+$\textcolor{M2}{k(\textcolor{M4}{u (\textcolor{M5}{o(\textcolor{C2}{p})})})}$
+\pause
+\vfill
+
+These are examples of compound functions.
+
+%How would you interpret $k'(o)$ (also written $\frac{dk}{do}$)?
+\vfill\pause
+
+Should $\diff{}{o}k\big(u(o)\big)$ be positive or negative?
+
+\alert<7-|handout:0>{A. positive} \hspace{1cm}
+B. negative \hspace{1cm} C. I'm not sure
+\vfill\pause\pause
+Should $k'(u)$ be positive or negative?
+
+A. positive \hspace{1cm}
+\alert<9-|handout:0>{B. negative}\hspace{1cm}
+C. I'm not sure
+
+\only<6,8>{\AnswerYes}
+\end{frame}
+\note{It's nice to show an example of a function whose ``derivative" can be two different things (depending on the variable). Now that our heads are in ``function of a function" territory, chain rule. I usually just flash this slide to emphasize that all these rules are shorthand for a calculation using the definition of a derivative.}
+%-------------------------------------------------------------
+\begin{frame}{Differentiating Compound Functions}
+\AnswerSpace\only<1>{\AnswerYes}
+\small\begin{align*}
+\diff{}{x}\{f(g(x))\}&=\onslide<2->{\lim_{h \to 0}\frac{f(g(x+h))-f(g(x))}{h}\\
+&=\lim_{h \to 0}\frac{f(g(x+h))-f(g(x))}{h}\left(\frac{g(x+h)-g(x)}{g(x+h)-g(x)}\right)\\
+&=\lim_{h \to 0}\frac{f(g(x+h))-f(g(x))}{g(x+h)-g(x)}\cdot\frac{g(x+h)-g(x)}{h}\\
+&=\lim_{h \to 0}\frac{f(g(x+h))-f(g(x))}{g(x+h)-g(x)}\cdot\lim_{h \to 0}\frac{g(x+h)-g(x)}{h}\\
+&=\lim_{h \to 0}\frac{f\left(\boxed{g(x+h)}\right)-f\left(\boxed{g(x)}\right)}{\boxed{g(x+h)}-\boxed{g(x)}}\cdot g'(x)\\
+\intertext{\textcolor{M4}{\mbox{Set $H=g(x+h)-g(x)$. 
+                   As $h\rightarrow 0$, we also have $H\rightarrow 0$. So}}}
+&=\lim_{H \to 0}\frac{f(g(x)+H)-f(g(x))}{H}\cdot g'(x)\\
+&=f'(g(x))\cdot g'(x)}
+\end{align*}
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}{Chain Rule}
+\begin{block}{Chain Rule -- Theorem~\eref{text}{thm:DIFFchainRuleV2}}
+Suppose $f$ and $g$ are differentiable functions. Then
+\[\diff{}{x}\{f\big(g(x)\big)\}=f'\big(g(x)\big)\,g'(x) 
+            = \diff{f}{g}\big(g(x)\big)\diff{g}{x}(x)\]
+\end{block}
+\vfill
+In the case of kelp, 
+$\displaystyle\diff{}{\textcolor{M5}{o}}\textcolor{M2}{k}\big(u(o)\big)
+=\diff{\textcolor{M2}{k}}{\textcolor{M4}{u}}\big(u(o)\big)
+          \diff{\textcolor{M4}{u}}{\textcolor{M5}{o}}(o)$
+
+\end{frame}
+%------------------------------------------------------------------
+\begin{frame}[t]
+\AnswerSpace\only<1>{\AnswerYes}
+\begin{block}{Chain Rule}
+Suppose $f$ and $g$ are differentiable functions. Then
+\[\diff{}{x}\{f\big(g(x)\big)\}=f'\big(g(x)\big)\,g'(x) 
+            = \diff{f}{g}\big(g(x)\big)\diff{g}{x}(x)\]
+\end{block}
+
+Example: suppose $F(x) = \sin(e^x+x^2)$.
+\vfill\color{answercolor}
+\pause
+
+\answer{We can differentiate $\sin(x)$, so let's set $g(x) = e^x+x^2$
+and $f(g)=\sin(g)$. Then $F(x) = f\big(g(x)\big)$.
+\vspace{0.25in}
+
+$g'(x) = e^x+2x$ and $\diff{f}{g}(g)=\cos(g)$ and 
+$\diff{f}{g}\big(g(x)\big)=\diff{f}{g}\left(\boxed{e^x+x^2}\right) = \cos\left(\boxed{e^x+x^2}\right)$
+\vfill
+
+So, $F'(x) = \diff{f}{g}\big(g(x)\big)\diff{g}{x}(x) 
+           =  \cos(e^x+x^2)\ (e^x+2x)$}
+\end{frame}
+\note{I generally put the ``inside" function in a box, to emphasize we're treating the whole thing as one variable}
+%------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\AnswerYes\QuestionBar{1}{5}}
+\only<2>{\AnswerBar{1}{5}}
+
+\[F(v)=\left(\frac{v}{v^3+1} \right)^6\]
+
+\pause
+\vfill\vfill
+\answer{\color{answercolor}
+\begin{align*}
+F'(v) &= 6\left( \boxed{\frac{v}{v^3+1}}\right)^5 \cdot\dfrac{(v^3+1)(1)-(v)(3v^2)}{(v^3+1)^2}\\
+&= 6\left( \boxed{\frac{v}{v^3+1}}\right)^5 \cdot\dfrac{-2v^3+1}{(v^3+1)^2}
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}<handout:0>[t]
+\NowYou Let $f(x) = \left( 10^x+\csc x\right)^{1/2}$. Find $f'(x)$.\vfill
+\vfill
+
+
+
+
+\NowYou Suppose $\textcolor{M5}{o(t)=e^t}$, $\textcolor{M4}{u(o) = \frac{1}{\textcolor{M5}{o}+\sin(\textcolor{M5}{o})}}$, and $t \geq 10$ (so all these functions are defined). Using the chain rule, find $\textcolor{M4}{\diff{}{t}u\big(o(t)\big)}$.  \textit{Note:} your answer should depend only on $t$: not $\textcolor{M5}{o}$.
+\vfill
+
+\AnswerYes\MoreSpace\QuestionBar{2}{5}\QuestionBar{3}{5}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\AnswerYes\QuestionBar{2}{5}}
+\only<2>{\AnswerBar{2}{5}}
+
+\NowYou Let $f(x) = \left( 10^x+\csc x\right)^{1/2}$. Find $f'(x)$.\vfill
+
+\onslide<2-|handout:0>{\color{answercolor}
+\begin{align*}
+f(x) &= (\boxed{10^x+\csc x})^{1/2}
+\intertext{Using the chain rule,}
+f'(x) &= \frac{1}{2}(\boxed{10^x+\csc x})^{-1/2}(10^x \log_e 10 - \csc x \cot x)\\
+& = \dfrac{10^x\log_e 10-\csc x \cot x}{2\sqrt{10^x+\csc x}}
+\end{align*}
+\vfill}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\AnswerYes\QuestionBar{3}{5}}
+\only<2>{\AnswerBar{3}{5}}
+
+\NowYou Suppose $\textcolor{M5}{o(t)=e^t}$, $\textcolor{M4}{u(o) = \frac{1}{\textcolor{M5}{o}+\sin(\textcolor{M5}{o})}}$, and $t \geq 10$ (so all these functions are defined). Using the chain rule, find 
+$\textcolor{M4}{\diff{}{t} u\big(o(t)\big)}$. \textit{Note:} your answer should depend only on $t$: not $\textcolor{M5}{o}$.
+
+\onslide<2-|handout:0>{\color{answercolor} 
+\begin{align*}
+o'(t)&=e^t\\
+u'(o) &= \dfrac{(o+\sin o)(0) - (1)(1+\cos o)}{(o+\sin o)^2}\\
+&=\dfrac{-(1+\cos o)}{(o+\sin o)^2}\\ 
+\diff{}{t} u\big(o(t)\big) 
+       &=u'\big(o(t)\big) \ o'(t) \\
+       &= -e^t\left(\dfrac{1+\cos\big(o(t)\big)}{\big[o(t)+\sin(o(t))\big]^2} \right)\\
+       &= -e^t\left(\dfrac{1+\cos(e^t)}{\big[e^t+\sin(e^t)\big]^2} \right)
+\end{align*}
+}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}<handout:0>[t]{More Examples}
+\NowYou Evaluate $\ds\diff{}{x}\left\{x^2+\sec\left(x^2+\dfrac{1}{x}\right)\right\}$
+\vfill
+
+\NowYou Evaluate $\ds\diff{}{x}\left\{\dfrac{1}{x+\dfrac{1}{x+\frac{1}{x}}}\right\}$
+\vfill
+
+\QuestionBar{4}{5}\QuestionBar{5}{5}\AnswerYes\MoreSpace
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\AnswerYes\QuestionBar{4}{5}}
+\only<2>{\AnswerBar{4}{5}}
+
+Evaluate $\ds\diff{}{x}\left\{x^2+\sec\left(x^2+\dfrac{1}{x}\right)\right\}$
+
+\onslide<2|handout:0>{\color{answercolor}\small
+\begin{align*}
+\ds\diff{}{x}&\left\{x^2+\sec\left(\boxed{x^2+\dfrac{1}{x}}\right)\right\}
+\\&=
+2x+\sec\left(\boxed{x^2+\dfrac{1}{x}}\right)\cdot\tan\left(\boxed{x^2+\dfrac{1}{x}}\right)\cdot\diff{}{x}\left\{\boxed{x^2+\dfrac{1}{x}}\right\}\\&=
+2x+\sec\left(\boxed{x^2+\dfrac{1}{x}}\right)\cdot\tan\left(\boxed{x^2+\dfrac{1}{x}}\right)\cdot\diff{}{x}\left\{\boxed{x^2+x^{-1}}\right\}\\&=
+2x+\sec\left(\boxed{x^2+\dfrac{1}{x}}\right)\cdot\tan\left(\boxed{x^2+\dfrac{1}{x}}\right)\cdot\left(2x-x^{-2}\right)
+\end{align*}
+Notice: That first term, $2x$, is not multiplied by anything else.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\AnswerYes\QuestionBar{5}{5}}
+\only<2>{\AnswerBar{5}{5}}
+
+Evaluate $\ds\diff{}{x}\left\{\dfrac{1}{x+\dfrac{1}{x+\frac{1}{x}}}\right\}$\pause
+\color{answercolor}
+\onslide<2|handout:0>{
+\footnotesize
+\begin{align*}
+\ds\diff{}{x}&\left\{\dfrac{1}{x+\dfrac{1}{x+\frac{1}{x}}}\right\}
+=\ds\diff{}{x}\left\{\left(x+\left(x+x^{-1}\right)^{-1}\right)^{-1}\right\}\\
+&=-\left(\boxed{x+\left(x+x^{-1}\right)^{-1}}\right)^{-2}\cdot\diff{}{x}\left\{\boxed{x+\left(x+x^{-1}\right)^{-1}}\right\}\\
+&=
+-\left(\boxed{x+\left(x+x^{-1}\right)^{-1}}\right)^{-2}\cdot\left[\textcolor{C2}{1}+(-1)\left(\boxed{x+x^{-1}}\right)^{-2}\cdot\diff{}{x}\left\{\boxed{x+x^{-1}}\right\}\right]
+\\&=
+-\left(\boxed{x+\left(x+x^{-1}\right)^{-1}}\right)^{-2}\cdot\left[\textcolor{C2}{1}+(-1)\left(\boxed{x+x^{-1}}\right)^{-2}\cdot(1-x^{-2})
+\right]
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+

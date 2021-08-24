@@ -1,0 +1,371 @@
+%%% macros and headers for Optimal, Integral, Likely slides
+%%%Elyse Yeager 2020
+
+%%%GENERAL%%%
+%%%%%%%%%%%
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{ulem}%to strikeout text
+\usepackage{polynom}%for long division
+\usepackage{ifthen}%mostly used in fancy macros like weights
+\usepackage{cancel}
+
+\usetheme{CLP}%custom beamer theme
+
+%\setbeameroption{hide notes}%Notes are not shown. This is the default in a presentation.
+%\setbeameroption{show notes}%Notes are shown. This is nice for preparing.
+
+%%%GRAPHICS%%%
+%%%%%%%%%%%
+\usepackage{pgfplots}%includes tikz,xcolor,graphicx,etc
+\usetikzlibrary{shapes, patterns, snakes}
+
+%colorblind-friendly palette
+%mixed colours: CB sees contrasting grays
+\definecolor{M1}{RGB}{0,0,0}
+\definecolor{M2}{RGB}{0,73,73}
+\definecolor{M3}{RGB}{0,146,146}
+\definecolor{M4}{RGB}{255,109,182}
+\definecolor{M5}{RGB}{255,182,119}
+%cool colours: CB sees contrasting blues
+\definecolor{C1}{RGB}{73,0,146}
+\definecolor{C2}{RGB}{0,109,219}
+\definecolor{C3}{RGB}{182,109,255}
+\definecolor{C4}{RGB}{109,182,255}
+\definecolor{C5}{RGB}{182,219,255}
+%warm colours: CB sees contrasting yellow
+\definecolor{W1}{RGB}{146,0,0}
+\definecolor{W2}{RGB}{146,73,0}
+\definecolor{W3}{RGB}{219,209,0}
+\definecolor{W4}{RGB}{36,255,36}
+\definecolor{W5}{RGB}{255,255,109}
+
+%%%CLP Colours
+\definecolor{_deepskyblue}{HTML}{007090}
+\definecolor{_deepgreen}{HTML}{006070}
+\definecolor{_darkred}{HTML}{600000}
+
+%%%answers: give same colour as deepgreen (for now -- make its own name so can change later)
+\definecolor{answercolor}{HTML}{006070}
+
+%%%Legacy Colour
+%colorblind-friendly palette
+%\definecolor{dblue}{RGB}{51,34,136}
+%\definecolor{lblue}{RGB}{136,204,238}
+%\definecolor{green}{RGB}{17,119,51}
+%\definecolor{tan}{RGB}{221,204,119}
+%\definecolor{mauve}{RGB}{204,102,119}
+
+
+%%%%CITATIONS%%%%%%%%
+%%%%%%%%%%%%%
+%Attribution Index
+%to add an attribution, write \index[attrib]{entry that you want to show up}
+
+\newenvironment{theindex}{}{}
+\usepackage{imakeidx}
+
+\makeatletter
+\def\@idxitem{\par}
+\def\imki@firstpagestyle{empty}
+\newcommand{\indexspace}{\vspace{1em}}
+\makeatother
+\indexsetup{noclearpage}%otherwise blank pages added
+
+\makeindex[name=attrib, columns=1]
+
+%copyright macros
+\newcommand{\CCBYtwo}{\href{https://creativecommons.org/licenses/by/2.0/}{CC BY 2.0}}
+\newcommand{\CCBYthree}{\href{https://creativecommons.org/licenses/by/3.0/}{CC BY 3.0}}
+\newcommand{\CCBYNDfour}{\href{https://creativecommons.org/licenses/by-nc-nd/4.0/}{CC BY-NC-ND 4.0}}
+\newcommand{\CCBYNCSAtwo}{\href{https://creativecommons.org/licenses/by-nc-sa/2.0/}{CC BY-NC-SA 2.0}}
+
+%External References: to text and problem book
+%\eref{text}{<label>} and \eref{prob}{<label>}
+\usepackage{xr}
+\externaldocument[text-]{XR/clp_1_dc_text}
+\externaldocument[prob-]{XR/clp_1_dc_problems}
+\newcommand{\eref}[2]{\ref*{#1-#2}}
+
+
+%%%ENVIRONMENTS%%%
+%%%%%%%%%%%
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{recall}{Recall}
+\newtheorem*{thm}{Theorem}
+
+
+
+%%%Link Display%%%
+%%%%%%%%%%%
+\usepackage{etoolbox, calculator,hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=W1,
+    urlcolor=C2
+}
+
+%%%SHORT MACROS%%%
+%%%%%%%%%%%
+\newcommand{\kph}{\frac{\mathrm{km}}{\mathrm{hr}}}
+\newcommand{\ve}[1]{\langle #1 \rangle}
+\newcommand{\diff}[2]{\frac{\text{d}#1}{\text{d}#2}}
+\newcommand{\ddiff}[3]{ \frac{\mathrm{d}^#1#2}{\mathrm{d}{#3}^#1}}
+\newcommand{\pdiff}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\dee}{\text{d}}
+\tikzstyle{vertex}=[shape=circle, minimum size=2mm, inner sep=0, fill]
+\tikzstyle{opendot}=[shape=circle, minimum size=2mm, inner sep=0, fill=white, draw]
+
+\newcommand{\myaxis}[7][help lines]{%[formatting of lines]{xlabel}{xleft}{xright}{ylabel}{yleft}{yright}
+	\ifthenelse{\lengthtest{#3 pt=0 pt}}{}{
+		\draw[ <-,#1] (-#3,0)--(0,0);
+		}
+	\ifthenelse{\lengthtest{#4 pt=0 pt}}{
+		\draw[#1] (0,0)node[right]{$#2$};}{
+		\draw[ ->,#1] (0,0)--(#4,0)node[right]{$#2$};
+		}
+	\ifthenelse{\lengthtest{#6 pt= 0 pt}}{
+		}{
+		\draw[ <-,#1] (0,-#6)--(0,0);}
+	\ifthenelse{\lengthtest{#7 pt= 0 pt}}{
+		\draw[#1] (0,0)node[above]{$#5$};
+		}{
+		\draw[ ->,#1] (0,0)--(0,#7)node[above]{$#5$};}
+}
+\newcommand{\hosp}{L'H$\hat{\mbox{o}}$pital}
+\newcommand{\lheq}{\stackrel{\text{l'H}}{=}~}
+
+
+\newcommand{\xcoord}[3][]{\draw (#2,.2)--(#2,-.2) node[below,#1]{$#3$};}
+\newcommand{\nxcoord}[3][]{\draw (#2,-.2)--(#2,.2) node[above,#1]{$#3$};}
+\newcommand{\ycoord}[3][]{\draw (.2,#2)--(-.2,#2) node[left,#1]{$#3$};}
+\newcommand{\nycoord}[3][]{\draw (-.2,#2)--(.2,#2) node[right,#1]{$#3$};}
+\newcommand{\dlimx}[1]{\displaystyle\lim_{x \to #1}~}
+\newcommand{\ds}{\displaystyle}
+
+
+%now you
+\newcommand{\NowYou}{
+	\parbox{8mm}{\sc\small \centering \color{W4!50!black}  Now You}
+	\parbox{1cm}{\includegraphics[width=1cm]{Clipart/brain}}
+	 \index[attrib]{\includegraphics[height=5mm]{Clipart/brain.png} \href{https://thenounproject.com/term/brain/3088298/}{`Brain'} by \href{https://thenounproject.com/eucalyp/}{Eucalyp} is licensed under \CCBYthree~ (accessed 8 June 2021)}
+	}
+	
+%unobtrusive note next to page number -- used to reference textbook, e.g. "Example 1.5.1"
+\newcommand{\unote}[1]{
+	\begin{textblock}{1.0}(.1,.967)
+	\tiny #1
+	\end{textblock}
+	}
+
+
+
+%printing answers
+\newtoggle{printsolutions}
+\settoggle{printsolutions}{true}
+\mode<handout>{\settoggle{printsolutions}{false}}
+\newcommand{\answer}[1]{
+	\iftoggle{printsolutions}{#1}{}}
+%%%%%%%%%%%%%%%%%%%%%
+%special pages
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%Detect whether there is anything in the index to print
+%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{indexentries} %count number of entries in the index
+\setcounter{indexentries}{0}
+\usepackage{letltxmacro}
+\LetLtxMacro{\oldindex}{\index}
+\renewcommand{\index}[2][]{ \stepcounter{indexentries} \oldindex[#1]{#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%Print attribution index if there's anything to attribute
+%might have to run twice for it to work correctly
+%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\LastPage}{
+\ifnum \theindexentries>0
+	\appendix%this will suppress the section being added to the beamer header
+	\begin{frame}[t,allowframebreaks]%allowframebreaks necessary for long indices
+	Included Work\\[1em]
+	\footnotesize
+	\printindex[attrib]
+	\end{frame}
+\fi}
+
+%
+%
+%%%%%%%%%%%%%%%%%%%%%
+%Information about pages and lecture flow
+%%%%%%%%%%%%%%%%%%%%%
+
+%more space to work is provided on next slide
+\usepackage[absolute, overlay]{textpos}
+\setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
+
+\newcommand{\MoreSpace}{
+	\only<beamer>{\begin{textblock}{1.0}(.92,.958)
+		\includegraphics[height=3mm]{Clipart/notebook}
+		\end{textblock}
+	\index[attrib]{ \includegraphics[height=3mm]{Clipart/notebook} \href{https://thenounproject.com/term/notebook/983098/}{`Notebook'}  by \href{https://thenounproject.com/iconproducer/}{Iconic} is licensed under \CCBYthree~ (accessed 9 June 2021)}}}
+
+%status bar for an animation
+%doesn't work with \centering
+\newcommand{\StatusBar}[2]{	%#1: starting page; #2: ending page
+	\only<beamer>{\COPY{#1}{\a}
+	\COPY{#2}{\b}
+	\SUBTRACT{\b}{\a}{\d}
+	\ADD{\d}{1}{\d}%duration
+
+	\begin{textblock}{1.0}(0.9 , 0.93)
+		\onslide<\a-\b>{\begin{tikzpicture}
+		\draw[fill=gray!50] (0,0) rectangle (1,.1);
+		\DIVIDE{1}{\d}{\step}
+		\foreach \n in {1,...,\d}{
+			\MULTIPLY{\step}{\n}{\x}
+			\ADD{\a}{\n}{\s}
+			\SUBTRACT{\s}{1}{\s}
+			\onslide<\s>{\draw[fill=white] (1,.1) rectangle (\x,0);
+			\draw[W1!50] (\x,-.025)--(\x,.125);}}
+		\end{tikzpicture}}
+		\end{textblock}
+	}}
+
+%%%%%%%%%%%%%%%%%%%
+%"status bar" for sets of questions
+%use \begin{questionset} and \endquestionset}
+%then \setquestion{} and \setanswer{}
+%works up to about 6 questions, then overruns page; can shift left by changing \blockx to a smaller number
+\makeatletter
+\newcommand*{\overlaynumber}{\number\beamer@slideinframe}
+\makeatother
+
+\newcounter{questionset}
+\COPY{0.9}{\blockx}
+\COPY{0.95}{\blocky}
+\newenvironment{QuestionSet}
+	{\setcounter{questionset}{0}%reset counter
+	\COPY{\overlaynumber}{\setstart}%first slide of question set
+	}
+	{
+	\begin{textblock}{1.0}[0,1](\blockx , \blocky)
+	\onslide<beamer|beamer:\setstart->{\begin{tikzpicture}
+	\foreach \n in {1,...,\thequestionset}{
+		\draw (\n/5,0)rectangle (\n/5+.2,\n/20);
+		}}
+	\end{tikzpicture}
+	\end{textblock}
+	}%at the end of the environment, put the step-status bar on each question
+
+\newcommand{\SetQuestion}[1]{
+	\stepcounter{questionset}
+	\only<+|handout:+>{#1
+
+	\only<beamer>{\begin{textblock}{1.0}[0,1](\blockx , \blocky)
+	\begin{tikzpicture}
+	\foreach \n in {1,...,\thequestionset}{
+		\fill[opacity=0.3] (\n/5,0)rectangle (\n/5+.2,\n/20);
+		}
+	\draw (\thequestionset/5+.1,\thequestionset/20+.15)node[inner sep=0]{\tiny Q};
+	\end{tikzpicture}
+	\end{textblock}}}
+	}
+
+\newcommand{\SetAnswer}[1]{
+	\iftoggle{printsolutions}{
+		\only<+|handout:+>{#1
+		\only<beamer>{\begin{textblock}{1.0}[0,1](\blockx , \blocky)
+		\begin{tikzpicture}
+		\foreach \n in {1,...,\thequestionset}{
+			\fill[opacity=0.3] (\n/5,0)rectangle (\n/5+.2,\n/20);
+			}
+		\draw (\thequestionset/5+.1,\thequestionset/20+.15)node[inner sep=0]{\tiny A};
+		\end{tikzpicture}
+		\end{textblock}}}
+	}{}
+}
+
+
+
+%sets of Q and A that may span frames, or have additional overlay formatting
+\COPY{0.9}{\blockxx}
+\COPY{0.95}{\blockyy}
+\newcommand{\QuestionBar}[2]{%#1: current position #2: total
+	\only<beamer>{
+	\begin{textblock}{1.0}[0,1](\blockxx ,\blockyy)
+	\begin{tikzpicture}
+	\DIVIDE{1}{#2}{\stepwidth}
+	\MIN{\stepwidth}{.25}{\stepwidth}
+	\foreach \n in {1,...,#1}{
+		\MULTIPLY{\stepwidth}{\n}{\xx}
+		\fill[opacity=0.3] (\xx-\stepwidth,0)rectangle (\xx,\xx/4);
+		}
+	\MULTIPLY{#1}{\stepwidth}{\xx}
+	\DIVIDE{\stepwidth}{2}{\halfstep}
+	\SUBTRACT{\xx}{\halfstep}{\xx}
+	\DIVIDE{\xx}{4}{\yy}
+	\ADD{\yy}{0.2}{\yy}
+	\draw (\xx,\yy)node[inner sep=0]{\tiny Q};
+
+	\foreach \n in {1,...,#2}{
+		\MULTIPLY{\stepwidth}{\n}{\xx}
+		\draw (\xx-\stepwidth,0)rectangle (\xx,\xx/4);}
+	\end{tikzpicture}
+	\end{textblock}}
+	}
+
+\newcommand{\AnswerBar}[2]{%#1: current position #2: total
+	\only<beamer>{\begin{textblock}{1.0}[0,1](\blockxx ,\blockyy)
+	\begin{tikzpicture}
+	\DIVIDE{1}{#2}{\stepwidth}
+	\MIN{\stepwidth}{.25}{\stepwidth}
+	\foreach \n in {1,...,#1}{
+		\MULTIPLY{\stepwidth}{\n}{\xx}
+		\fill[opacity=0.3] (\xx-\stepwidth,0)rectangle (\xx,\xx/4);
+		}
+	\MULTIPLY{#1}{\stepwidth}{\xx}
+	\DIVIDE{\stepwidth}{2}{\halfstep}
+	\SUBTRACT{\xx}{\halfstep}{\xx}
+	\DIVIDE{\xx}{4}{\yy}
+	\ADD{\yy}{0.2}{\yy}
+	\draw (\xx,\yy)node[inner sep=0]{\tiny A};
+
+	\foreach \n in {1,...,#2}{
+		\MULTIPLY{\stepwidth}{\n}{\xx}
+		\draw (\xx-\stepwidth,0)rectangle (\xx,\xx/4);}
+	\end{tikzpicture}
+	\end{textblock}}
+	}
+
+
+ %answer to the question on this slide is written or not
+\newcommand{\AnswerYes}{
+	\iftoggle{printsolutions}{\only<beamer>{\begin{textblock}{1.0}(.955,.958)
+	\begin{tikzpicture}
+	\draw (-.2,-.125) rectangle (.2,.125);
+	\node{\tiny ans};
+	\end{tikzpicture}
+	\end{textblock}}}{}
+}
+%
+\newcommand{\AnswerNo}{
+	\iftoggle{printsolutions}{\only<beamer>{\begin{textblock}{1.0}(.955,.958)
+	\begin{tikzpicture}
+	\draw (-.2,-.125) rectangle (.2,.125);
+	\node{\tiny ans};
+	\draw (-.2,-.125)--(.2,.125);
+	\end{tikzpicture}
+	\end{textblock}}}{}
+}
+%Spacer
+\newcommand{\AnswerSpace}{
+	\iftoggle{printsolutions}{\only<beamer>{\begin{textblock}{1.0}(.955,.958)
+	\begin{tikzpicture}
+	\draw[opacity=0] (-.2,-.125) rectangle (.2,.125);
+	\end{tikzpicture}
+	\end{textblock}}}{}
+}

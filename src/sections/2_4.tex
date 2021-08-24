@@ -1,0 +1,538 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\section*{2.4-2.6: Arithmetic of Derivatives}
+
+ \begin{frame}{Table of Contents}
+\mapofcontentsBB{\bd,\be,\bg}
+ \end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}<handout:0>
+Sections 2.4 (\textit{Arithmetic of Derivatives -- A Differentiation Toolbox}), 2.5 (\textit{Proofs of the Arithmetic of Derivatives}), and 2.6 (\textit{Using the Arithmetic of Derivatives – Examples}) are closely linked in content. Content from these sections does not necessarily appear in order in this file.
+
+\begin{itemize}
+\item Content from Section 2.4 can be found in the following locations:
+\begin{itemize}
+\item \pageref{2.4 addsum}: derivative of sum and difference
+\item \pageref{2.4 prodrule}: Theorem~\eref{text}{thm:DIFFprodRule}, the product rule
+\item \pageref{2.4 quot}: Theorem~\eref{text}{thm:DIFFquotRule}, the quotient rule
+\end{itemize}
+
+%
+\item Content from Section 2.5 can be found in the following locations:
+\begin{itemize}
+\item \pageref{2.6 sums}, \pageref{2.6 scalar multiple}: proof of the linearity of differentiation
+\item \pageref{2.5product}: proof of the product rule
+\end{itemize}
+%
+\item Content from Section 2.6 can be found in the following locations:
+\begin{itemize}
+\item \pageref{2.6 linear}, \pageref{2.6 linear2}:  linearity of differentiation
+\item \pageref{2.6 prod}, \pageref{2.6 prod2}: product rule
+\item \pageref{2.6 prod3}: 
+Example~\eref{text}{eg:DIFFsimpleToolsA}, product of three functions
+\item \pageref{2.6 quot}, \pageref{2.6 quot2}: quotient rule
+\item \pageref{2.6 dxn}: Lemma~\eref{text}{lem dxn}, derivative of $x^n$.
+\item \pageref{2.6 pr}, \pageref{2.6 pr2}: power rule
+\item \pageref{2.6 mix}, \pageref{2.6 mix3}, \pageref{2.6 mix4}, \pageref{2.6 mix2}: various rules
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Derivatives of Lines}
+\only<1>{\QuestionBar{1}{5}\AnswerYes}
+\only<2>{\AnswerBar{1}{5}}
+\only<3>{\QuestionBar{2}{5}\AnswerNo}
+\only<4>{\QuestionBar{3}{5}\AnswerNo}
+\only<5>{\QuestionBar{4}{5}\AnswerNo}
+\[f(x)=2x-15\]
+The equation of the tangent line to $f(x)$ at  $x=100$ is:
+\pause
+\answer{\[\color{answercolor}2x-15\]}
+\pause\vfill
+$f'(1)=$\\
+\onslide<3->{\color{black} A. $0$ \hfill B. $1$ \hspace{1cm} C. $2$ \hfill D. $-15$\hfill E. $-13$}
+\pause\vfill
+
+$f'(5)= $
+\pause\vfill
+
+$f'(-13)= $\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\QuestionBar{5}{5}\AnswerNo
+\[g(x)=13\]
+\vfill
+
+$g'(1)=$\\[1em]
+\color{black}A. $0$\hfill B. $1$\hfill C. $2$ \hfill D. $13$
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Adding a Constant}
+\answer{\only<-7>{\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\myaxis{x}{1}{4}{}{0}{4}
+\draw[C2] plot[domain=-1:4, ultra thick, samples=100] (\x,{sqrt(abs(\x))}) node[right]{$f(x)$};
+\onslide<2->{
+\draw[M4] plot[domain=-1:4, ultra thick, samples=100] (\x,{sqrt(abs(\x))+2}) node[right]{$f(x)+c$};
+}
+\onslide<3->{
+\draw (1,1) node[vertex]{};
+}
+\onslide<4->{
+\draw[C2] plot[domain=-1:4, ultra thick, samples=100] (\x,{\x/2+.5}) node[right]{};
+}
+\onslide<5->{
+\draw[M4] (1,3) node[vertex]{};
+}
+\onslide<6->{
+\draw[M4] plot[domain=-1:4, ultra thick] (\x,{\x/2+2.5}) node[right]{};
+}
+\end{tikzpicture}\end{center}}}
+\onslide<7->{{Adding or subtracting a constant to a function \alert{does not change its derivative}.}}\vfill
+
+\onslide<8->{
+We saw
+\begin{align*}
+\left.\diff{}{x}\left(\textcolor{C2}{3-0.8t^2}\right)\right\vert_{t=1}&=-1.6
+\intertext{ So,}
+\left.\diff{}{x}\left(\textcolor{C2}{10-0.8t^2}\right)\right\vert_{t=1}&=\answer{\onslide<9->{-1.6}}
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}{Differentiating Sums}
+\label{2.6 sums}
+\note<1>{This is a really good intro to showing how the definition can be used to prove rules. Alternately put, how rules are just shortcuts for calculations starting with the definition.}
+\begin{align*}
+\diff{}{x}\left\{\textcolor{C3}f(x)+\textcolor{M5}g(x)\right\}&=\onslide<2-|handout:0>{
+\lim_{h \to 0}\left[\frac{[\textcolor{C3}f(x+h)+\textcolor{M5}g(x+h)]-[\textcolor{C3}f(x)+\textcolor{M5}g(x)]}{h}\right]\\
+&=\lim_{h \to 0}\left[\frac{\textcolor{C3}f(x+h)-\textcolor{C3}f(x)+\textcolor{M5}g(x+h)+\textcolor{M5}g(x)}{h}\right]\\
+&=\lim_{h \to 0}\left[\frac{\textcolor{C3}f(x+h)-\textcolor{C3}f(x)}{h}+\frac{\textcolor{M5}g(x+h)-\textcolor{M5}g(x)}{h} \right]\\
+&=\lim_{h \to 0}\left[\frac{\textcolor{C3}f(x+h)-\textcolor{C3}f(x)}{h}\right]+
+\lim_{h \to 0}\left[\frac{\textcolor{M5}g(x+h)-\textcolor{M5}g(x)}{h} \right]\\
+&=f'(x)+g'(x)
+}
+\end{align*}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}{Constant Multiple of a Function}
+\label{2.6 scalar multiple}
+Let $a$ be a constant.
+\begin{align*}
+\diff{}{x}\left\{\textcolor{M5}a\cdot \textcolor{C3}f(x)\right\}
+&=\onslide<2-|handout:0>{
+\lim_{h \to 0}\left[\frac{\textcolor{M5}a\cdot \textcolor{C3}f(x+h)-\textcolor{M5}a\cdot \textcolor{C3}f(x)}{h}\right]\\
+&=
+\lim_{h \to 0}\left[\textcolor{M5}a\cdot\frac{\textcolor{C3}f(x+h)-\textcolor{C3}f(x)}{h}\right]\\
+&=
+\textcolor{M5}a\cdot \lim_{h \to 0}\left[\frac{\textcolor{C3}f(x+h)-\textcolor{C3}f(x)}{h}\right]\\
+&=\textcolor{M5}a\cdot \textcolor{C3}f'(x)
+}
+\end{align*}
+\note<2>{Ask students to explain to their neighbours which step wouldn't have worked if $a$ weren't constant }
+\end{frame}
+%----------------------------------------------------------------------------------------
+%------------------------------------------------------------------
+\begin{frame}\AnswerSpace
+\label<1|handout:1>{2.4 addsum}
+\label<2|handout:1>{2.6 linear}
+\only<2>{\AnswerYes}
+\begin{block}{Rules -- Lemma~\eref{text}{thm:DIFFaddsub}}
+Suppose $f(x)$ and $g(x)$ are differentiable, and let $c$ be a constant number. Then:
+\begin{itemize}
+\item $\diff{}{x} \left\{f(x)+g(x) \right\}=f'(x)+g'(x)$ \only<3-|handout:0>{\alert{$\leftarrow $Add a constant: no change}}
+\item $\diff{}{x} \left\{ f(x)-g(x)\right\}=f'(x)-g'(x)$
+\item $\diff{}{x} \left\{ cf(x)\right\}=cf'(x)$ \onslide<3-|handout:0>{\alert{$\leftarrow$ Multiply by a constant: keep the constant}}
+\end{itemize}
+\end{block}\pause\vfill
+For instance: let $f(x) = \textcolor{M4}{10}\left( \textcolor{C4}{(2x-15)}+\textcolor{M5}{13}-\textcolor{M3}{\sqrt{x}} \right)$. Then
+$f'(x)=$\pause \answer{$ \textcolor{M4}{10}\left(\textcolor{C4}{ (2)}+\textcolor{M5}{0}-\textcolor{M3}{\frac{1}{2\sqrt{x}}}\right).$}
+\unote{Example~\eref{text}{eg:DIFFsimpleToolsAA}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\label{2.6 linear2}
+\only<1>{\AnswerYes}\AnswerSpace
+\NowYou ~ Suppose $f'(x)=3x$, $g'(x)=-x^2$, and $h'(x)=5$.
+ Calculate:
+ \[\diff{}{x} \left\{ f(x)+5g(x)-h(x)+22 \right\}\] 
+ 
+ \begin{itemize}
+ \item[A.] $3x-5x^2$
+\alert<2-|handout:0>{ \item[B.] $3x-5x^2-5$}
+ \item[C.] $3x-5x^2-5+22$
+ \item[D.] none of the above
+ \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Derivatives of Products}
+\AnswerSpace
+\only<3>{\AnswerNo}
+\note<1>{Students have seen these rules before and often feel bored here. I like to remind them how weird the rules are. It wasn't obvious that the product rule would be what it is, but they've known it for so long, it \textit{feels} obvious. So I like to show the contrasting patterns below.}
+\begin{center}
+$\diff{}{x}\{x\}=$\pause$1$ %\hspace{1cm} 
+%\pause $\diff{}{x}\left[x^2\right]=$\pause$2x$
+\end{center}\pause
+
+\textcolor{M4}{True or False: }
+\begin{align*}
+\diff{}{x}\left\{2x\right\}&= 
+\diff{}{x}\left\{ x + x\right\} \\
+&=[1]+[1]\\
+&=2
+\end{align*}
+
+
+\textcolor{M4}{True or False: }
+\begin{align*}
+\diff{}{x}\left\{ x^2\right\}&= 
+\diff{}{x}\left\{ x \cdot x\right\} \\
+&=[1]\cdot[1]\\
+&=1
+\end{align*}
+\end{frame}
+%--------------------------------------------------------------------------------------
+\begin{frame}[t]{What to do with Products?}
+\label<2|handout:1>{2.5product}
+\note<1>{To avoid panic, emphasize that students are not responsible for reproducing this. The rule is surprising, we're just explaining why it's true. Also useful to emphasize that all the ``tricks" are just \textit{shortcuts for teh definition of the derivative.} Otherwise students often wonder why we bother with the definition at all.}
+Suppose $f(x)$ and $g(x)$ are differentiable functions of $x$.
+What about $f(x)g(x)$?\\
+\vfill
+\answer{\only<1>{$\diff{}{x}\left\{f(x)g(x)\right\}=$}\pause
+\color{answercolor}
+\begin{align*}
+\diff{}{x}&\left\{f(x)g(x)\right\}=
+\lim_{h \rightarrow 0}\dfrac{f(x+h)g(x+h)-f(x)g(x)}{h}\\
+&=\lim_{h \rightarrow 0}\dfrac{f(x+h)g(x+h)\textcolor{M4}{-f(x+h)g(x)+f(x+h)g(x)}-f(x)g(x)}{h}\\
+&=\lim_{h \rightarrow 0}\dfrac{f(x+h)\left[g(x+h)\textcolor{M4}{-g(x)}\right]+g(x)\left[\textcolor{M4}{f(x+h)}-f(x)\right]}{h}\\
+&=\lim_{h \rightarrow 0}\left[
+	f(x+h)\dfrac{g(x+h)-g(x)}{h}+
+	g(x)\dfrac{f(x+h)-f(x)}{h}
+\right]\\
+&=\lim_{h \rightarrow 0}\left[
+	\textcolor{M3}{f(x+h)}\textcolor{M4}{\dfrac{g(x+h)-g(x)}{h}}+
+	\textcolor{C4}{g(x)}\textcolor{C2}{\dfrac{f(x+h)-f(x)}{h}}
+\right]\\
+&=\textcolor{M3}{f(x)}\textcolor{M4}{g'(x)}+\textcolor{C4}{g(x)}\textcolor{C2}{f'(x)}
+\end{align*} }
+\end{frame}
+%--------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\label<1|handout:1>{2.4 prodrule}
+\label<4|handout:1>{2.6 prod}
+\AnswerSpace
+\only<2,4>{\AnswerYes}
+\onslide<1->{
+\begin{block}{Product Rule -- Theorem~\eref{text}{thm:DIFFprodRule}}For differentiable functions $f(x)$ and $g(x)$:
+\[\diff{}{x}\left[f(x)g(x)\right]=f(x)g'(x)+g(x)f'(x)\]
+\end{block}}
+
+\pause Example:
+\[\diff{}{x}\left[ x^2\right]=\onslide<3-|handout:0>{\color{answercolor}\diff{}{x}\left[ x\cdot x\right] = x(1)+x(1)=2x}\]
+
+\onslide<4->{Example: suppose \textcolor{M4}{$f(x)=3x^2$, $f'(x)=6x$}, \textcolor{C3}{$g(x)=\sin(x)$,  $g'(x)=\cos(x)$.}
+\[\diff{}{x}\left[ \textcolor{M4}{3x^2}\textcolor{C3}{\sin(x)} \right] = 
+\onslide<5->{\answer{\textcolor{M4}{3x^2}\cdot\textcolor{C3}{\cos(x)}+\textcolor{C3}{\sin(x)}\cdot\textcolor{M4}{6x}}}
+\]}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\label{2.6 prod2}
+\only<1>{ 
+Given \hfill$\diff{}{x}\left[2x+5\right]=2$, \hfill
+$\diff{}{x}\left[\sin(x^2)\right]=2x\cos(x^2)$, \hfill 
+$\diff{}{x}\left[x^2\right]=2x$ \vfill}
+
+\NowYou ~ 
+$f(x)=(2x+5)\sin(x^2)$\vfill
+
+\begin{itemize}
+\item[A.] $f'(x)=(2)\left(2x\cos(x^2)\right)(2x)$
+\item[B.] $f'(x)=(2)\left(2x\cos(x^2)\right)$
+\item[C.] $f'(x)=(2x+5)(2)+\sin(x^2)\left(2x\cos(x^2)\right)$
+\item[D.] $f'(x)=(2x+5)\left(2x\cos(x^2)\right)+(2)\sin(x^2)$
+\item[E.] none of the above
+\end{itemize}
+\AnswerNo
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\only<1>{\AnswerYes}\AnswerSpace
+\label{2.6 prod3}
+\NowYou ~ $f(x)=a(x)\cdot b(x)\cdot c(x)$\\\hspace{2.5cm}What is $f'(x)$?\pause
+
+\answer{\color{answercolor}\begin{align*}
+f(x)&=\left[a(x)b(x)\right]c(x)\\
+f'(x)&=\left[a(x)b(x)\right]c'(x)+c(x)\diff{}{x}\left\{a(x)b(x)\right\}\\
+&=a(x)b(x)c'(x)+c(x)\left[a(x)b'(x)+a'(x)b(x)\right]\\
+&=a'(x)b(x)c(x)+a(x)b'(x)c(x)+a(x)b(x)c'(x)
+\end{align*}}
+
+\unote{Example~\eref{text}{eg:DIFFsimpleToolsA}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\label<1|handout:1>{2.4 quot}
+\label<2|handout:1>{2.6 quot}
+\label<4|handout:1>{2.6 quot2}
+\begin{block}{Quotient Rule -- Theorem~\eref{text}{thm:DIFFquotRule}}
+Let $f(x)$ and $g(x)$ be differentiable and $g(x) \neq 0$. Then:
+\[\diff{}{x}\left\{\frac{f(x)}{g(x)} \right\} = \frac{g(x)f'(x)-f(x)g'(x)}{g^2(x)}\]
+\end{block}
+Mnemonic: Low d'high minus high d'low over lowlow. \vfill\pause
+
+\begin{QuestionSet}
+\SetQuestion{$\ds\diff{}{x}\left\{\dfrac{2x+5}{3x-6} \right\} = $}
+\SetAnswer{$\ds\diff{}{x}\left\{\dfrac{\textcolor{M3}{2x+5}}{\textcolor{M4}{3x-6}} \right\} = \dfrac{\textcolor{M4}{(3x-6)}\textcolor{M3}{(2)}-\textcolor{M3}{(2x+5)}\textcolor{M4}{(3)}}{\textcolor{M4}{(3x-6)}^2}$}
+%
+\SetQuestion{$\ds\diff{}{x}\left\{\dfrac{5x}{\sqrt{x}-1} \right\} =$}
+\SetAnswer{$\ds\diff{}{x}\left\{\dfrac{\textcolor{M3}{5x}}{\textcolor{M4}{\sqrt{x}-1}} \right\} =\dfrac{\textcolor{M4}{(\sqrt{x}-1)}\textcolor{M3}{(5)}-\textcolor{M3}{(5x)}\textcolor{M4}{\left(\frac{1}{2\sqrt{x}}\right)}}{\textcolor{M4}{(\sqrt{x}-1)}^2} = \dfrac{\frac{5}{2}\sqrt{x}-5}{(\sqrt{x}-1)^2}$}
+\end{QuestionSet}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\label{2.6 mix}
+\NowYou ~  Differentiate the following.\\[1mm]
+\begin{quote}
+\indent$f(x)=2x+5$\\[1mm]
+$g(x)=(2x+5)(3x-7)+25$\\[1mm]
+$h(x)=\dfrac{2x+5}{8x-2}$\\[1mm]
+$j(x)=\left(\dfrac{2x+5}{8x-2}\right)^2$
+\end{quote}
+\note{Students probably remember power and chain rules from high school, but these can be done without power and chain rules. The last example is there to give the faster workers something to work on, while the slower workers get quality time with the foundational examples.}
+
+\begin{block}{Rules}
+Product: $\diff{}{x}\{f(x)g(x)\}=f(x)g'(x)+g(x)f'(x)$
+
+Quotient: $\ds\diff{}{x}\left\{\dfrac{f(x)}{g(x)}\right\} = \dfrac{g(x)f'(x)-f(x)g'(x)}{g^2(x)}$
+\end{block}
+\MoreSpace\AnswerNo
+\end{frame}
+%-------------------------------------------------------------
+\answer{\begin{frame}[t]
+\[f(x)=2x+5\]\vfill
+
+\[g(x)=(2x+5)(3x-7)+25\]
+\vfil
+\QuestionBar{2}{4}\AnswerNo
+\end{frame}}
+%-------------------------------------------------------------
+\answer{\begin{frame}[t]
+\[h(x)=\dfrac{2x+5}{8x-2}\]
+
+\QuestionBar{3}{4}\AnswerNo
+\end{frame}}
+%-------------------------------------------------------------
+\answer{\begin{frame}[t]
+\[j(x)=\left(\dfrac{2x+5}{8x-2}\right)^2\]
+
+\QuestionBar{4}{4}\AnswerNo
+\end{frame}}
+%-------------------------------------------------------------
+\begin{frame}[t]
+\label<1|handout:1>{2.6 mix3}
+\label<3|handout:1>{2.6 mix4}
+\begin{QuestionSet}
+
+\SetQuestion{
+\AnswerYes
+\begin{center}	
+\begin{tikzpicture}[scale=0.9]
+\myaxis{x}{5}{5}{y}{3}{3}
+\draw[thick, C2] plot[domain=-5:.46, samples=100](\x,{.5*(\x*\x+3)/(\x-1)});
+\draw[thick, C2] plot[domain=1.3:5, samples=100](\x,{.2*(\x*\x+3)/(\x-1)});
+\draw[C2] (-2.5,1.5)node{$f(x)=\dfrac{x^2+3}{x-1}$};
+\end{tikzpicture}
+\end{center}
+For which values of $x$ is the tangent line to the curve horizontal?}
+
+\SetAnswer{\color{answercolor}
+A horizontal line has slope 0, and the slope of the tangent line is the function's derivative. So, we should find where the function's derivative is 0.
+
+\[f'(x)=\frac{(x-1)(2x)-(x^2+3)(1)}{(x-1)^2}
+       =\frac{x^2-2x-3}{(x-1)^2}
+       =\frac{(x-3)(x+1)}{(x-1)^2}\]
+
+\fbox{$x=-1$, $x=3$}}
+
+%
+\SetQuestion{
+The position of an object moving left and right at time $t$, $t\ge 0$, is given by
+
+\[s(t)=-t^2(t-2)\]
+
+where a positive position means it is to the right of its starting position, and a negative position means it is to the left. First it moves to the right, then it moves left forever. 
+
+\begin{center}
+\begin{tikzpicture}
+\draw[thick, C2, rounded corners, ->] (0,1.5)--(3,1.5)--(3,1)--(-3,1);
+\draw[C2] (0,1.5) node[vertex, label=above:{$t=0$}]{};
+\draw[C2] (0,1) node[vertex, label=below:{$t=2$}]{};
+\end{tikzpicture}
+\end{center}
+
+What is the farthest point to the right that the object reaches?}
+\SetAnswer{
+\color{answercolor}
+When the object turns to come back around, $s'(t)=0$. If we can find the value of $t$ that makes this true, then we plug it in to $s(t)$ to find the farthest to the right reached by the object.
+
+\[s'(t)=[-t^2](1)+(-2t)(t-2)=-3t^2+4t=t(4-3t)\]
+
+So, the object turns around when $t=\frac{4}{3}$.
+
+\vfill
+Its position at that time is $s\left(\frac{4}{3}\right)=\frac{32}{27}$ units to the right of its starting position.}
+
+
+\end{QuestionSet}
+\end{frame}
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+
+\begin{frame}[t]{More About the Product Rule}
+\label{2.6 dxn}
+\begin{multicols}{2}
+$\diff{}{x}\{x^2\}=\diff{}{x}\{x \cdot x\}$
+\onslide<2->{$=x(1)+x(1)$}
+\onslide<3->{$=2x$}\vspace{3mm}
+
+\noindent\onslide<4->{$\diff{}{x}\{x^3\}$}
+\onslide<5->{$=\diff{}{x}\{x \cdot x^2\}$}
+\onslide<6->{$=(x)(2x)+(x^2)(1)$}
+\onslide<7->{$=3x^2$}\vspace{3mm}
+
+\noindent\onslide<8->{$\diff{}{x}\
+\{x^4\}=\diff{}{x}\{x \cdot x^3\}$}
+\onslide<9->{$=x(3x^2)+x^3(1)$}
+\onslide<10->{$=4x^3$}\vspace{3mm}
+
+\noindent\onslide<15->{Where are these functions defined?\AnswerNo}\columnbreak
+
+\begin{tabular}{|c|c|}
+\hline
+function & derivative\\
+\hline
+$x$&1\\
+\onslide<3->{$x^2$}&\onslide<3->{$2x$}\\
+\onslide<7->{$x^3$}&\onslide<7->{$3x^2$}\\
+\onslide<10->{$x^4$}&\onslide<10->{$4x^3$}\\
+\hline&\\
+\onslide<11->{$x^{30}$}&\onslide<12->{$30x^{29}$}\\
+\onslide<13->{$x^n$}&\onslide<14->{$nx^{n-1}$}\\
+\hline
+\end{tabular}
+\end{multicols}
+\unote{Lemma~\eref{text}{lem dxn}}
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[t]{Cautionary Tale}{With \textit{functions} raised to a power, it's more complicated.}
+\only<1>{\AnswerYes}\AnswerSpace
+Differentiate $(2x+1)^2$\\ \vfill
+\pause
+\answer{\color{answercolor}
+\begin{align*}
+\diff{}{x}\left\{(2x+1)^2\right\} &= \diff{}{x}\left\{(2x+1)(2x+1)\right\}\\
+&=(2x+1)(2)+(2x+1)(2)\\&=\alert{4(2x+1)}
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\label<1|handout:1>{2.6 pr}
+\label<3|handout:1>{2.6 mix2}
+\label<5|handout:1>{2.6 pr2}
+%\only<-2>{\begin{block}{Power Rule -- Corollary~\eref{text}{cor:DIFFxtoa}}
+%$\diff{}{x} \{x^n\}  = nx^{n-1}$ (where defined)
+%\end{block}}
+\only<-4>{\begin{block}{Power Rule -- Corollary~\eref{text}{cor:DIFFxtoa}}
+$\diff{}{x} \{x^a\}  = ax^{a-1}$ (where defined)
+\end{block}}
+\begin{QuestionSet}
+\SetQuestion{\AnswerYes
+\[\diff{}{x}\{3x^5+7x^2-x+15\}=\]}
+\SetAnswer{\color{answercolor}
+\begin{align*}\diff{}{x}&\left\{3x^5+7x^2-x+15\right\}\\
+=&3\cdot 5x^4+7\cdot 2x-1\\=&15x^4+14x-1\end{align*}}
+%
+\SetQuestion{\AnswerYes Differentiate~ $\dfrac{(x^4+1)(\sqrt[3]{x}+\sqrt[4]{x})}{2x+5}$}
+\SetAnswer{Differentiate~ $\dfrac{(x^4+1)(\sqrt[3]{x}+\sqrt[4]{x})}{2x+5}$\color{answercolor}
+\small
+\begin{align*}
+\diff{}{x}&\left\{\dfrac{(x^4+1)(\sqrt[3]{x}+\sqrt[4]{x})}{2x+5}\right\}\\
+&=\frac{(2x+5)\cdot\diff{}{x}\left\{(x^4+1)(\sqrt[3]{x}+\sqrt[4]{x})\right\}-(x^4+1)(\sqrt[3]{x}+\sqrt[4]{x})(2)}{(2x+5)^2}\\
+&=\frac{(2x+5)\left[(x^4+1)\left(\frac{1}{3}x^{-2/3}+\frac{1}{4}x^{-3/4}\right)+4x^3(\sqrt[3]{x}+\sqrt[4]{x})\right]}{(2x+5)^2}\\
+&\quad -\frac{2(x^4+1)(\sqrt[3]{x}+\sqrt[4]{x})}{(2x+5)^2}
+\end{align*}
+}
+%
+\SetQuestion{\AnswerYes Suppose a motorist is driving their car, and their position is given by 
+$s(t)=10t^3-90t^2+180t$ kilometres.
+ At $t=1$ ($t$ measured in hours), a police officer notices they are driving erratically. The motorist claims to have simply suffered a lack of attention: they were in the act of pressing the brakes even as the officer noticed their speed.\vfill
+
+At $t=1$, how fast was the motorist going, and were they pressing the gas or the brake? \\[1em]
+
+Challenge: What about $t=2$?
+}
+\SetAnswer{\color{answercolor}
+Velocity is the rate of change of position, so the velocity of the car is given by:
+\[v(t)=s'(t)=30t^2-180t+180\]
+When $t=1$, $v(1)=30$, so the motorist was going 30 kph.
+
+\[v'(t)=60t-180\]
+When $t=1$, the velocity of the car was changing by $v'(t)=-120$ kph per hour. Since the velocity was positive, but its rate of change is negative, the car was slowing down, i.e. decelerating, when $t=1$.
+\vfill
+$v(2)=-60$, so the motorist is driving backwards at 60 kph when $t=2$. Also $v'(2)=-60$ so  the motorist's velocity is becoming increasingly more negative. That is, the motorist is going backwards faster and faster,  and so is accelerating.
+}
+\SetAnswer{\color{answercolor}
+The contrast between $t=1$ and $t=2$ can be a subtle point. To help illustrate it, consider the graph below.
+\begin{center}\begin{tikzpicture}\color{black}
+\myaxis{t}{0}{3}{y}{1}{2.25}
+\draw[C1, thick] plot[domain=0:3](\x,{1.2*(0.3*\x*\x-1.8*\x+1.8)})node[right]{$y = v(t)$};
+\xcoord{1}{1}
+\xcoord{2}{2}
+\end{tikzpicture}\end{center}
+The vertical axis corresponds to velocity, so the car is stopped when the curve crosses the $t$-axis. At $t=1$, the curve is ``heading towards" its $t$-intercept. So the velocity is approaching 0. At $t=2$, it is ``heading away" from its $t$-intercept. The velocity is moving away from 0.
+}
+%%%\SetAnswer{\color{answercolor}
+%%%Velocity is the rate of change of position, so the velocity of the car is 
+%%%given by:
+%%%\[v(t)=s'(t)=30t^2-180t+180\]
+%%%
+%%%$v(2)=-60$, so the motorist is driving backwards at 60 kph at $t=2$.\\
+%%%
+%%%\[v'(t)=60t-180\]
+%%%
+%%% So $v'(2)=-60$ and the motorist's velocity is becoming increasingly more 
+%%% negative. That is the motorist is going backwards faster and faster, 
+%%% and so is accelerating.}
+
+\SetQuestion{
+Recall that a sphere of radius $r$ has volume $V=\frac{4}{3}\pi r^3$.
+
+Suppose you are winding twine into a gigantic twine ball, filming the process, and trying to make a viral video.
+You can wrap one cubic meter of twine per hour. (In other words, when we have $V$ cubic meters of twine, we're at time $V$ hours.) How fast is the radius of your spherical twine ball increasing?
+\AnswerNo}
+\end{QuestionSet}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------

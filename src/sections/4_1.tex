@@ -1,0 +1,288 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section*{4.1: Antiderivatives}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\centering\Large
+4.1 Antiderivatives
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\unote{Definition~\eref{text}{def:antiderivative}}
+\AnswerSpace
+\only<4>{\AnswerYes}
+\begin{block}
+{Basic Question}
+What function has derivative $f(x)$?
+\end{block}
+\pause\vfill
+
+If $F'(x)=f(x)$, we call $F(x)$ an \textcolor{M4}{antiderivative} of $f(x)$.\pause\vfill
+
+\begin{block}
+{Examples}
+$\diff{}{x}[x^2]=2x$, so $x^2$ is an \emph{antiderivative} of $2x$.
+\vspace{5mm}
+
+$\diff{}{x}[x^2+5]=2x$, so $x^2+5$ is (also) an \emph{antiderivative} of $2x$.
+\end{block}
+\pause\vfill
+
+What is the most general antiderivative of $2x$? \\\color{answercolor}
+\pause \answer{\fbox{$x^2+c$}, where we understand $c$ as some constant \\(a number not depending on $x$).}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Antiderivatives}
+Find the most general antiderivative for the following equations.
+\[f(x)= 17\]
+\onslide<2|handout:0>{\textcolor{answercolor}{$17x+c$}}
+\vfill
+\[f(x)= m \] where $m$ is a constant.
+
+\onslide<2|handout:0>{\textcolor{answercolor}{$mx+c$}}
+\vfill
+\note<1>{This is a good time to remind students about lines.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\StatusBar{1}{7}
+\only<1-6>{\AnswerYes}
+
+	\begin{tabular}{lcl}
+		differentiation fact && antidifferentiation fact\\ \hline
+		$\diff{}{x}[x^2]=2x$ &$\implies$&antideriv of $2x:$\hfill \answer{$ x^2+c$} \\[10pt] \pause
+\iftoggle{printsolutions}{		&&antideriv of $x$:\hfill\pause\answer{$\frac{1}{2}x^2+c$}\\[10pt] \pause
+		&&\textcolor{W1}{Check: $\diff{}{x}\left[\frac{1}{2}x^2+c \right]=\pause x$}\pause\\[1em]}{}
+		$\diff{}{x}[x^3]=3x^2$ &$\implies$&
+		\onslide<7-|handout:0>{antideriv of $3x^2$:\hfill $x^3+c$ \\
+		&&antideriv of $ x^2$:}\hfill
+		\onslide<7-|handout:0>{ $\frac{1}{3}x^3+c$ }
+		\\[10pt]
+		$\diff{}{x}[x^4]=4x^3$ &$\implies$& \onslide<7-|handout:0>{antideriv of $4x^3$:\hfill $x^4+c$		
+ \\
+		&&antideriv of $x^3$\hfill\onslide<7-|handout:0>{$\frac14x^4+c}$\\[1em]}
+		$\diff{}{x}[x^5]=5x^4$ &$\implies$& \onslide<7-|handout:0>{antideriv of $5x^4$: \hfill$x^5+c$		
+ \\
+		&&antideriv of $ x^4$:\hfill
+		\onslide<7-|handout:0>{ $\frac{1}{5}x^5+c$ }\\[1em]}
+	&& antideriv of $ x^n$:\hfill \onslide<7-|handout:0>{ $\frac{1}{n+1}x^{n+1}+c$\\[1em]}
+	\onslide<7-|handout:0>{	&& \color{W1}Check: $\diff{}{x}\left[\frac{1}{n+1}x^{n+1}+c \right]=$\pause $x^n$}
+		\end{tabular}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}\AnswerNo
+\foreach \x in {1,2,3}{\QuestionBar{\x}{5}}
+\begin{block}{Power Rule for Antidifferentiation}
+	The most general antiderivative of $x^n$ is $\dfrac{1}{n+1}x^{n+1}+c $
+	if $n \neq -1$
+	\end{block}\vfill
+
+\begin{itemize}
+\item $\ds\diff{}{x}\Big[ \hspace{2cm}\Big]=x^5$\\[2em]
+\item $\ds\diff{}{x}\Big[ \hspace{2cm}\Big]=x^3$\\[2em]
+\item $\ds\diff{}{x}\Big[ \hspace{2cm}\Big]=\frac12x^3$
+\end{itemize}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}\AnswerNo
+\unote{Example~\eref{text}{eg antidiff poly}}
+\foreach \x in {4,5}{\QuestionBar{\x}{5}}
+
+\begin{block}{Power Rule for Antidifferentiation}
+	The most general antiderivative of $x^n$ is $\dfrac{1}{n+1}x^{n+1}+c $
+	if $n \neq -1$
+	\end{block}\vfill
+
+\begin{itemize}
+\item $\ds\diff{}{x}\Big[ \hspace{4cm}\Big]=5x^2-15x+3 $\\[2em]
+\item $\ds\diff{}{x}\Big[ \hspace{4cm}\Big]=13\left(5x^{14}-3x^{3/7}+52e^x\right)$
+\end{itemize}
+\note{Now is a good time to remind students that power functions and exponential functions aren't the same}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{1}{3}\AnswerYes}
+\only<2>{\AnswerBar{1}{3}}
+Find the most general antiderivatives.
+\[f(x)= \cos x\]
+\onslide<2|handout:0>{\textcolor{answercolor}{$\sin x+c$}}
+\vfill 
+
+\[f(x)= \sin x \]\onslide<2|handout:0>{\textcolor{answercolor}{$-\cos x+c$}}
+\vfill
+
+\[f(x)= \sec^2 x\]\onslide<2|handout:0>{\textcolor{answercolor}{$\tan x+c$}}
+\vfill
+
+\[f(x)= \frac{1}{1+x^2} \]\onslide<2|handout:0>{\textcolor{answercolor}{$\arctan x +c$}}
+\vfill
+
+\[f(x)=\frac{1}{1+x^2+2x}\]
+\onslide<2|handout:0>{\textcolor{answercolor}{$\frac{-1}{x+1}$}}
+\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{2}{3}\AnswerYes}
+\only<2>{\AnswerBar{2}{3}}
+
+Find the most general antiderivatives.
+\[f(x)= 17\cos x+x^5\]\onslide<2|handout:0>{\textcolor{answercolor}{$17\sin x +\frac{1}{6}x^6+c$}}
+\vfill 
+
+\[f(x) =\frac{23}{5+5x^2} \]\onslide<2|handout:0>{\textcolor{answercolor}{$\frac{23}{5}\arctan x +c$}}
+\vfill
+
+\[f(x)=\frac{23}{5+125x^2}\]\onslide<2|handout:0>{\textcolor{answercolor}{$\frac{23}{25}\arctan (5x) +c$}}
+\vfill
+\note<1>{Not all of these are to actually do -- more to show that there can be trickiness, and that trickiness will be a big part of next semester. Let students work on them in order, only the fastest students will get to the last examples on each slide.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{3}{3}\AnswerYes}
+\only<2>{\AnswerBar{3}{3}}
+
+Find the most general antiderivatives.
+\[f(x)=\frac{1}{x}, ~x>0\]\onslide<2|handout:0>{\textcolor{answercolor}{$\ln x+c$}}
+\vfill 
+
+\[f(x)= 5x^2-32x^5-17\]\onslide<2|handout:0>{\textcolor{answercolor}{$\frac{5}{3}x^3-\frac{16}{3}x^6-17x+c$}}
+\vfill
+
+\[f(x)=\csc x \cot x \]\onslide<2|handout:0>{\textcolor{answercolor}{$-\csc x+c$}}
+\vfill
+
+\[f(x)=\frac{5}{\sqrt{1-x^2}}+ 17\]\onslide<2|handout:0>{\textcolor{answercolor}{$5\arcsin x + 17x +c$}}
+\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Chose Your Own Adventure}
+\only<1>{\QuestionBar{1}{7}\AnswerYes}
+\only<2>{\AnswerBar{1}{7}}
+\only<3>{\QuestionBar{2}{7}\AnswerYes}
+\only<4>{\AnswerBar{2}{7}}
+Antiderivative of \textcolor{M3}{$ \sin x \cos x $}:
+\begin{itemize}
+\item[A.] $\cos x\sin x+c$
+\item[B.] $-\cos x\sin x+c$
+\item[C.] $\sin^2 x+c$
+\alert<2-|handout:0>{\item[D.] $\frac{1}{2}\sin^2 x +c$}
+\item[E.] $\frac{1}{2}\cos^2x\sin^2x+c$
+\end{itemize}\vfill
+
+\onslide<3->{
+In general, antiderivatives of $x^n$ have the form $\frac{1}{n+1}x^{n+1}$. What is the single exception?
+\begin{itemize}
+\alert<4|handout:0>{\item[A.] $n=-1$}
+\item[B.] $n=0$
+\item[C.] $n=1$
+\item[D.] $n=e$
+\item[E.] $n=1/2$
+\end{itemize}
+}\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{All the Adventures are Calculus, Though}
+\only<1>{\QuestionBar{3}{7}\AnswerYes}
+\only<2>{\AnswerBar{3}{7}}
+\only<3>{\QuestionBar{4}{7}\AnswerYes}
+\only<4>{\AnswerBar{4}{7}}
+
+Suppose the velocity of a particle at time $t$ is given by $v(t)=t^2+\cos t + 3$. What function gives its position?
+\begin{itemize}
+\item[A.] $s(t)=2t-\sin t $
+\item[B.] $s(t)=2t-\sin t +c$
+{\item[C.] $s(t)=t^3+\sin t +3t +c$}
+\alert<2-|handout:0>{\item[D.] $s(t)=\frac{1}{3}t^3+\sin t +3t +c$}
+\item[E.] $s(t)=\frac{1}{3}t^2-\sin t +3t +c$
+\end{itemize}
+\vfill
+\onslide<3->{
+Suppose the velocity of a particle at time $t$ is given by $v(t)=t^2+\cos t + 3$, and its position at time 0 is given by $s(0)=5$. What function gives its position?
+\begin{itemize}
+\item[A.]  $s(t)=\frac{1}{3}t^3+\sin t +3t $
+\alert<4-|handout:0>{\item[B.]  $s(t)=\frac{1}{3}t^3+\sin t +3t +5$}
+{\item[C.] $s(t)=\frac{1}{3}t^3+\sin t +3t +c$}
+{\item[D.] $s(t)=5t+c$}
+\item[E.] $s(t)=5t+5$
+\end{itemize}
+}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{5}{7}\AnswerYes}
+\only<2>{\AnswerBar{5}{7}}
+
+Find all functions $f(x)$ with $f(1)=5$ and $f'(x)=e^{3x+5}$.\pause\vfill
+\color{answercolor}
+
+\answer{Antiderivative of $ e^{3x+5}$ is $\frac{1}{3}e^{3x+5}+c$. So we only need to solve for $c$. 
+
+\[5=f(1) = \frac{1}{3}e^{3+5}+c\] implies
+
+\[c=5-\frac{e^8}{3}\]
+
+So 
+\[f(x)=\frac{1}{3}e^{3x+5}+5-\frac{e^8}{3}\]}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\unote{Example~\eref{text}{eg_4_1_2}}
+\only<1>{\QuestionBar{6}{7}\AnswerYes}
+\only<2>{\AnswerBar{6}{7}}
+
+Let $Q(t)$ be the amount of a radioactive isotope in a sample. Suppose the sample is losing $50 e^{-5t}$ mg per second to decay. If $Q(1)=10{e^{-5}}$mg, find the equation for the amount of the isotope at time $t$.\pause\color{answercolor}\vfill
+
+\answer{
+We have 
+\[\frac{dQ}{dt} = -50e^{-5t}\] 
+Note the negative, since our sample is getting smaller. 
+
+\medskip
+Then antidifferentiating, we find $Q(t)=10e^{-5t}+c$ for some constant $c$.
+
+\medskip
+ Then since $Q(1)=10e^{-5}$, we see $c=0$.
+\vfill
+\[\boxed{Q(t)=10e^{-5t}}\]\vfill}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\QuestionBar{7}{7}\AnswerYes}
+\only<2>{\AnswerBar{7}{7}}
+
+Suppose $f'(t)=2t+7$. What is $f(10)-f(3)$?\pause\color{answercolor}\vfill
+
+\answer{From antidifferentiation, we have $f(t)=t^2+7t+c$. Then 
+\[f(10)-f(3) = [100+70+c] -[9+21 +c]=170-30=140\]}
+\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------

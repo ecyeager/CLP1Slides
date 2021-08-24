@@ -1,0 +1,617 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\note{In 2015, there were 6 quizzes during the semester. Their questions are compiled here as a short semester review.
+
+You can show the questions one-by-one by scrolling to the Solutions section.}
+
+This file contains questions spanning CLP-1. It should not be taken as a complete review of the course, but rather as a jumping-off point. If you struggle with one question, go back to review its entire section. Sections are noted at the bottom of each page.
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+
+%link to solution
+%#1: S or L
+%#2: number
+\newcommand{\slink}[2]{\hyperlink{sol#1#2}{\beamergotobutton{solution~#1#2}}}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\mode<beamer>{
+\section{Questions}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]{Short Answer}
+\AnswerYes
+\begin{enumerate}[S1.]
+\item \label{S1} Find all solutions to $\ds x^3 - 3x^2 - x + 3 =0$
+\hfill \slink{S}{1}
+\vfill
+%
+\item  \label{S2} Compute the limit\quad $\ds \lim_{x \to 2} \frac{x-2}{x^2-4}$ \hfill \slink{S}{2}
+\vfill
+%
+\item  \label{S3}  Find all values of $c$ such that the following function is \hfill\slink{S}{3}\\
+ continuous:
+\[f(x)=\left\{\begin{array}{ccc}
+8-cx & \text{if} & x\le c\\
+x^2 &  \text{if} & x> c
+\end{array}\right.\]
+Use the definition of continuity to justify your answer.
+\vfill
+%
+\item  \label{S4} Compute \hfill \slink{S}{4}
+$$\lim_{x\to -\infty} \frac{3x+5}{\sqrt{x^2+5}-x}$$
+%
+\end{enumerate}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Short Answer}
+\begin{enumerate}[S1.]
+\setcounter{enumi}{4}
+
+\item   \label{S5}  Find the equation of the tangent line to the graph of \hfill\slink{S}{5}\
+$y=\cos(x)$ at
+$x=\dfrac{\pi}{4}$.
+\vfill
+%
+\item  \label{S6}  For what values of $x$ does the derivative of\hfill \slink{S}{6}\\
+$\dfrac{\sin(x)}{x^2+6x+5}$ exist?\vfill
+\item  \label{S7} Find $f'(x)$ if $f(x)= (x^2+1)^{\sin(x)}$. \hfill\slink{S}{7}
+\vfill
+%
+\item  \label{S8} Consider a function of the form $f(x) = A e^{kx}$ where \hfill\slink{S}{8}\\
+$A$ and $k$ are constants. 
+If $f(0)=3$ and $f(2)=5$, \\find the constants $A$ and $k$.
+
+\vfill
+\end{enumerate}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Short Answer}
+\begin{enumerate}[S1.]
+\setcounter{enumi}{8}
+
+%
+\item \label{S9}  Consider a function $f(x)$ which has $f'''(x)=\dfrac{x^3}{10-x^2}$.
+Show 
+that when we approximate $f(1)$ using its second Maclaurin polynomial, the 
+absolute error is less than $\frac{1}{50}=0.02$.   \hfill\slink{S}{9}
+\vfill
+%
+\item  \label{S10}  Estimate $\sqrt{35}$ using a linear approximation   \hfill\slink{S}{10}
+\vfill
+%
+\item \label{S11}  Let $f(x)=x^2-2\pi x - \sin(x)$. Show that there exists a real number $c$ such that $f'(c)=0$.
+  \hfill\slink{S}{11}
+\vfill
+%
+\item  \label{S12}  Find the intervals where $f(x)=\frac{\sqrt{x}}{x+6}$ is increasing.
+  \hfill\slink{S}{12}
+\vfill
+%
+\end{enumerate}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\begin{frame}{Long Answer}
+\AnswerYes
+\begin{enumerate}[L1.]
+\item  \label{L1}
+Compute the limit $\ds \lim_{x\to 1} \frac{\sqrt{x+2}-\sqrt{4-x}}{x-1}$. \hfill\slink{L}{1}
+\vfill
+
+\item \label{L2}
+Show that there exists at least one real number $c$ such that
+$2\tan(c)=c+1$.  \hfill\slink{L}{2}
+\vfill
+
+\item \label{L3}
+Determine whether the derivative of following function exists at
+$x=0$
+\begin{align*}
+f(x) &=\begin{cases}
+  2x^3-x^2 & \text{ if }  x\le 0\\
+  x^2\sin\left(\dfrac{1}{x}\right) & \text{ if } x> 0
+\end{cases}
+\end{align*}
+You must justify your answer using the definition of a derivative.
+
+ \hfill\slink{L}{3}
+\vfill
+\end{enumerate}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}{Long Answer}
+\AnswerYes
+\begin{enumerate}[L1.]
+\setcounter{enumi}{3}
+\item \label{L4}
+If $x^2\cos(y)+2xe^y = 8$, then find $y'$ at the points where $y=0$.
+You must justify your answer.
+ \hfill\slink{L}{4}
+\vfill
+
+\item \label{L5}
+Two particles move in the cartesian plane. Particle A travels on the $x$-axis 
+starting at  $(10,0)$ and moving towards the origin with a speed of $2$ units 
+per second. Particle B travels on the $y$-axis starting at $(0,12)$ and moving 
+towards the origin with a speed of $3$ units per second. What is the rate of 
+change of the distance between the two particles when particle A reaches the 
+point $(4,0)$?  \hfill\slink{L}{5}
+\vfill
+
+\item \label{L6}
+Find the global maximum and the global minimum for $f(x)=x^3 - 6x^2 + 2$ on the interval $[3,5]$.
+ \hfill\slink{L}{6}
+\vfill
+\end{enumerate}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section{Solutions}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\huge\centering
+Solutions
+\end{frame}
+}%%%end of section that only shows up in beamer mode
+\mode<handout>{\section{Short Answer}}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\newcounter{questionnumber}
+\setcounter{questionnumber}{1}
+%----------------------------------------------------------------------------------------
+\newcommand{\qbox}[3]{
+	\label{sol#1#2}
+	\rule{\textwidth}{1pt}\\
+	%
+	\mode<beamer>{\hfill \hyperlink{#1#2}{\beamerreturnbutton{back to questions}}\\
+	#1\ref{#1#2}.}
+	%
+	\mode<handout>{
+	#1\thequestionnumber
+	\stepcounter{questionnumber}}
+	%
+	\quad #3 \\[1em]
+	\rule{\textwidth}{1pt}
+	}
+%1st argument: long or short
+%2nd argument: number
+%3rd argument: text
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\qbox{S}{1}{Find all solutions to $\ds x^3 - 3x^2 - x + 3 =0$}
+
+\onslide<2-|handout:0>{\textcolor{answercolor}{
+\begin{align*}
+x^3-3x^2-x+3&=x^2(x-3)-(x-3)\\
+&=(x^2-1)(x-3)\\
+&=(x+1)(x-1)(x-3)
+\end{align*}
+The solutions are $x=1$, $x=3$, and $x=-1$.}
+\vfill
+\unote{Factoring functions is a high-school review topic. It comes in especially handy in Section~\eref{text}{sec curve sketch}, Sketching Graphs}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\qbox{S}{2}{ Compute the limit\quad $\ds \lim_{x \to 2} \frac{x-2}{x^2-4}$}
+
+ \vfill
+ \onslide<2-|handout:0>{\textcolor{answercolor}{
+ \[\dlimx{2}\frac{x-2}{x^2-4}=\dlimx{2}\frac{x-2}{(x-2)(x+2)}=\dlimx{2}\frac{1}{x+2}=\frac{1}{4}\]}
+ \vfill
+ }
+\unote{ Section~\eref{text}{sec_1_4}: Calculating Limits with Limit Laws}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\footnotesize
+\qbox{S}{3}{
+ Find all values of $c$ such that the following function is continuous:
+\[f(x)=\left\{\begin{array}{ccc}
+8-cx & \text{if} & x\le c\\
+x^2 &  \text{if} & x> c
+\end{array}\right.\]
+Use the definition of continuity to justify your answer.
+}
+\vfill
+\onslide<2-|handout:0>{\color{answercolor}\normalsize
+When $x \neq c$, $f(x)$ is continuous. The only difficult spot is when $x=c$. 
+\begin{itemize}\color{answercolor}
+\item $f(c)=8-c^2$
+\item $\dlimx{c^-}f(x)=\dlimx{c^-}(8-cx)=8-c^2$
+\item $\dlimx{c^+}f(x)=\dlimx{c^+}(x^2)=c^2$
+\end{itemize}
+Since $f(x)$ is continuous at $c$ only if $f(c)=\dlimx{c}f(x)$, we see the only values of $c$ that make $f$ continuous are those that satisfy $c^2=8-c^2$. That is, $c=\pm2$.
+}
+\unote{ Section~\eref{text}{sec_1_6}: Continuity}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]\footnotesize
+\qbox{S}{4}{
+Compute
+$$\lim_{x\to -\infty} \frac{3x+5}{\sqrt{x^2+5}-x}$$}
+\vfill
+\onslide<2-|handout:0>{\color{answercolor}
+We start by factoring out $x$ from both the top and the bottom. 
+\begin{align*}
+\lim_{x \to - \infty} \frac{3x+5}{\sqrt{x^2+5}-x}\left(\frac{1/x}{1/x}\right)&=\lim_{x \to -\infty}\frac{3+\frac5x}{\frac1x\sqrt{x^2+5}-1}
+\intertext{Since $x$ is approaching negative infinity, we can assume $x<0$. Then $x=-|x|=-\sqrt{x^2}$. We'll use this form to push the $\frac1x$ into the square root.}
+&=\lim_{x \to -\infty}\frac{3+\frac5x}{-\frac1{\sqrt{x^2}}\sqrt{x^2+5}-1}\\
+&=\lim_{x \to -\infty}\frac{3+\frac5x}{-\sqrt{1+\frac{5}{x^2}}-1}
+=\frac{3+0}{-\sqrt1-1}= -\frac32
+\end{align*}
+}
+\unote{
+Section~\eref{text}{sec_1_5}: Limits at Infinity}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]\small
+\qbox{S}{5}{
+ Find the equation of the tangent line to the graph of $y=\cos(x)$ at
+$x=\dfrac{\pi}{4}$.}
+
+\onslide<2-|handout:0>{
+\color{answercolor}
+\setlength{\abovedisplayskip}{0 pt}
+\begin{align*}
+f(x)&= \cos x & f\left(\frac\pi4\right)&=\frac{1}{\sqrt 2}\\
+f'(x)&=-\sin x & f'\left(\frac\pi4\right)&=-\frac{1}{\sqrt 2}
+\end{align*}
+Recall the equation of the tangent line to $y=f(x)$ at $x=a$ is $y=f(a)+f'(a)(x-a)$
+
+\[y=\frac1{\sqrt 2}-\frac{1}{\sqrt 2}\left(x-\frac\pi4\right)\]
+}
+\unote{
+ Section~\eref{text}{sec_2_1}: Revisiting Tangent Lines \qquad
+Section~\eref{text}{sec diff trig}: Derivatives of Trigonometric Functions}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\qbox{S}{6}{
+ For what values of $x$ does the derivative of
+$\dfrac{\sin(x)}{x^2+6x+5}$ exist? 
+}\vfill
+
+\onslide<2-|handout:0>{
+\color{answercolor}
+First, note that $x^2+6x+5 = (x+1)(x+5)$, % and that both $\sin(-1)$ and $\sin(-5)$ are nonzero. 
+so the function does not exist at either $x=-1$ or $x=-5$. For other values of $x$, using the quotient rule, we see
+\[
+f'(x)=\frac{(x^2+6x+5)(\cos x) - \sin x (2x+6)}{(x^2+6x+5)^2}\]
+which exists over the domain of $f(x)$.
+\vfill
+All together, the derivative exists for all values of $x$ except $-1$ and $-5$.
+\vfill}
+
+\unote{Section~\eref{text}{sec_2_6}: Using the Arithmetic of Derivatives}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\small
+\qbox{S}{7}{Find $f'(x)$ if $f(x)= (x^2+1)^{\sin(x)}$.}
+\vfill
+
+\onslide<2-|handout:0>{
+\color{answercolor}
+$f(x)$ is neither an exponential function (with a constant base) nor a power function (with a constant power). When we see a function raised to a function, we differentiate using logarithmic differentiation.
+\begin{align*}
+f(x)&= (x^2+1)^{\sin(x)}\\
+\log f(x)&=\log\left[ (x^2+1)^{\sin(x)}\right] = \sin x \cdot \log(x^2+1)\\
+\frac{f'(x)}{f(x)}&=\sin x \cdot\frac{2x}{x^2+1}+\cos x\cdot\log(x^2+1)\\
+f'(x)&=f(x)\left[\sin x \cdot\frac{2x}{x^2+1}+\cos x\cdot\log(x^2+1)\right]\\
+&=(x^2+1)^{\sin x}\left[\frac{2x\sin x}{x^2+1}+\cos x \cdot \log(x^2+1)\right]
+\end{align*}}
+\unote{
+Section~\eref{text}{sec diff logs}: The Natural Logarithm}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\qbox{S}{8}{
+Consider a function of the form $f(x) = A e^{kx}$ where $A$ and $k$ are constants. 
+If $f(0)=3$ and $f(2)=5$, find the constants $A$ and $k$.}
+
+\onslide<2-|handout:0>{
+\setlength{\abovedisplayskip}{0pt}
+\textcolor{answercolor}{
+\begin{align*}
+3=f(0)&=Ae^0 = A\\
+5=f(2)&=3e^{2k} \implies \frac53 = e^{2k}\\
+\log_e\left(\frac53\right)&=2k\\
+k&=\frac{\log_e(5/3)}{2}
+\end{align*}
+}}
+
+\unote{This is a review of high school material. This type of calculation comes up in Section~\eref{text}{sec:ExpGthDecay}: Exponential Growth and Decay}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\qbox{S}{9}{
+Consider a function $f(x)$ which has $f'''(x)=\dfrac{x^3}{10-x^2}$.  Show 
+that when we approximate $f(1)$ using its second Maclaurin polynomial, the 
+absolute error is less than $\frac{1}{50}=0.02$. }
+\vfill
+
+\onslide<2-|handout:0>{\color{answercolor}
+For some $c$ between 0 and 1:
+\begin{align*}
+\big| \underbrace{f(1)-T_2(1)}_{\text{error}} \big|&=\left|\frac{f'''(c)}{3!}(1-0)^3\right|=\frac{1}{6}\left|\frac{c^3}{10-c^2}\right|
+\intertext{Since $c$ is between 0 and 1, we note $0<c^3<1$ and $9<10-c^2<10$, so:}
+\left|f(1)-T_2(1)\right|&<\frac{1}{6}\left|\frac{1}{9}\right|=\frac{1}{54}<\frac{1}{50}
+\end{align*}\vfill}
+
+\unote{Subection~\eref{text}{ssec taylor error}: The Error in the Taylor Polynomial Approximations}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\qbox{S}{10}{
+ Estimate $\sqrt{35}$ using a linear approximation}
+\vfill
+
+\onslide<2-|handout:0>{\color{answercolor}
+The general form of a linear approximation is \[L(x)=f(a)+f'(a)(x-a)\]
+
+ If $f(x)=\sqrt{x}$ and $a=36$, then $f(a)=6$ and 
+$f'(a)=\frac{1}{2\sqrt{a}}=\frac{1}{12}$. So,
+\[L(x)=6+\frac{1}{12}(x-36)\]
+
+Then:
+$\sqrt{35}=f(35)\approx L(35)=6+\frac{1}{12}(35-36)=6-\frac{1}{12}={\frac{71}{12}}$
+}
+\unote{Subsection~\eref{text}{ssec_first_approx}: First Approximation --- the Linear approximation}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\qbox{S}{11}{
+Let $f(x)=x^2-2\pi x - \sin(x)$. Show that there exists a real number $c$ such that $f'(c)=0$.}
+\vfill
+
+\onslide<2-|handout:0>{
+\color{answercolor}
+We note that $f(x)$ is continuous and differentiable over all real numbers. Since $f(0)=f(2\pi)=0$, by Rolle's Theorem (also by the Mean Value Theorem) there exists some $c$ between 0 and $2\pi$ such that $f'(c)=0$.
+}
+\unote{Section \eref{text}{sec mvt}: The Mean Value Theorem}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]\small
+\qbox{S}{12}{
+ Find the intervals where $f(x)=\frac{\sqrt{x}}{x+6}$ is increasing.}
+ \vfill
+ 
+\onslide<2-|handout:0>{\color{answercolor}
+We find where the first derivative is positive.
+\begin{align*}
+0<f'(x)&=\frac{(x+6)\frac{1}{2\sqrt x}-\sqrt x}{(x+6)^2}&\mbox{multiply by $(x+6)^2$}\\
+  0&<(x+6)\frac{1}{2\sqrt x}-\sqrt x&\mbox{multiply by $2\sqrt x$}\\
+0&<(x+6)-2x\\
+x&<6
+\end{align*}
+Note, however, that the function's derivative \textit{does not exist} when $x\le 0$. So the interval is $(0,6)$.
+}
+\unote{
+Section \eref{text}{sec mvt}: The Mean Value Theorem \qquad
+Section~\eref{text}{sec curve sketch}: Sketching Graphs}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\mode<handout>{\section{Long Answer}\setcounter{questionnumber}{1}}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\small
+\qbox{L}{1}{
+ Compute the limit $\ds \lim_{x\to 1} \frac{\sqrt{x+2}-\sqrt{4-x}}{x-1}$.}
+
+\onslide<2-|handout:0>{\color{answercolor}
+If we try to do the limit naively we get $0/0$, so we simplify. 
+ \begin{align*}
+\frac{\sqrt{x+2}-\sqrt{4-x}}{x-1}
+  &= \frac{\sqrt{x+2}-\sqrt{4-x}}{x-1}
+  \cdot \frac{\sqrt{x+2}+\sqrt{4-x}}{\sqrt{x+2}+\sqrt{4-x}}\\
+  &= \frac{(x+2)-(4-x)}{(x-1)(\sqrt{x+2}+\sqrt{4-x})} \\
+  &= \frac{2x-2}{(x-1)(\sqrt{x+2}+\sqrt{4-x})} \\
+  &= \frac{2}{\sqrt{x+2}+\sqrt{4-x}}\\
+\lim_{x\to 1} \frac{\sqrt{x+2}-\sqrt{4-x}}{x-1}&=\lim_{x\to 1}  \frac{2}{\sqrt{x+2}+\sqrt{4-x}}
+=\frac{2}{\sqrt 3+\sqrt 3} = \frac{1}{\sqrt 3}
+\end{align*}
+}
+\unote{
+Section~\eref{text}{sec_1_4}: Calculating Limits with Limit Laws}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\footnotesize
+\qbox{L}{2}{
+Show that there exists at least one real number $c$ such that
+$2\tan(c)=c+1$.}
+
+\onslide<2-|handout:0>{\color{answercolor}
+\begin{itemize}\color{answercolor}
+\item $\tan x$ is continuous on the interval $(-\pi/2, \pi/2)$
+\item $x+1$ is a polynomial and therefore continuous for all
+real numbers
+\item So,  $f(x)=2\tan(x)-x-1$ is a continuous function on the interval $(-\pi/2, \pi/2)$.
+\item Set $a=0$. Then $a$ is in the interval  $(-\pi/2, \pi/2)$ and
+$$f(a)=2\tan(0)-0-1=0-1=-1<0.$$
+\item Set $b=\frac{\pi}{4}$.  Then $b$ is in the interval  $(-\pi/2, \pi/2)$ and
+$$f(b)=2\tan\left(\frac\pi4\right) -\frac{\pi}{4} - 1=2-\frac\pi4 - 1=1-\frac\pi4=\frac{4-\pi}{4}>0.$$
+\item All together: $f(x)$ is continuous on $[0,\pi/4]$, and $f(0)<0$ while
+$f(\pi/4)>0$. Then  the Intermediate Value Theorem guarantees the existence of a
+real number $c\in (0,\pi/4)$ such that $f(c)=0$.
+\end{itemize}
+}
+\unote{
+Section~\eref{text}{sec_1_6}: Continuity}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\qbox{L}{3}{
+ Determine whether the derivative of following function exists at
+$x=0$
+\begin{align*}
+f(x) &=\begin{cases}
+  2x^3-x^2 & \text{ if }  x\le 0\\
+  x^2\sin\left(\dfrac{1}{x}\right) & \text{ if } x> 0
+\end{cases}
+\end{align*}
+You must justify your answer using the definition of a derivative.
+}
+
+\onslide<2-|handout:0>{\vfill\color{answercolor}
+The function is differentiable at $x=0$ if the following limit exists:
+$$\lim_{x\to 0}\frac{f(x)-f(0)}{x-0} = \lim_{x\to 0}\frac{f(x)-0}{x}=\lim_{x\to
+0} \frac{f(x)}{x}$$
+Note that we used the fact that $f(0)=0$ following the definition of the
+first branch, which includes the point $x=0$.}
+\unote{Section~\eref{text}{sec def deriv}: Definition of the Derivative \qquad Section~\eref{text}{sec_1_4}: Calculating Limits with Limit Laws}
+\end{frame}
+%--
+\begin{frame}<beamer>
+\color{answercolor}
+We compute left and right limits of $\frac{f(x)}{x}$ as $x$ goes to 0.
+\begin{align*}
+\lim_{x\to 0^-}\frac{f(x)}{x}&=\lim_{x\to 0^-}\frac{2x^3-x^2}{x}=\lim_{x\to
+0^-} 2x^2-x=0\\
+\lim_{x\to 0^+}\frac{f(x)}{x}&=\lim_{x\to 0^+}\frac{x^2\sin\left(\frac{1}{x}\right)}{x}=\lim_{x\to
+0^+}x\cdot \sin\left(\frac{1}{x}\right)
+\end{align*}
+Next use the squeeze theorem. Note, first, that 
+$-1\le \sin\left(\frac{1}{x}\right)\le 1$, so that
+ $ -x\le x\cdot \sin\left(\frac{1}{x}\right)\le x$.
+Note, second, that $\lim\limits_{x \to 0 }x = \lim\limits_{x \to 0 }-x = 0$.
+So, by the squeeze theorem, 
+\begin{align*}
+\lim_{x\to 0^+}\frac{f(x)}{x}
+&=\lim_{x\to 0^+}x\cdot\sin\left(\frac{1}{x}\right) =0
+\end{align*}
+
+
+Since the left and right limits match (they're both equal to $0$), we conclude
+that indeed $f(x)$ is differentiable at $x=0$ (and its derivative at $x=0$ is
+actually equal to $0$).\vfill
+
+\only<beamer>{\unote{Section~\eref{text}{sec def deriv}: Definition of the Derivative \qquad Section~\eref{text}{sec_1_4}: Calculating Limits with Limit Laws}}
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\qbox{L}{4}{If $x^2\cos(y)+2xe^y = 8$, then find $y'$ at the points where $y=0$.\\
+You must justify your answer.}
+
+\onslide<2-|handout:0>{
+\begin{itemize}\color{answercolor}
+ \item First we find the $x$-coordinates where $y=0$. 
+\begin{align*}
+  x^2\cos(0)+2xe^0 &= 8 \\
+  x^2 +2x - 8 &=0\\
+  (x+4)(x-2)&=0
+\end{align*}
+So $x=2,-4$.
+\item Now we use implicit differentiation to get $y'$ in terms of $x,y$:
+\begin{align*}
+  x^2\cos(y)+2xe^y &= 8 & \text{differentiate both sides} \\
+  x^2 \cdot (-\sin y) \cdot y' + 2x \cos y + 2xe^y \cdot y' + 2e^y &= 0 
+\end{align*}
+}
+\unote{Section~\eref{text}{sec_2_11}: Implicit Differentiation}
+\end{itemize}\end{frame}
+%-----------
+\begin{frame}<beamer>
+\begin{itemize}\color{answercolor}
+\item Now set $y=0$ to get
+\begin{align*}
+  x^2 \cdot (-\sin 0) \cdot y' + 2x \cos 0 + 2xe^0 \cdot y' + 2e^0 &= 0  \\
+  0 + 2x + 2xy' + 2 &=0 \\
+  2xy'&=-(2x+2)\\
+  y' &=  -\frac{1+x}{x}
+\end{align*}
+\item So at $(x,y)=(2,0)$ we have $y' = -\frac{3}{2}$, 
+\item and at $(x,y)=(-4,0)$ we have $y' = -\frac{3}{4}$.
+\end{itemize}
+
+\only<beamer>{\unote{Section~\eref{text}{sec_2_11}: Implicit Differentiation}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\qbox{L}{5}{
+Two particles move in the cartesian plane. Particle A travels on the $x$-axis 
+starting at  $(10,0)$ and moving towards the origin with a speed of $2$ units 
+per second. Particle B travels on the $y$-axis starting at $(0,12)$ and moving 
+towards the origin with a speed of $3$ units per second. What is the rate of 
+change of the distance between the two particles when particle A reaches the 
+point $(4,0)$?}
+
+\onslide<2-|handout:0>{\color{answercolor}\vfill
+The position of particle $A$ along the $x$ axis starts at $(10,0)$, and 
+moves toward the origin at 2 units per second, so its position is given by $\big(x(t),0\big)$ with $x(t)=10-2t$, where $t$ is measured in seconds. Similarly, the position of $B$ along the $y$ axis is given by $\big(0,y(t)\big)$ with $y(t)=12-3t$. The distance $z(t)$ between the two particles satisfies $z(t)^2=x(t)^2+y(t)^2$. 
+
+
+}
+\unote{Section~\eref{text}{sec rrates}: Related Rates}
+\end{frame}
+%-------
+\begin{frame}<beamer>[t]
+\color{answercolor}
+When $x(t)=4$, we solve $4=10-2t$ for $t$ and find $t=3$, so $y(3)=12-3(3)=3$. Then $z=5$ when $t=3$.
+
+Differentiating implicitly, $z(t)^2=x(t)^2+y(t)^2$ tells us 
+\[2z(t)\diff{z}{t}(t)=2x(t)\diff{x}{t}(t)+2y(t)\diff{y}{t}(t)\]
+so, when $t=3$,
+\[2(5)\diff{z}{t}(3)=2(4)(-2)+2(3)(-3)=-34\]
+Then the distance between the two particles is changing at $-\frac{17}{5}$ units per second.
+
+\only<beamer>{\unote{Section~\eref{text}{sec rrates}: Related Rates}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\qbox{L}{6}{Find the global maximum and the global minimum for $f(x)=x^3 - 6x^2 + 2$ on the interval $[3,5]$.}
+
+\onslide<2-|handout:0>{\color{answercolor}\vfill\small
+We compute $f'(x)=3x^2 - 12x$. So $f(x)$ has no singular points (i.e. it is differentiable for all $x$), but has two critical points obtained by solving 
+\[ f'(x)=3x(x-4)=0\] 
+which yields the two critical points $x=0$ and $x=4$.  Only the critical point 
+$x=4$ is in the allowed interval $[3,5]$.
+
+In order to compute the global maximum and the global minimum for $f(x)$ on the interval $[3,5]$, we compute the value of $f$ at the allowed critical point and at the end points of the allowed interval.
+$$
+f(3)=-25,\quad f(4)=-30\quad\text{and}\quad f(5)=-23.$$
+So, the global max is $-23$ while the global min is $-30$.
+}
+\unote{
+Section~\eref{text}{sec optimise}: Optimisation}
+\end{frame}
+

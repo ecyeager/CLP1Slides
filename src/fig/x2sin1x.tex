@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage{tikz,calculator,xcolor}
+\definecolor{C1}{RGB}{73,0,146}
+\definecolor{M4}{RGB}{255,109,182}
+\begin{document}
+\COPY{.6}{\a}
+\COPY{11}{\sc}
+\begin{tikzpicture}
+\clip (-\a*\sc,-\a*\a*\sc*.5) rectangle (\a*\sc,\a*\a*\sc*.5);
+\draw[densely dotted, M4,domain=-\a:\a,samples=5000 ,scale=\sc] plot (\x, {\x*\x});
+\draw[densely dotted, M4,domain=-\a:\a,samples=5000,scale=\sc] plot (\x, {-\x*\x});
+\draw[thick, C1,domain=0.005:\a,samples=5000,scale=\sc] plot (\x, {\x*\x*sin((1/\x)r)});
+\draw[thick, C1,domain=0.005:\a,samples=5000,scale=\sc] plot ({-\x}, {\x*\x*sin((1/\x)r)});
+\end{tikzpicture}
+
+\end{document}
+%graph of y=x^2*sin(1/x)

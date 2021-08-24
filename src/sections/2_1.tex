@@ -1,0 +1,61 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+%------------------------------------------------------
+\section*{2.1 Tan Lines}
+
+ \begin{frame}{Table of Contents}
+\mapofcontentsB{\ba}
+ \end{frame}
+ %--------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Slope of Secant and Tangent Line}
+\begin{block}{Slope}
+Recall, the slope of a line is given by any of the following:
+\begin{align*}
+\frac{\mbox{rise}}{\mbox{run}}&&\frac{\Delta y}{\Delta x}&&
+\frac{y_2-y_1}{x_2-x_1}\end{align*}
+\end{block}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+%Suppose we're interested in the slope of the secant line to $f(x)$ through the points where $x=a$ and $x=a+h$.
+
+
+\begin{tikzpicture}
+\myaxis{x}{0}{4.25}{y}{0}{4}
+\draw[ultra thick, C2] (0,0) .. controls (1,5) and (3,-2) .. (4,4) node[left]{$y=f(x)$};
+\draw (1,.25)--(1,-.25) node[below]{$a$};
+\draw (3,.25)--(3,-.25) node[below]{$a+h$};
+\draw[C2] (1,1.9) node[shape=circle, inner sep=0, minimum size=2.5mm, fill]{};
+\draw[C2] (3,1.5) node[shape=circle, inner sep=0, minimum size=2.5mm, fill]{};
+
+\onslide<2-3>{
+\draw[dashed] (1,1.9)--(-.25,1.9) node[left]{$f(a)$};
+\draw[dashed] (3,1.5)--(-1.1,1.5) node[left]{$f(a+h)$};
+}
+\onslide<-3|handout:0>{
+\draw[M4, very thick] (0,2.1)--(5,1.1);}
+\onslide<4-|handout:0>{
+\draw[C4, very thick] (0,1.8)--(5,2.4);}
+
+
+
+\end{tikzpicture}
+
+
+\only<-3>{\color{M4}Slope of secant line:\onslide<3>{ $\frac{f(a+h)-f(a)}{h}$}}
+
+
+\onslide<4->{\color{C4}
+Slope of tangent line: \onslide<5->{$\lim\limits_{h \rightarrow 0} \frac{f(a+h)-f(a)}{h}$}}
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
+%------------------------------------------------

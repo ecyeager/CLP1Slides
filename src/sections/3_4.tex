@@ -1,0 +1,1230 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+
+\begin{frame}{Table of Contents}
+
+\mapofcontentsC{\cd}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%\section*{Chapter 3.4: Approximating Functions near a Specified Point}
+\section*{3.4.1-2: Constant, Linear}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Approximating a Function}
+\note<4>{Mention: it's worth noting that even Google (or any other calculator) is also only providing an approximation, not an exact answer. }
+
+\vspace{-0.75cm}
+\begin{center}\begin{tikzpicture}
+\myaxis{}{4}{4}{}{2}{2}
+\draw[C1, ultra thick] plot[domain=-2:2, scale=2, smooth] (\x,{sin(\x r)}) node[right]{$y=\sin x$};
+
+\onslide<2->{\draw[C1] (.4,.15)--(.4,-.2) node[below]{$0.2$};
+\draw (.4,.4) node[vertex]{};}
+\onslide<3->{
+\draw (0,0) node[M4, vertex]{};}
+\onslide<6->{\draw[ultra thick, M4] (-1,0)--(1,0) node[below right]{$y=\sin 0$};}
+\end{tikzpicture}\end{center}
+
+\onslide<4->{
+\begin{block}{Constant Approximation -- Equation~\eref{text}{eq:constApprox}}
+We can approximate $f(x)$ near a point $a$ by
+\[f(x) \approx f(a)\] 
+\end{block}
+}
+\onslide<5-|handout:0>{
+\parbox{.45\textwidth}{\raggedright Google: $\sin(0.2) \approx 0.198669...$}
+\hfill
+\parbox{.5\textwidth}{\raggedright Constant approx: $\sin(0.2) \approx \alert{0}$ }
+}
+\note<6-|handout:0>{``What we are doing with this interpretation is, graphically, approximating this curve with a \textit{horizontal line}."
+
+Students' first intuition is usually a constant approximation: if $x\approx 0$, then $f(x) \approx f(0)$. it is often not obvious to them that another approximation -- that uses some arcane computations -- would necessarily be more accurate. So it's worth spending time on an explanation. }
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Approximating a Function}
+
+\vspace{-0.5cm}
+\begin{center}
+\only<beamer>{
+\begin{tikzpicture}[scale=0.9]
+\draw (-5,0)--(-5,0);
+\myaxis{}{4}{4}{}{2}{2}
+\draw[C1, ultra thick] plot[domain=-2:2, scale=2, smooth] (\x,{sin(\x r)}) node[right]{$y=\sin x$};
+
+\draw[C1] (.4,.15)--(.4,-.2) node[below]{$0.2$};
+\draw (.4,.4) node[vertex]{};
+\draw (0,0) node[M4, vertex]{};
+\onslide<2->{
+\draw[ultra thick, M4] (-2,-2)--(2,2) node[above left] {$y=x$}
+;}
+\end{tikzpicture}}
+\only<handout>{
+\begin{tikzpicture}[scale=0.5]
+\myaxis{}{4}{4}{}{2}{2}
+\draw[C1, ultra thick] plot[domain=-2:2, scale=2, smooth] (\x,{sin(\x r)}) node[right]{$y=\sin x$};
+
+\draw[C1] (.4,.15)--(.4,-.2) node[below]{$0.2$};
+\draw (.4,.4) node[vertex]{};
+\draw (0,0) node[M4, vertex]{};
+\onslide<2->{
+\draw[ultra thick, M4] (-2,-2)--(2,2) node[left] {$y=x$}
+;}
+\end{tikzpicture}}
+\end{center}
+
+\onslide<3->{\begin{block}{Linear Approximation (Linearization) -- Equation~\eref{text}{eq:linApprox}}
+We can approximate $f(x)$ near a point $a$ by the tangent line to $f(x)$ at $a$, namely
+\[\textcolor{C1}{f(x)} \approx \textcolor{M4}{L(x)}=\textcolor{M4}{f(a)+f'(a)(x-a)}\] 
+\end{block}}
+
+\onslide<4-|handout:0>{
+\parbox{.4\textwidth}{\raggedright Google: $\sin(0.2) \approx 0.198669...$}
+\hfill
+\parbox{.5\textwidth}{\raggedright Linear approx: 
+$\sin(0.2) \approx 0+1(0.2-0)=\textcolor{M4}{0.2}$ }
+}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\AnswerSpace
+\only<-4>{\AnswerYes}
+To find a linear approximation of $f(x)$ at a particular point $x$,
+ pick a point $a$ \textcolor{M4}{near to $x$}, such that 
+$f(a)$ and $f'(a)$ are \textcolor{M4}{easy to calculate}.
+\[\textcolor{C1}{f(x)} \approx \textcolor{M4}{L(x)}=\textcolor{M4}{f(a)+f'(a)(x-a)}\]
+
+\only<1|handout:1>{\begin{center}
+\begin{tikzpicture}
+\myaxis{x}{1}{5}{y}{1}{3}
+\draw[ultra thick, C1] plot[domain=0:5, samples=100] (\x,{sqrt(\x)}) node[right]{$f(x)$};
+\draw[ultra thick, M4] plot[domain=0:5] (\x,{1/2+\x/2}) node[right]{$L(x)$};
+\draw(1,1) node[vertex]{};
+\draw (1,.2)--(1,-.2) node[below]{$a$};
+\draw (2,.2)--(2,-.2) node[below]{$x$};
+\draw (2,1.4) node[shape=circle, inner sep=0, fill=C1, minimum size=1.5mm]{};
+\draw (2,1.5) node[shape=circle, inner sep=0, fill=M4, minimum size=1.5mm]{};
+\end{tikzpicture}
+\end{center}}
+\pause
+
+\onslide<2-|handout:2>{Let $f(x)=\sqrt{x}$. Approximate $f(8.9)$. }\vfill
+
+
+\note<3|handout:0>{``Constant approximations are good for error-checking because you can do them easily in your head"}
+\onslide<3-|handout:0>{\textcolor{C1}{First we note that $8.9 \approx 9$ and we can easily calculate $f(9)=3$.}}\vfill
+
+\color{answercolor}
+\onslide<4-|handout:0>{Constant approximation: 
+$8.9 \approx 9$, so $f(8.9) \approx f(9)=\boxed{3}$}\vfill
+
+
+\onslide<5-|handout:0>{Linear approximation: 
+Using $a=9$,
+\begin{align*}
+f'(a)&=\tfrac{1}{2\sqrt{a}} = \tfrac{1}{2\sqrt{9}}=\tfrac{1}{6}\\
+f(8.9)&\approx f(9)+f'(9)(8.9-9) = 3+\tfrac{1}{6}(-.1) \\
+f(8.9)&\approx 3-\tfrac{1}{60}=2.98\overline{33}
+\end{align*}
+}
+
+\onslide<6-|handout:0>{\color{black}Google: $\sqrt{8.9}=2.98328677804...$}
+
+\unote{Example~\eref{text}{eg_3_4_2}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}<handout:0>{Characteristics of a Good Approximation}
+\note<1>{Give students time to think to themselves}
+\note<3>{``known constants" depends on context. Decimal values of pi are all approximations. If we're talking about how to approximate pi, we shouldn't use pi itself. But since good approximations of pi do exist, we can make use of them to approximate other things.
+
+To avoid student frustration, it's helpful to be as clear as possible about which constants we can use and which we can't in any given problem.}
+\pause\vfill
+Accurate\pause\vfill
+Possible to calculate: add, subtract, multiply, divide. Use integers or known constants\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Can we compute?}
+\AnswerSpace\only<1>{\AnswerYes\QuestionBar{1}{2}}
+\only<2>{\AnswerBar{1}{2}}
+Suppose we want to approximate the value of $\cos(1.5)$. Which of the following linear approximations could we calculate by hand? (You can leave things in terms of $\pi$.)
+\begin{itemize}
+\alert<2-|handout:0>{\item[A.] tangent line to $f(x)=\cos x$ when $x=\pi/2$}
+\item[B.] tangent line to $f(x)=\cos x$ when $x=3/2$
+\item[C.] both
+\item[D.] neither
+\end{itemize}
+\vfill
+\onslide<2-|handout:0>{\textcolor{answercolor}{We know $\cos(\pi/2)=0$ and $\sin(\pi/2)=1$, so we can easily compute the linear approximation if we centre it at $\pi/2$. However, what kind of ugly number is $\cos(3/2)$? }}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Can we compute?}
+\AnswerSpace\only<1>{\AnswerYes\QuestionBar{2}{2}}
+\only<2>{\AnswerBar{2}{2}}
+Which of the following tangent lines is probably the most accurate in approximating $\cos(1.5)$?
+\begin{itemize}
+\alert<2-|handout:0>{\item[A.] tangent line to $f(x)=\cos x$ when $x=\pi/2$}
+\item[B.] tangent line to $f(x)=\cos x$ when $x=\pi/4$
+\item[C.] constant approximation: $\cos 1.5 \approx \cos (\pi/2) = 0$
+\item[D.] the linear approximations should be better than the constant approximation, but both linear approximations should have the same accuracy
+\end{itemize}
+\vfill
+\onslide<2-|handout:0>{\color{answercolor} $\pi/2$ is very close to 1.5.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Linear Approximation}
+\AnswerSpace \only<1>{\AnswerYes\QuestionBar{1}{3}}
+\only<2>{\AnswerBar{1}{3}}
+Approximate $\sin(3)$ using a linear approximation. You may leave your answer in terms of $\pi$.\pause\vfill
+
+
+\answer{\begin{center}
+\begin{tikzpicture}[yscale=0.8]
+\myaxis{x}{1}{7}{}{1.5}{1.5}
+\draw[ultra thick, C1, samples=100] plot[domain=-.5:6.5] (\x,{1.5*sin(\x r)}) node[right]{$y=\sin x$};
+\draw[ultra thick, M4] plot[domain=4.25:2] (\x,{1.5*(pi-\x)}) node[right]{$y=\pi-x$};
+\draw(3.14,0) node[M4, vertex]{};
+\xcoord{3.14}{\pi}
+\nxcoord{3}{3}
+\end{tikzpicture}
+\end{center}
+\vfill\color{answercolor}
+Let $f(x)=\sin x$ and $a=\pi$. Then $f(3) \approx f(\pi)+f'(\pi)(3-\pi) =
+\sin(\pi)+\cos(\pi)(3-\pi) = \boxed{\pi-3} \approx 0.14159$
+
+
+\color{black}\vfill
+Google: $\sin(3)=0.14112000806...$
+}\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Linear Approximation}
+\AnswerSpace
+\only<2>{\AnswerYes\QuestionBar{2}{3}}
+\only<3-4>{\AnswerBar{2}{2}}
+\only<5>{\QuestionBar{3}{3}\AnswerYes}
+\only<6->{\AnswerBar{3}{3}}
+Approximate $e^{1/10}$ using a linear approximation.\pause\vfill
+
+If $f(x)=e^x$  and $a=0$ :
+
+\onslide<3-|handout:0>{\color{answercolor}
+        \begin{align*}
+        f'(x)&=e^x \\
+       f(1/10) &\approx f(0)+f'(0)(1/10-0) = e^0+e^0(1/10-0) = 1+1/10 \\
+               &=1.1
+     \end{align*}
+}\vfill
+
+\onslide<5-|handout:0>{\color{black}
+If $g(x)=x^{1/10}$:}
+
+\onslide<6-|handout:0>{\color{answercolor}
+
+The closest number to $e$ with a simple tenth root is $a=1$.
+\begin{align*}
+g'(x) &= \tfrac{1}{10}x^{-9/10} \\
+g(e) &\approx g(1)+g'(1)(e-1) = 1+\tfrac{1}{10}(e-1) = \tfrac{e+9}{10}
+\end{align*}
+... but what's $e$?
+}
+
+\vfill\onslide<4-|handout:0>{\color{black} Google: $e^{1/10}=1.10517091808...$}
+\note<4>{The question often comes up here, what would we do on an assessment? I like to reassure students that questions will be worded in a way that makes expectations clear. For example, ``your answer may depend on $e$," or ``your answer should be rational."}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Linear Approximation Wrap-Up}
+\AnswerSpace\only<2-6>{\AnswerYes}
+\only<2>{\QuestionBar{1}{3}}
+\only<3>{\QuestionBar{2}{3}}
+\only<4>{\QuestionBar{3}{3}}
+\only<5>{\AnswerBar{1}{3}}
+\only<6>{\AnswerBar{2}{3}}
+\only<7>{\AnswerBar{3}{3}}
+Let $L(x) = f(a)+f'(a)(x-a)$, so $L(x)$ is the linear approximation (linearization) of $f(x)$ at $a$.\vfill
+
+\onslide<2->{What is $L(a)$? \hfill \onslide<5-|handout:0>{\textcolor{M4}{$L(a)=f(a)$}}}\vfill
+
+\onslide<3->{What is $L'(a)?$\hfill\onslide<6-|handout:0>{\textcolor{M4}{$L'(a)=f'(a)$}}}\vfill
+
+\onslide<4->{What is $L''(a)$? (Recall $L''(x)$ is the derivative of $L'(x)$.)
+\hfill\onslide<7-|handout:0>{\textcolor{M4}{$L''(a)=0$}}}\vfill
+
+{\begin{center}
+\begin{tikzpicture}
+\myaxis{}{1}{7}{}{1.5}{1.5}
+\draw[ultra thick, C1] plot[domain=-.5:6.7, samples=100] (\x,{sin(\x r)}) node[right]{$y=f(x)$};
+\draw[ultra thick, M4] plot[domain=2:4.25] (\x,{(pi-\x)}) node[below]{$y=L(x)$};
+\draw(3.14,0) node[ vertex]{};
+\draw (3.14,.2)--(3.14,-.2) node[below]{$a$};
+\end{tikzpicture}
+\end{center}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}{Linear Approximation Wrap-Up}
+Let $L(x)$ be a linear approximation of $f(x)$. 
+\centering
+\begin{tabular}{|l| l | l |}
+\hline
+ $f(a)$ & $L(a)$ & same\\
+\hline
+ $f'(a)$ & $L'(a)$ & same\\
+\hline
+ $f''(a)$ & $L''(a)$ & different\footnote{unless $f''(a)=0$}\\
+
+\hline
+\end{tabular}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\section*{3.4.3: Quadratic}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Quadratic Approximation}
+Imagine we approximate $f(x)$ at $x=a$ with a \alert{parabola}, $P(x)$.
+
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\myaxis{}{1}{7}{}{2}{2}
+\draw[ultra thick, C1] plot[domain=-.5:6.5, samples=100] (\x,{1.5*sin(\x r)}) node[right]{$y=f(x)$};
+\draw[ thick, M4] plot[domain=-.5:3.5, samples=100] (\x,{1.5-.75*(\x-pi/2)*(\x-pi/2)}) node[below]{$y=P(x)$};
+
+
+\draw(1.55,1.5) node[ vertex]{};
+\draw (1.55,.2)--(1.55,-.2) node[below]{$a$};
+\end{tikzpicture}
+\end{center}\vfill
+
+
+
+
+\only<2|handout:0>{
+ Then we could ensure:\\
+\hfill$P(a)=f(a)$,\hfill
+$P'(a)=f'(a)$, \hfill \textbf{and} \hfill
+$P''(a)=f''(a).$\hfill
+}
+\note<2>{``We want our approximation and our function to be as similar as possible (except our approximation should be easy to compute -- like a polynomial). That's why we might think to match as many derivatives as possible at the point $x=a$."}
+\only<3|handout:0>{\begin{tabular}{|l|l|r|}
+\hline
+$P(x) = A+Bx+Cx^2$ &$ P(a)=A+Ba+Ca^2$ &$ f(a)$\\
+\hline
+$P'(x)=\hfill B+2Cx $&$ P'(a)=\hfill B+2Ca $&$ f'(a)$\\
+\hline
+$P''(x)=\hfill 2C $&$ P''(a)=\hfill 2C$ & $f''(a)$\\
+\hline
+\end{tabular}}
+\note<3>{``You won't have to solve these equations, but this is where our quadratic approximation comes from"}
+
+\only<4|handout:0>{
+Solving $2C=f''(a)$ for $C$, and then solving $B+2Ca = f'(a)$ for $B$, and then
+solving $A+Ba+Ca^2 = f(a)$ for $A$ and then substituting back into $P(x)= A+Bx+Cx^2$ gives
+
+\color{M4}\[P(x) = f(a)+f'(a)(x-a)+\frac{1}{2}f''(a)(x-a)^2\]}
+
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{tabular}{p{.3\textwidth}*{3}{|p{.2\textwidth}}}
+ &Constant & Linear  & Quadratic \\
+\hline
+\raggedright Function value matches at $x=a$& \[\textcolor{M3}{\checkmark}\] & \[\textcolor{M3}{\checkmark}\]& \[\textcolor{M3}{\checkmark}\]\\\hline
+\raggedright First derivative matches at $x=a$& \[\textcolor{W1}{\times}\] & \[\textcolor{M3}{\checkmark}\]&  \[\textcolor{M3}{\checkmark}\]
+\\\hline
+\raggedright Second derivative matches at $x=a$& \[\textcolor{W1}{\times}\] & \[\textcolor{W1}{\times}\] & \[\textcolor{M3}{\checkmark}\]
+\end{tabular}
+\end{frame}
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\note{``We can see that each successive type adds a little accuracy by adding a higher-degree term"}
+\begin{align*}
+&\textup{Constant: }& f(x) &\approx {f(a)}\\
+&\textup{Linear: }& f(x) &\approx f(a)+f'(a)(x-a)\\
+&\textup{Quadratic: }& f(x) &\approx f(a)+f'(a)(x-a)+\tfrac{f''(a)}{2}(x-a)^2
+\end{align*}\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Quadratic Approximation}
+\AnswerSpace\only<1>{\AnswerYes\QuestionBar{1}{3}}
+\only<2>{\AnswerBar{1}{3}}
+\[P(x)= f(a)+f'(a)(x-a)+\frac{1}{2}f''(a)(x-a)^2\]
+
+
+Approximate $\log(1.1)$ using a quadratic approximation. 
+\vfill\pause\color{answercolor}\small
+
+\answer{We use $f(x)=\log x$ and $a=1$. Then $f'(x)=x^{-1}$ and $f''(x)=-x^{-2}$, so $f(a)=0$, $f'(a)=1$, and $f''(a)=-1$. Now:
+\begin{align*}
+f(1.1) &\approx f(a)+f'(a)(1.1-a)+\frac{1}{2}f''(a)(1.1-a)^2\\
+&= 0+1(1.1-1)+\frac{1}{2}(-1)(1.1-1)^2\\
+&=0.1-\frac{1}{200}=\frac{20}{200}-\frac{1}{200}=\frac{19}{200} = \frac{9.5}{100}=0.095
+\end{align*}
+Google: $\log(1.1)=0.0953101798...$}
+
+\unote{Example~\eref{text}{eg_3_4_3}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Quadratic Approximation}
+\only<1>{\AnswerYes\QuestionBar{2}{3}}
+\only<2>{\AnswerBar{2}{3}}
+\[P(x)= f(a)+f'(a)(x-a)+\frac{1}{2}f''(a)(x-a)^2\]
+
+Approximate $\sqrt[3]{28}$ using a quadratic approximation. \\
+\textit{You may leave your answer unsimplified, as long as it is an expression you could figure out from integers using only plus, minus, times, and divide.}\pause\vfill
+\vfill\answer{\color{answercolor}\footnotesize
+
+We use $f(x)=x^{1/3}$ and $a=27$.  Then $f'(x)=\frac{1}{3}x^{-2/3}$ and $f''(x)=\frac{-2}{9}x^{-5/3}$. So, 
+$f(a)=3$, $f'(a)=\frac{1}{3^3}$, and
+$f''(a) = \frac{-2}{3^7}$.
+\begin{align*}
+f(28) &\approx f(27)+f'(27)(28-27)+\frac{1}{2}f''(27)(28-27)^2\\
+&=3+\frac{1}{3^3}(1)+\frac{-1}{3^7}(1^2)\\
+&=3+\frac{1}{3^3}-\frac{1}{ 3^7}\\
+&=3.03657978967...\\
+Google: \sqrt[3]{28}&=3.03658897188...
+\end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1>{\AnswerYes\QuestionBar{3}{3}}\only<2>{\AnswerBar{3}{3}}
+Determine what \textcolor{C3}{$f(x)$} and \textcolor{C3}{$a$} should be so that you can approximate the following using a quadratic approximation.
+\vfill
+
+$\log(.9)$
+\hspace{1cm}
+\onslide<2|handout:0>{\textcolor{answercolor}{$f(x)=\log (x)$, $a=1$}}
+\vfill
+
+$e^{-1/30}$
+\hspace{1cm}
+\onslide<2|handout:0>{\textcolor{answercolor}{$f(x)=e^x$, $a=0$ }}
+
+\vfill
+
+$\sqrt[5]{30}$
+\hspace{1cm}
+\onslide<2|handout:0>{\textcolor{answercolor}{$f(x)=\sqrt[5]{x}$, $a=32=2^5$}}
+
+\vfill
+
+$(2.01)^6$
+\hspace{1cm}
+\onslide<2|handout:0>{\textcolor{answercolor}{$f(x)=x^6$, $a=2$\small\\ It is possible to compute the last one without an approximation, but an approximation might save time while being sufficiently accurate for your purposes.}}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section*{3.4.4-5: Taylor Polynomial}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\newcommand{\checkyes}{ \color{M3}\parbox{1cm}{\vspace{0.5em}\[\checkmark\]}}
+\newcommand{\checkno}{ \color{W1}\parbox{1cm}{\vspace{0.5em}\[\times\]}}
+\begin{frame}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{tabular}{p{.16\textwidth}|c|c|c|c}
+ &Constant & Linear  & Quadratic & \alert{degree $n$}\\
+\hline
+\raggedright match $f(a)$&\checkyes&\checkyes&\checkyes&\checkyes\\\hline
+\raggedright match $f'(a)$&\checkno&\checkyes&  \checkyes& \checkyes
+\\\hline
+\raggedright match $f''(a)$&\checkno&\checkno& \checkyes&\checkyes
+\\\hline
+$\cdots$
+\\\hline
+\raggedright match $f^{(n)}(a)$&\checkno&\checkno& \checkno&\checkyes
+\\\hline
+\raggedright match $f^{(n+1)}(a)$&\checkno&\checkno& \checkno&\checkno
+\end{tabular}
+\end{frame}
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\note{``We can see that each successive type adds a little accuracy by adding a higher-degree term"}
+\begin{align*}
+&\textup{Constant: }\\
+&~ f(x)  \approx {f(a)}\\[1em]
+&\textup{Linear: }\\ 
+&~f(x) \approx f(a)+f'(a)(x-a)\\[1em]
+&\textup{Quadratic: }\\ &~f(x) \approx f(a)+f'(a)(x-a)+\tfrac{f''(a)}{2}(x-a)^2\\[1em]
+&\textup{Degree-$n$:}\\ &~f(x) \approx f(a)+f'(a)(x-a)+\tfrac{f''(a)}{2}(x-a)^2\alert{+\cdots ?}
+\end{align*}\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\note{We'll use sum notation for Taylor Polynomials, so useful to review it. Students should have seen it in high school.}
+%----------------------------------------------------------------------------------------
+\begin{frame}{Brief Detour: Sigma (Summation) Notation}
+\[\sum_{i=a}^b f(i)\]\pause
+\begin{itemize}[<+->]
+\item $a,b$ (integers) ``bounds"
+\item $i$ ``index": runs over integers from $a$ to $b$
+\item $f(i)$ ``summand": compute for every $i$, add
+\end{itemize}
+
+\unote{Notation~\eref{text}{ntn_3_4_1}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Sigma Notation}
+\AnswerSpace
+\only<1>{\AnswerYes\QuestionBar{1}{3}}
+\only<2>{\AnswerBar{1}{3}}
+\[\sum_{i=2}^4 (2i+5)\]\pause
+
+\only<beamer>{
+\color{answercolor}
+\begin{align*}
+\sum_{i=2}^4 (2i+5)&= \underbrace{(2\cdot2+5)}_{i=2}+\underbrace{(2\cdot3+5)}_{i=3}+\underbrace{(2\cdot4+5)}_{i=4}\\
+&=9+11+13=33
+ \end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Sigma Notation}
+\AnswerSpace
+\only<1>{\AnswerYes\QuestionBar{2}{3}}
+\only<2>{\AnswerBar{2}{3}}
+\[\sum_{i=1}^4 (i+(i-1)^2)\]
+
+\pause
+\only<beamer>{\color{answercolor}
+\begin{align*}
+&= \underbrace{(1+0^2)}_{i=1}+\underbrace{(2+1^2)}_{i=2}+\underbrace{(3+2^2)}_{i=3}+\underbrace{(4+3^2)}_{i=4}\\
+&=1+3+7+13=24
+ \end{align*}}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\AnswerNo
+\QuestionBar{3}{3}
+Write the following expressions in sigma notation:
+\begin{enumerate}
+\item $3+4+5+6+7$
+\item $8+8+8+8+8$
+\item $1+(-2)+4+(-8)+16$
+\end{enumerate}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\note<1>{Students usually ask about $0!=1$. Two explanations. First, it's a convention because people found it convenient. Second, $n!$ is the number of ways of ordering $n$ distinct objects.}
+\begin{block}{Factorial -- Definition~\eref{text}{def_3_4_1}}
+We read ``$n!$" as ``$n$ factorial."
+
+For a natural number $n$, $n!=1\cdot2\cdot 3\cdot \ldots \cdot n$.\\ \pause
+By convention, $0!=1$.\\[1em]\pause
+\end{block}
+
+We write $f^{(n)}(x)$ to mean the $n^{\rm th}$ derivative of $f(x)$. By convention, $f^{(0)}(x)=f(x)$.
+\pause\vfill
+
+\begin{block}{Taylor Polynomial -- Definition~\eref{text}{def_3_4_2}}
+Given a function $f(x)$ that is differentiable $n$ times at a point $a$, the $n$-th degree \textbf{ Taylor polynomial} for $f(x)$ about $a$ is
+\[T_n(a)=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k\]
+%\begin{align*}
+%T_n(a)&=f(a)+f'(a)(x-a)+\frac{1}{2!}f''(a)(x-a)^2+\cdots+\frac{1}{n!}f^{(n)}(a)(x-a)^n\\
+%&=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k
+%\end{align*}
+
+If $a=0$, we also call it a \textbf{ Maclaurin polynomial}.
+\end{block}
+\end{frame}
+%------------------------------------------------------------------
+\begin{frame}
+\AnswerSpace
+\only<1>{\AnswerYes}
+\note<1>{Some students will undoubtedly struggle with interpreting the sigma notation, so I like to go through the indices until at least $k=4$.}
+\begin{align*}
+T_n(a)&=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k\\
+&=\onslide<2-|handout:0>{\underbrace{f(a)}_{k=0}+
+\underbrace{f'(a)(x-a)}_{k=1}+
+\underbrace{\frac{1}{2!}f''(a)(x-a)^2}_{k=2}+\\
+&\qquad\underbrace{\frac{1}{3!}f'''(a)(x-a)^3}_{k=3}+
+\underbrace{\frac{1}{4!}f^{(4)}(a)(x-a)^4}_{k=4}+\\
+&\qquad \cdots+\underbrace{\frac{1}{n!}f^{(n)}(a)(x-a)^n}_{k=n}}
+\end{align*}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%------------------------------------------------------------------
+\begin{frame}<handout:0>{Small degree Taylor polynomials}
+\begin{align*}
+T_{\only<1>{0}\only<2>{1}\only<3>{2}\only<4>{3}}(a)&=\sum_{k=0}^{\only<1>{0}\only<2>{1}\only<3>{2}\only<4>{3}} \frac{f^{(k)}(a)}{k!}(x-a)^k\\
+&=f(a)\onslide<2->{+f'(a)(x-a)}\onslide<3->{+\frac{f''(a)}{2}(x-a)^2}
+\onslide<4->{ +\frac{f'''(a)}{6}(x-a)^3}
+\end{align*}
+\only<1>{The 0th degree Taylor polynomial is the \textcolor{C3}{constant} approximation}\only<2>{The 1st degree Taylor polynomial is the \textcolor{C3}{linear} approximation}\only<3>{The 2nd degree Taylor polynomial is the \textcolor{C3}{quadratic} approximation}
+\StatusBar{1}{4}
+\end{frame}
+%------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%\section*{3.4.5 Examples}%{3.4.5: Some Examples of Taylor Polynomials}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\begin{frame}[t]{\footnotesize $\textcolor{C1}{T_n(a)=f(a)+f'(a)(x-a)+\frac{1}{2!}f''(a)(x-a)^2+\cdots+\frac{1}{n!}f^{(n)}(a)(x-a)^n}$}
+\AnswerSpace
+\begin{QuestionSet}
+\SetQuestion{\AnswerYes\unote{Example~\eref{text}{eg taylor e to the x}}
+Find the 7th degree Maclaurin\footnote{A Maclaurin polynomial is a Taylor polynomial with $a=0$.} polynomial for $e^x$.\pause\vfill\color{answercolor}
+}
+\SetAnswer{\unote{Example~\eref{text}{eg taylor e to the x}}
+Find the 7th degree Maclaurin\footnote{A Maclaurin polynomial is a Taylor polynomial with $a=0$.} polynomial for $e^x$.
+\color{answercolor}\vfill
+
+Let $f(x)=e^x$. Then every derivative of $e^x$ is just $e^x$, and $e^0=1$. So:
+
+\footnotesize
+\begin{align*}
+T_7(x)&=f(0)+f'(0)(x-0)+\frac{1}{2}f''(0)(x-0)^2+\cdots + \frac{1}{7!}f^{(7)}(0)(x-0)^7\\
+&=1+x+\frac{x^2}{2}+\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}+\frac{x^6}{6!}+\frac{x^7}{7!}\\
+&=\sum_{k=0}^7\frac{x^k}{k!}
+\end{align*}
+
+\vfill
+
+\href{https://www.desmos.com/calculator/ekrz2f00qt}{\textcolor{C1}{$e^x$ approximations - link}}
+\note<2>{The link is nice for seeing how approximations get better. Students may ask about the conspicuous left half of the graph. You can zoom in to see how each approximation ``looks like" the actual function for a little longer.}
+
+}
+%
+\SetQuestion{\AnswerYes\unote{Example~\eref{text}{eg expand sinx}}
+Find the 8th degree Maclaurin polynomial for $f(x)=\sin x$.
+}
+\SetAnswer{\unote{Example~\eref{text}{eg expand sinx}}
+Find the 8th degree Maclaurin polynomial for $f(x)=\sin x$.
+\color{answercolor}\small\vfill
+
+\begin{align*}
+f(x)&=\sin x & f(0)&=0 & f^{(4)}(0)&=0& f^{(8)}(0)&=0\\
+f'(x)&=\cos x & f'(0)&=1& f^{(5)}(0)&=1\\
+f''(x)&=-\sin x & f''(0)&=0& f^{(6)}(0)&=0\\
+f'''(x)&=-\cos x & f'''(0)&=-1& f^{(7)}(0)&=-1
+\end{align*}
+
+\begin{align*}
+T_8(x)&=f(0)+f'(0)(x-0)+\frac{1}{2}f''(0)(x-0)^2+\cdots + \frac{1}{8!}f^{(8)}(0)(x-0)^8\\
+&=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}\\
+&=\sum_{k=0}^{3}\frac{x^{2k+1}}{(2k+1)!} 
+\end{align*}
+
+\vspace{-1cm}\hspace{5cm}\href{https://www.desmos.com/calculator/0rgznzob7f}{\color{C1}Link: sine approximations}
+}
+%
+\SetQuestion{\AnswerYes
+\NowYou\unote{Example~\eref{text}{eg expand logx}}
+Find the 7th degree Taylor polynomial for
+ $f(x)=\log x$, centered at $a=1$.
+}
+\SetAnswer{\unote{Example~\eref{text}{eg expand logx}}
+\scriptsize
+Find the 7th degree Taylor polynomial for
+ $f(x)=\log x$, centered at $a=1$.
+\vfill
+\color{answercolor}
+\begin{align*}
+f(x)&=\log x & f(1)&=0&f^{(4)}(x)&=-3!x^{-4} & f^{(4)}(1)&=-3!\\
+f'(x)&=x^{-1} & f'(1)&=1&f^{(5)}(x)&=4!x^{-5} & f^{(5)}(1)&=4!\\
+f''(x)&=-x^{-2} & f''(1)&=-1&f^{(6)}(x)&=-5!x^{-6} & f^{(6)}(1)&=-5!\\
+f'''(x)&=2x^{-3} & f'''(1)&=2&f^{(7)}(x)&=6!x^{-7} & f^{(7)}(1)&=6!
+\end{align*}
+
+\begin{align*}
+T_8(x)&=f(1)+f'(1)(x-1)+\frac{1}{2}f''(1)(x-1)^2+\cdots + \frac{1}{7!}f^{(7)}(1)(x-1)^7\\
+&=0+(1)(x-1)+(-1)\frac{1}{2}(x-1)^2+(2)\frac{1}{3!}(x-1)^3-3!\frac{1}{4!}(x-1)^4\\
+&\quad+4!\frac{1}{5!}(x-1)^5-5!\frac{1}{6!}(x-1)^6+6!\frac{1}{7!}(x-1)^7\\
+&=(x-1)-\frac{(x-1)^2}{2}+\frac{(x-1)^3}{3}-\frac{(x-1)^4}{4}+\frac{(x-1)^5}{5}-\frac{(x-1)^6}{6}+\frac{(x-1)^7}{7!}
+\\
+&=\sum_{k=1}^{7}(-1)^{k+1}\frac{(x-1)^k}{k}\quad
+\end{align*}
+{\tiny\href{https://www.desmos.com/calculator/ktaxcfog1t}{\color{blue}log approximations}}
+
+\note<6>{There are some radius of convergence issues here, so the approximation really doesn't get better far away from the centre}
+}
+
+\end{QuestionSet}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\section{3.4.6-7: $\Delta x$, $\Delta y$}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\hfill\hyperlink{end3.4.7}{\beamerskipbutton{skip $\Delta x$ notation}}
+\begin{block}{Notation \eref{text}{ntn_3_4_2}}
+ Let $x,y$ be variables related such that $y = f(x)$. Then we denote a
+  small change in the variable $x$ by $\Delta x$ (read as ``delta $x$''). The corresponding
+small change in the variable $y$ is denoted $\Delta y$ (read as ``delta $y$'').
+\begin{align*}
+  \Delta y &= f(x+\Delta x) - f(x)
+\end{align*}
+\end{block}
+Thinking about change in this way can lead to convenient approximations.
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\unote{Example~\eref{text}{eg_3_4_4}}
+Let $y=f(x)$ be the amount of water needed to produce $x$ apples in an orchard.
+
+A farmer wants to know how a much water is needed to increase their crop yield. \textcolor{C1}{\onslide<2->{$\Delta x$ is shorthand for some change in the number of apples,  and $\Delta y$ is shorthand for some change in the amount of water.}}
+\begin{multicols}{2}
+\begin{tikzpicture}
+%\draw[opacity=1] (-3.5,-2.2) rectangle (2,2.2);
+%water
+\index{\includegraphics[height=4mm]{Clipart/water}
+\href{https://thenounproject.com/term/water-drop/193893/}{`Water Drop'} by
+\href{https://thenounproject.com/hunotika/}{hunotika} is licensed under
+\CCBYthree~(accessed 21 July 2021)}
+
+\foreach \x in {1,2,3,4}{
+	\onslide<\x-|handout:0>{\draw (3,\x-2.5)node{\includegraphics[width=7mm]{Clipart/water}};}
+}
+%tree
+
+\onslide<4-|handout:0>{\draw (0,1)node[opacity=0.5,rotate=10]{\includegraphics[width=3.5cm]{Clipart/tree4}};}
+\only<4-|handout:0>{\index{\includegraphics[height=5mm]{Clipart/tree4}
+\href{https://thenounproject.com/term/tree/1497435/}{`Tree'} by
+\href{https://thenounproject.com/fayralovers/}{FayraLovers} is licensed under
+\CCBYthree~(accessed 21 July 2021) / cropped from original}}
+
+
+\draw (0,-0.2)node{\includegraphics[width=3.cm]{Clipart/tree1}};
+\index{\includegraphics[height=5mm]{Clipart/tree1}
+\href{https://thenounproject.com/term/old-tree/1497433/}{`old tree'} by
+\href{https://thenounproject.com/fayralovers/}{FayraLovers} is licensed under
+\CCBYthree~(accessed 21 July 2021)}
+
+\onslide<2-|handout:0>{\draw (0,0)node[opacity=0.5]{\includegraphics[width=3.5cm]{Clipart/tree2}};}
+\only<2-|handout:0>{
+\index{\includegraphics[height=5mm]{Clipart/tree2}
+\href{https://thenounproject.com/term/tree/1497434/}{`Tree'} by
+\href{https://thenounproject.com/fayralovers/}{FayraLovers} is licensed under
+\CCBYthree~(accessed 21 July 2021)}}
+
+\onslide<3-|handout:0>{\draw (0,0.125)node[opacity=0.5]{\includegraphics[width=3.5cm]{Clipart/tree3}};}
+\only<3-|handout:0>{\index{\includegraphics[height=5mm]{Clipart/tree3}
+\href{https://thenounproject.com/term/tree/1497435/}{`Tree'} by
+\href{https://thenounproject.com/fayralovers/}{FayraLovers} is licensed under
+\CCBYthree~(accessed 21 July 2021)}}
+
+\end{tikzpicture}\columnbreak
+
+
+\begin{itemize}
+\onslide<3->{\item Consider changing the number of apples grown from $a$ to $a+\Delta x$ }
+\onslide<4->{\item Then the change in water requirements goes from $y=f(a)$ to $y=f(a+\Delta x)$
+\[\Delta y = f(a+\Delta x) - f(a)\]}
+\end{itemize}
+\end{multicols}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Linear Approximation of $\Delta y$}
+\unote{Example~\eref{text}{eg_3_4_4}}
+\begin{itemize}
+\item Using a linear approximation, setting $x=a+\Delta x$:\pause
+\begin{align*}
+f(x)&\approx f(a)+f'(a)(x-a) && \mbox{linear approximation}\\
+f(a+\Delta x)&\approx f(a)+f'(a)(\Delta x) && \mbox{set $x=a+\Delta x$}\\
+\Delta y = f(a+\Delta x)-f(a) & \approx  f'(a)\Delta x &&\mbox{subtract $f(a)$ both sides}
+\end{align*}
+\end{itemize}\pause\vfill
+\begin{block}{Linear Approximation of $\Delta y$ (Equation~\eref{text}{eq:lineDe})}
+\[\Delta y \approx f'(a) \Delta x\]
+\end{block}\pause\vfill
+If we set $\Delta x=1$, then $\Delta y \approx f'(a)$. So, if we want to produce $a+1$ apples instead of $a$ apples, the extra water needed for that one extra apple is about $f'(a)$. We call this the \textit{marginal} water cost of the apple.
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{Quadratic Approximation of $\Delta y$}
+If we wanted a more accurate approximation, we can use other Taylor polynomials. For example, let's try the quadratic approximation.\pause
+
+\only<beamer>{\begin{align*}
+f(x) & \approx f(a) + f'(a)(x-a)+\frac12f''(a)(x-a)^2\\
+f(a+\Delta x) & \approx f(a) + f'(a)\Delta x+\frac12f''(a)(\Delta x)^2\\
+f(a+\Delta x) -f(a)& \approx f'(a)\Delta x+\frac12f''(a)(\Delta x)^2\\
+\Delta y& \approx f'(a)\Delta x+\frac12f''(a)(\Delta x)^2
+\end{align*}\pause\vfill}
+\begin{block}{Quadratic Approximation of $\Delta y$ (Equation~\eref{text}{eq:quadDe})}
+\[\Delta y \approx  f'(a)\Delta x+\frac12f''(a)(\Delta x)^2\]
+\end{block}\vfill
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%\section{3.4.7: Further Examples}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\hfill\hyperlink{end3.4.7}{\beamerskipbutton{skip further examples}}\\[1em]
+\only<1>{\QuestionBar{1}{3}}
+\only<2->{\AnswerBar{1}{3}}
+\unote{Example~\eref{text}{eg:taylorapprox}}
+\AnswerSpace\only<1>{\AnswerYes}
+Approximate $\tan(65^\circ)$ three ways: using constant, linear, and quadratic approximation.
+
+Your answer may consist of the sum, difference, product, and quotient of integers, roots of integers, and $\pi$.
+\vfill
+\onslide<2-|handout:0>{\color{answercolor}
+All our derivatives were based on radians, so first, let's do a conversion:
+\[65~\text{degrees} \cdot\left(\frac{2\pi~\text{radians}}{360~\text{degrees}}\right) = \frac{13\pi}{36}~\text{radians}\]
+
+$\frac{13\pi}{36}$ is pretty close to $\frac{\pi}{3}$ (and 65 is pretty close to 60), so we centre our approximation at $a=\frac{\pi}{3}$ (or $60^\circ$). This is the closest reference angle to our desired angle.
+}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}<beamer>[t]
+\AnswerBar{1}{3}
+\unote{Example~\eref{text}{eg:taylorapprox}}
+\color{answercolor}
+We will need the first two derivatives of $f(x)=\tan x$ at $x=\frac{\pi}{3}$.
+\begin{align*}
+f(x)&=\tan x & f\left(\frac\pi3\right)&=\sqrt 3\\
+f'(x)&=\sec^2 x  = \frac{1}{\cos^2 x}& f'\left(\frac\pi3\right)&=\frac{1}{(1/2)^2} = 4\\
+f''(x)&=\frac{2\sin x}{\cos^3 x} &  f''\left(\frac\pi3\right)&=\frac{\sqrt 3}{(1/2)^3} = 8\sqrt 3\\
+\end{align*}
+
+Constant: $f(x) \approx f(a)$
+\[f\left( \frac{13\pi}{36}\right) \approx f\left( \frac{\pi}{3}\right)=\sqrt 3
+\]
+
+Linear: $f(x) \approx f(a)+f'(a)(x-a)$
+\begin{align*}
+f\left( \frac{13\pi}{36}\right) &\approx f\left( \frac{\pi}{3}\right)+f'\left( \frac{\pi}{3}\right)\left( \frac{13\pi}{36}- \frac{\pi}{3}\right)\\
+&=\sqrt 3+4\left(\frac{\pi}{36}\right)
+\end{align*}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}<beamer>
+\AnswerBar{1}{3}\color{answercolor}
+\unote{Example~\eref{text}{eg:taylorapprox}}
+Quadratic: $f(x) \approx f(a)+f'(a)(x-a)+\frac12f''(a)(x-a)^2$
+\begin{align*}
+f\left( \frac{13\pi}{36}\right) &\approx f\left( \frac{\pi}{3}\right)
+     +f'\left( \frac{\pi}{3}\right)\left( \frac{13\pi}{36}- \frac{\pi}{3}\right)
++\frac12f''\left( \frac{\pi}{3}\right)\left( \frac{13\pi}{36}- \frac{\pi}{3}\right)^2\\
+&=\sqrt 3+4\left(\frac{\pi}{36}\right) +\frac12(8\sqrt 3)\left(\frac{\pi}{36}\right)^2\\
+&=\sqrt 3 +\frac{\pi}{9}+\frac{4\sqrt 3 \pi^2}{6^4}
+\end{align*}
+\begin{center}
+\begin{tabular}{l|l|l}
+type & approx & decimal \\ \hline
+constant & $\sqrt 3$ & 1.732...\\
+linear & $\sqrt 3 + \frac{\pi}{9}$ & 2.081... \\
+quadratic & $\sqrt 3 + \frac{\pi}{9}+\frac{4\sqrt 3 \pi^2}{6^4}$ & 2.134...\\
+\color{W1} actual &\color{W1}  -- &\color{W1}  2.145...
+\end{tabular}\end{center}
+\note{Approximations often depend on other approximations!}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+
+\unote{Example~\eref{text}{eg:taylorPole}}
+\AnswerSpace\only<1>{\AnswerYes\QuestionBar{2}{3}}
+\only<2->{\AnswerBar{2}{3}}
+You measure an angle $x \approx \frac{\pi}{2}$, and use it to calculate $y = \sin x \approx 1$.
+
+However, you suspect the angle was not \textit{exactly} equal to $\frac{\pi}{2}$, which means the actual value $y$ is slightly \textit{less than} 1. In order for your value of $y$ to have an error of no more than $\frac1{200}$, how accurate does your measurement of $\theta$ have to be?
+\color{answercolor}
+\onslide<2|handout:0>{\vfill
+Let the actual angle $x$ be $x_0+\Delta x$ with $x_0=\frac{\pi}{2}$, 
+so $\Delta x$ is the error in your measurement. Then 
+let $y_0 = \sin x_0=1$ and $y = \sin x$. Then the error in $y$ is $\Delta y = y-y_0$. 
+
+We want to solve 
+\[-\frac{1}{200}=\Delta y = y-y_0=\sin x - \sin x_0=\sin \left(\frac{\pi}{2}+\Delta x\right) - 1\]
+for (the maximum allowed) $\Delta x$.\vfill
+
+We'll show two solutions.
+}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}<beamer>[t]
+\AnswerBar{2}{3}
+\unote{Example~\eref{text}{eg:taylorPole}}
+\color{answercolor}
+
+\textbf{Solution 1} 
+\begin{align*}
+-\frac{1}{200}&=\sin \left(\frac{\pi}{2}+\Delta x\right) - 1\\
+\frac{199}{200}&=\sin\left(\frac{\pi}{2}+\Delta x\right)\\
+\arcsin\left(\frac{199}{200}\right)&=\frac{\pi}{2}+\Delta x\\
+\Delta x &=\arcsin\left(\frac{199}{200}\right)-\frac{\pi}{2}\\
+\Delta x & \approx -0.10004
+\end{align*}
+So, the error in the measurement should not be more than about $\pm 0.10004$.
+
+The problem with that calculation is the last step -- we had to find the arcsin of some crazy number, so we needed a pretty sophisticated approximation. Solution 2 will also use an approximation, but a much simpler one.
+
+\note{Fine print! The arcsin of 199/200 is not the only number whose sign is 199/200. We're glossing over a lot of plus/minus business here, in order to avoid getting bogged down in inequalities.
+
+You can bring this up soon when we define absolute error -- we often are concerned with magnitude but not sign.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}<beamer>[t]
+\AnswerBar{2}{3}
+\small
+\unote{Example~\eref{text}{eg:taylorPole}}
+\color{answercolor}
+
+\textbf{Solution 2}
+We will replace $f(x)=\sin x$ with its quadratic approximation centred at $a=\frac{\pi}{2}$:
+\begin{align*}
+ \sin x &\approx \sin\frac\pi2 + \cos\frac\pi2\cdot\left(x-\frac{\pi}{2}\right)-\frac12\sin\frac\pi2\cdot\left(x-\frac{\pi}{2}\right)^2\\
+ &=1-\frac12\left(x-\frac{\pi}{2}\right)^2
+\end{align*}
+Now, we adjust the function from the last slide:
+\begin{align*}
+-\frac{1}{200}&=\textcolor{W1}{\sin \left(\frac{\pi}{2}+\Delta x\right)} - 1\\
+\implies -\frac1{200}& \approx \textcolor{W1}{1-\frac12\left(\frac{\pi}{2}+\Delta x-\frac{\pi}{2}\right)^2}-1\\
+&=-\frac12\left(\Delta x\right)^2\\
+\frac{1}{100}&\approx\frac1{\left(\Delta x\right)^2}\\
+\Delta x & \approx \pm\frac1{10}
+\end{align*}
+So, the error in the measurement should not be more than about $\pm \frac1{10}$.
+
+(This accords quite well with Solution 1 -- no arcsine required.)
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\begin{block}{Definition~\eref{text}{def:APPrelError}}
+Let $Q_0$ be the exact value of a quantity and let $Q_0+\Delta Q$ be the measured value. We call \[|\Delta Q|\]
+the \alert{absolute error} of the measurement, and 
+\[100\frac{|\Delta Q|}{Q_0}\]
+the \alert{percentage error} of the measurement.
+\end{block}\pause\vfill
+\color{C1}
+Suppose a bottle of water is labelled as having 500 mL of water, but in fact contains 502. \vfill
+
+\pause\color{answercolor}
+\answer{The absolute error of the labelling is 2, and the percent error is $100\frac{2}{502} =0.4$, or less than one-half of one percent.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\unote{Example~\eref{text}{eg:taylorSphere}}
+\AnswerSpace
+\only<1>{\AnswerYes\QuestionBar{3}{3}}
+\only<2>{\AnswerBar{3}{3}}
+Once again, you find yourself in the position of measuring an angle $x$, which you use to compute $y=\sin x$. Let's say both $x$ and $y$ are positive. If your percentage error in measuring $x$ is at most 1\%, what is the corresponding maximum percentage error in $y$?
+
+Use a linear approximation.
+\color{answercolor}\vfill\small
+\onslide<2|handout:0>
+Let $x_0$ be the actual value of the angle, $x$ be the measured angle, and $\Delta x=x-x_0$. Then let $y(x)=\sin x$ (the computed $y$) and $y_0=\sin x_0$ (the actual $y$), with $\Delta y = y-y_0$.
+
+Using the linear approximation $y(x_0+\Delta x) \approx y(x_0)+y'(x_0)(\Delta x)$:
+\begin{align*}
+\Delta y &= y (x_0+\Delta x)-y(x_0) \approx y'(x_0)\Delta x  
+           = \cos x_0 \cdot \Delta x\\
+\mbox{Note: }1&=100\frac{|\Delta x|}{x_0} \implies 
+            \Delta x = \pm \frac{x_0}{100}
+\\ \implies \Delta y  &\approx \pm\frac{x_0\cos x_0}{100}\\
+\implies 100\frac{| \Delta y|}{y_0}  
+            &\approx 100\frac{\frac{|x_0\cos x_0|}{100}}{y_0} 
+           = \frac{x_0|\cos x_0|}{y_0} = \frac{x_0|\cos x_0|}{\sin x_0} 
+\end{align*}
+Note that when $x_0\approx \frac\pi2$, this percentage error, 
+$\frac{x_0|\cos x_0|}{\sin x_0}$,  is close to 0; when $x_0 \approx 0$, 
+it is about 1. (For the second fact, remember 
+$\lim\limits_{x \to 0}\frac{\sin x}{x}=1$.)
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\section*{3.4.8: Error in Taylor }%Polynomial approximation}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%%----------------------------------------------------------------------------------------
+%------------------------------------------------------------------
+\note{What we're going to do now is introduce an equation that can help us understand the error in our approximations when we use Taylor polynomials. We won't show you exactly where the equation comes from, but I want to give you a little intuition. So the following is another TED talk: it's background to help you understand what we'll be doing later, but you won't be assessed on it.}
+\begin{frame}[t]{Error: what ``causes" error in an estimation?}
+\label{end3.4.7}
+\note<3>{``After linear, the explanations lose some intuitiveness, but it's the same idea."}
+\begin{center}\begin{tikzpicture}
+\myaxis{}{4.1}{5.1}{}{1}{2.5}
+
+\draw(0,0)[M4]node[vertex]{};
+
+\onslide<1>{\draw[M4,ultra thick,opacity=1] (-2,0)--(3,0); }
+\onslide<2|handout:0>{\draw[M4,ultra thick,opacity=1]plot[domain=-3:3](\x,{\x*0.3}); }
+\onslide<3|handout:0>{\draw[M4,ultra thick,opacity=1]plot[domain=-3:3](\x,{\x*0.3+0.2*\x*\x}); }
+\draw[very thick, C1] plot[domain=-4:5,samples=100](\x,{0.2*\x*\x-0.01*\x*\x*\x*\x+0.3*\x});
+\end{tikzpicture}\end{center}
+
+\only<1>{\textcolor{M4}{Constant approximation:} We assume the function doesn't change, but in fact the function does change (its derivative is not always zero).}
+\only<2|handout:0>{\textcolor{M4}{Linear approximation:} We assume the function changes at a constant rate, but in fact the function changes at different rates (its second derivative is not always zero).}
+\only<3|handout:0>{\textcolor{M4}{Quadratic approximation:} We assume the function's derivative changes at a constant rate, but in fact the function's derivative changes at different rates (its third derivative is not always zero).}
+\end{frame}
+%------------------------------------------------------------------
+\begin{frame}[t]{Controlling the ``cause" of the error}
+\note<2>{``The absolute biggest the function could be is here, because it can't grow any faster than this line; the absolute smallest..."}
+\begin{center}\begin{tikzpicture}
+\myaxis{}{4.1}{5.1}{}{1}{2.5}
+\draw(0,0)[M4]node[vertex]{};
+
+\onslide<1-2>{\draw[M4,ultra thick,opacity=1] (-2,0)--(3,0); }
+\onslide<3-|handout:0>{\draw[M4,ultra thick,opacity=1]plot[domain=-3:3](\x,{\x*0.3}); }
+\begin{scope}\clip(-4,-1)rectangle(5,2.5);
+	\onslide<2>{
+		\draw[C3,dashed] (-4,-4)--(4,4) (4,-4)--(-4,4); \fill[C3,opacity=0.3](-4,-4)--(5,5)--(5,-5)--(-4,4)--cycle;}
+	\onslide<4-|handout:0>{
+		\draw[dashed,C3,fill=C3,fill opacity=0.3] plot[domain=-4:5](\x,{\x*\x/10+0.3*\x}) -- plot[domain=5:-4](\x,{-\x*\x/10+0.3*\x}) --cycle; 
+		}
+\end{scope}
+\end{tikzpicture}\end{center}
+
+\only<1-2>{\textcolor{M4}{Constant approximation:} We assume the function doesn't change, but in fact the function does change (its derivative is not always zero). \textcolor{C3}{BUT}: suppose we know the max and min values of the function's slope.}
+\only<3-4|handout:0>{\textcolor{M4}{Linear approximation:} We assume the function changes at a constant rate, but in fact the function changes at different rates (its first derivative is not always zero). \textcolor{C3}{BUT}: suppose we know the max and min values of the function's second derivative.}
+\only<5-|handout:0>{In general, if the ``thing that causes the error" is big, then our error is big. We find the largest and smallest possible errors.}
+\note<5>{TED talk over}
+\end{frame}
+%------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\begin{block}{Error}
+The error in an estimation $f(x) \approx  T_n(x)$ is \textcolor{M4}{$f(x)-T_n(x)$}. We often use \textcolor{M4}{$|f(x)-T_n(x)|$} if we don't care whether the approximation is too big or too little, but only that it is not too egregious.
+\end{block}\vfill
+\begin{block}{Taylor's Theorem -- Equation~\eref{text}{eq:taylorErrorN}}
+For some \textcolor{M3}{$c$} strictly between $x$ and $a$,
+\[f(x)-T_n(x) = \frac{1}{(n+1)!}\textcolor{M3}{f^{(n+1)}(c)}(x-a)^{n+1}\]
+\end{block}\vfill\pause
+
+The trick is bounding $f^{(n+1)}(c)$. It's usually OK to be sloppy here! Also, usually what we care about is the magnitude of the error: $|f(x)-T_n(x)|$.
+\note<2>{The ``sloppiness" allowed in choosing $c$ can be very stressful for students. So it's nice to explain, as you're working problems, what would be reasonable and what would not.}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]\MoreSpace
+Third degree Maclaurin polynomial for $f(x)=e^x$:\pause
+
+\begin{align*}
+T_3(x) &=\scalebox{0.8}{$ f(0)+f'(0)(x-0)+\frac{1}{2!}f''(0)(x-0)^2+\frac{1}{3!}f'''(0)(x-0)^3$}\\
+&=e^0+e^0x+\frac{1}{2!}e^0x^2+\frac{1}{3!}e^0x^3\\
+&=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}
+\end{align*}\pause
+
+Bound the error associated with using $T_3(x)$ to approximate $e^{1/10}$.
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\only<1,3,5,7>{\begin{block}{Taylor's Theorem -- Equation~\eref{text}{eq:taylorErrorN}}
+For some \textcolor{M3}{$c$} strictly between $x$ and $a$,
+\[f(x)-T_n(x) = \frac{1}{(n+1)!}\textcolor{M3}{f^{(n+1)}(c)}(x-a)^{n+1}\]
+\end{block}}
+
+\begin{QuestionSet}
+\SetQuestion{
+Bound the error associated with using $T_3(x)$ to approximate $e^{1/10}$.}
+\SetAnswer{
+Bound the error associated with using $T_3(x)$ to approximate $e^{1/10}$.
+\color{answercolor}\small\vfill
+
+For some $c$ in $(0\,,\,0.1):$
+\begin{align*}
+\underbrace{f(0.1)-T_3(0.1)}_{\textup{error}} &= \frac{1}{4!}\textcolor{C1}{f^{(4)}(c)}(\textcolor{M3}{.1}-0)^4 \\&= \frac{1}{4!}(0.0001)\textcolor{C1}{e^{c}}
+\intertext{For $c$ in $(0\,,\,\textcolor{M3}{0.1})$, $1 \leq \textcolor{C1}{e^c} < e^1 <3$, so}
+\frac{1}{4!}(0.0001)\textcolor{C1}{1} &\leq\underbrace{f(\textcolor{M3}{.1})-T_3(\textcolor{M3}{.1})}_{\textup{error}}\\
+& \leq \frac{1}{4!}(0.0001)\textcolor{C1}{3}\\
+4.2\times 10^{-6} &\leq\underbrace{f(0.1)-T_3(0.1)}_{\text{error}} \leq 
+1.3\times 10^{-5}
+\end{align*}}
+%
+\SetQuestion{
+\unote{Example~\eref{text}{eg:taylorErrorSin}}
+Suppose we use the 5th degree Taylor polynomial centered at $a=\pi/2$ to approximate $f(x)=\cos x$. What could the magnitude of the error be if we approximate $\cos(2)$?
+\vfill
+}
+\SetAnswer{\unote{Example~\eref{text}{eg:taylorErrorSin}}
+Suppose we use the 5th degree Taylor polynomial centered at $a=\pi/2$ to approximate $f(x)=\cos x$. What could the magnitude of the error be if we approximate $\cos(2)$?
+\vfill
+\color{answercolor}\small For some $c$ in $(\pi/2, 2)$:\hfill
+$\underbrace{f(2)-T_5(2)}_{error} = \frac{1}{6!}f^{(6)}(c)(2-\pi/2)^6$\hfill~
+
+Note $f^{(6)}(x)$ is going to be plus or minus sine or cosine, so $-1 \leq f^{(6)}(c) \leq 1$. Also, $0<2-\pi/2<1$. Now:
+
+\[\frac{-1}{6!}=\frac{1}{6!}(-1)(1)^6\leq 
+f(2)-T_5(2) \leq \frac{1}{6!}(1)(1)^6=\frac{1}{6!}\]
+
+And $\frac{1}{6!} \approx 0.0014$.
+Be very careful with positives and negatives here :)
+\vfill\color{black}
+We don't actually have to compute $T_5(x)$, but if you want to as an exercise, click \href{https://www.desmos.com/calculator/y1h1ciauoa}{\textcolor{blue}{here}} to see the result.
+}
+%
+\SetQuestion{Suppose we use a third degree Taylor polynomial centred at 4 to approximate $f(x)=\sqrt{x}$. If we use this Taylor polynomial to approximate $\sqrt{4.1}$, give a bound for our error.}
+\SetAnswer{Suppose we use a third degree Taylor polynomial centred at 4 to approximate $f(x)=\sqrt{x}$. If we use this Taylor polynomial to approximate $\sqrt{4.1}$, give a bound for our error.
+\vfill
+\color{answercolor}
+For some $c$ in $(4,4.1)$, $|f(4.1)-T_3(4.1)|
+=\big|\frac{1}{4!}f^{(4)}(c)(4.1-4)^4\big| 
+= \frac{0.1^4}{4!}\big|f^{(4)}(c)\big|$
+\vfill
+So, let's investigate $f^{(4)}(c)$. First we find that the fourth derivative of $f(x)=x^{1/2}$ is $f^{(4)}(x) = \frac{-15}{16}x^{-7/2}$. So, for $c$ in $(4.1,4)$, we have
+$|f^{(4)}(c)|=\left|\frac{-15}{16\sqrt{c^7}}\right|
+=\frac{15}{16\sqrt{c^7}} \leq \frac{15}{16(\sqrt{4})^7} =
+\frac{15}{16\cdot 2^7} $
+\vfill
+So, the error is bounded by:
+$|f(4.1)-T_3(4.1)| \leq \frac{0.1^4}{4!}\cdot\frac{15}{16\cdot 2^7} \approx 0.00000003$
+}
+%
+\SetQuestion{Suppose you want to approximate the value of $e$, knowing only that it is somewhere between 2 and 3. You use a 4th degree Maclaurin polynomial for $f(x)=e^x$ to approximate $f(1)=e^1=e$. Bound your error.}
+\SetAnswer{Suppose you want to approximate the value of $e$, knowing only that it is somewhere between 2 and 3. You use a 4th degree Maclaurin polynomial for $f(x)=e^x$ to approximate $f(1)=e^1=e$. Bound your error.
+\vfill\color{answercolor}
+For some $c$ in $(0,1)$:
+$|f(1)-T_4(1)| = \left|\frac{1}{5!}f^{(5)}(c)(1-0)^5\right|=\frac{1}{5!}e^c \leq \frac{1}{5!}e^1<\frac{3}{5!}=0.025 $
+}
+\end{QuestionSet}
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}
+Computing approximations uses resources. We might want to use as few resources as possible while ensuring sufficient accuracy.
+\vfill
+A reasonable question to ask is: which approximation will be good enough to keep our error within some fixed error tolerance?
+\end{frame}
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]{\only<-6>{Which Degree?}}
+\begin{QuestionSet}
+\SetQuestion{Suppose you want to approximate $\sin{3}$ using a Taylor polynomial of $f(x)=\sin x$ centered at $a=\pi$. If the magnitude of your error must be less than $0.001$, what degree Taylor polynomial should you use?}
+\SetAnswer{Suppose you want to approximate $\sin{3}$ using a Taylor polynomial of $f(x)=\sin x$ centered at $a=\pi$. If the magnitude of your error must be less than $0.001$, what degree Taylor polynomial should you use?
+\vfill\color{answercolor}
+We want the magnitude of the error, so let's deal with absolute values. For some $c$ in $(3,\pi)$:
+
+\begin{align*}
+|f(3)-T_n(3)|&=\left|\frac{1}{(n+1)!}f^{(n+1)}(c)(3-\pi)^{n+1}\right|
+               =\frac{|3-\pi|^{n+1}}{(n+1)!}\left|f^{(n+1)}(c)\right| \\ 
+&\leq \frac{(0.2)^{n+1}}{(n+1)!}(1) = \frac{0.2^{n+1}}{(n+1)!} 
+\end{align*}
+
+If we plug in $n=2$, we get $\frac{0.2^{n+1}}{(n+1)!} =0.00133...$, which is not SMALLER than $0.001$. If we plug in $n=3$, we get $\frac{0.2^{n+1}}{(n+1)!} =0.000066...$ which IS smaller than 0.001. So we have to use the degree 3 Taylor polynomial.
+}
+%
+\SetQuestion{
+Suppose you want to approximate $e^5$ using a Maclaurin polynomial of $f(x)=e^x$. If the magnitude of your error must be less than $0.001$, what degree Maclaurin polynomial should you use?}
+\SetAnswer{Suppose you want to approximate $e^5$ using a Maclaurin polynomial of $f(x)=e^x$. If the magnitude of your error must be less than $0.001$, what degree Maclaurin polynomial should you use?\color{answercolor}\vfill
+
+The magnitude of the error means its absolute value. Our error is, for some $c$ in $(0,5)$: 
+\[
+f(5)-T_n(5) = \frac{1}{(n+1)!}f^{(n+1)}(c)(5-0)^{n+1} = \frac{1}{(n+1)!}e^c5^{n+1}
+\]
+
+We can bound $e^c$ for $c$ in $(0,5)$ by $1=e^0 <e^c<e^5<3^5$. So now:
+
+\[
+0\le f(5)-T_n(5) \leq \frac{1}{(n+1)!}\cdot 3^5 \cdot 5^{n+1}
+\]
+
+We want $\frac{1}{(n+1)!}\cdot 3^5 \cdot 5^{n+1}<0.001$, and by plugging in different values of $n$, we find the smallest $n$ that makes the inequality true is $n=21$. So we can use the 21st-degree Maclaurin polynomial and get our desired error.
+}
+%
+\SetQuestion{Suppose you want to approximate $\log\frac{4}{3}$ using a Taylor polynomial of $f(x)=\log{x}$ centred at $a=1$. If the magnitude of your error must be less than $0.001$, what degree Taylor polynomial should you use?}
+\SetAnswer{Suppose you want to approximate $\log\frac{4}{3}$ using a Taylor polynomial of $f(x)=\log{x}$ centred at $a=1$. If the magnitude of your error must be less than $0.001$, what degree Taylor polynomial should you use?\vfill
+\color{answercolor}\small
+Your error will be: $f(3)-T_n(3) = 
+    \frac{1}{(n+1)!}f^{(n)}(c)\big(\frac{4}{3}-1\big)^{n+1}$ 
+for some $c$ in $(1,4/3)$. So, we need to bound $f^{(n)}(c)$. By writing out a number of derivatives of natural log, we notice that for $n \geq 1$, $f^{(n)}(c)=(-1)^{n-1}(n-1)!c^{-n}$. So, $f^{(n+1)}(c) = (-1)^nn!c^{-(n+1)}$. For $c$ in $(1,4/3)$:
+\[\frac{n!}{(4/3)^{n+1}} \leq |f^{(n+1)}(c)| \leq \frac{n!}{1^{n+1}}=n! \]
+
+Now for the error:
+
+\[
+| f(3)-T_n(3)| \leq \frac{1}{(n+1)!} \cdot n! \cdot 
+\left(\frac{4}{3}-1\right)^{n+1} = \frac{1}{(n+1)3^{n+1}}\]
+
+Setting this $<0.001$, we find by plugging in values of $n$ that $n=4$ is the smallest $n$ that makes the inequality true. So, using $T_4(x)$ will give us our desired error. }
+%
+\SetQuestion{Let $f(x)=\sqrt[4]{x}$. Suppose you use a second-degree Taylor polynomial of $f(x)$ centered at $a=81$ to approximate $\sqrt[4]{81.2}$. Bound your error, and tell whether $T_2(10)$ is an overestimate or underestimate.}
+\SetAnswer{\small Let $f(x)=\sqrt[4]{x}$. Suppose you use a second-degree Taylor polynomial of $f(x)$ centered at $a=81$ to approximate $\sqrt[4]{81.2}$. Bound your error, and tell whether $T_2(10)$ is an overestimate or underestimate.
+\vfill
+\color{answercolor}
+Taylor's Theorem tells us that, for some $c$ in $(81,81.2)$ :
+\[f(81.2)-T_2(81.2)=\frac{1}{3!}f^{(3)}(c)(81.2-81)^3=\frac{1}{6}\cdot \left(\frac{1}{5}\right)^3f^{(3)}(c)=\frac{1}{6\cdot 5^3}f^{(3)}(c)\]
+
+So, we should probably find out what $f^{(3)}(x)$ is. Since $f(x)=x^{1/4}$, it's not too hard to figure out $f'''(x)=\frac{21}{4^3}x^{-11/4}$. So, %$f'''(c)=\frac{21}{4^3c^{11/4}}$. Plugging in:
+
+\[f(81.2)-T_2(81.2)=\frac{1}{6\cdot 5^3}\cdot\frac{21}{4^3c^{11/4}} = \frac{7}{2\cdot 4^3 \cdot 5^3 \cdot c^{11/4}}\]
+
+Now our job is to bound this, and we should use reasonable numbers.
+\begin{align*}
+81 \leq &c \leq 81.2\\
+3=81^{1/4} \leq &c^{1/4} \leq 81.2^{1/4}<4\\
+% (\sqrt[4]{81})^{11} \leq &c^{11/4} \leq \sqrt[4]{81.2}^{11}\\
+%3^{11} \leq &c^{11/4} \leq 4^{11}\\
+%\frac{1}{4^{11}} \leq &\frac{1}{c^{11/4}} \leq 
+%\frac{1}{3^{11}}\\
+0<\frac{7}{2\cdot4^3\cdot5^3\cdot 4^{11}}
+        \leq &\frac{7}{2\cdot4^3\cdot5^3\cdot c^{11/4}}
+         \leq\frac{7}{2\cdot4^3\cdot5^3\cdot 3^{11}}
+    \le 0.0000000025
+\end{align*}
+%So, $0< \frac{7}{2\cdot4^3\cdot5^3\cdot 4^{11}}\leq f(x)-T_2(x)\leq\frac{7}{2\cdot4^3\cdot5^3\cdot 3^{11}}\le 0.0000000025$
+
+Since $f(x)-T_2(x)$ is positive, $T_2(x)$ is an underestimate.
+}
+\end{QuestionSet}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%-------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------

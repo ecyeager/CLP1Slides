@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+
+\draw plot[domain=-5:5,smooth,samples=5000](\x,{sin(10*\x r)/(10*\x)});
+
+\end{tikzpicture}
+\end{document}
+%sin x / x

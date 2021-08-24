@@ -1,0 +1,8 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[xscale=4]
+\draw plot[domain=0.005:1.25,smooth,samples=10000](\x,{sin(1/\x r)});
+\draw plot[domain=0.005:1.25,smooth,samples=10000]({-\x},{sin(1/\x r)});
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,373 @@
+% Copyright 2021 Joel Feldman, Andrew Rechnitzer and Elyse Yeager, except where noted.
+% This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+% https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+ \begin{frame}{Table of Contents \only<beamer>{\hfill \hyperlink{1.1start}{\beamerskipbutton{skip chapter intro}}}}
+\mapofcontentsA{\roc}
+\note{We'll start by introducing ``big ideas" before we get to the actual textbook content. We use scenarios that have a lot of intuition behind them, rather than purely abstract examples.
+
+We go through: constant rate of change, non-constant rate of change, average vs continuous rate of change, tangent and secant lines}
+ \end{frame}
+ %--------
+ %--------
+\section{Big Ideas}
+\begin{frame}{Rates of Change}
+Suppose the population of a small country was 1 million individuals in 1990, and is growing at a steady rate of 20,000 individuals per year.\pause
+\begin{center}
+\begin{tikzpicture}[xscale=1.3,yscale=1.2]
+\myaxis{x}{0}{6}{y}{0}{3}
+\ycoord{1}{1\mbox{ mil}}
+\xcoord{1}{1990}
+\draw (1,1) node[vertex](1){};
+\onslide<3->{
+	\xcoord{2}{2000}}
+\onslide<4->{
+	\ycoord{1.4}{1.2 \mbox{ mil}}
+	\draw (2,1.4) node[vertex](2){};
+	\draw(1)--(2);}
+\onslide<5->{
+	\xcoord{3}{2010}}
+\onslide<6->{
+	\ycoord{1.8}{1.4 \mbox{ mil}}
+	\draw (3,1.8) node[vertex](3){};
+	\draw(3)--(2);}
+\onslide<7->{
+	\draw (3)--(5,2.6);}
+	\draw (5.5,2.6) node{$P(x)$};
+\end{tikzpicture}\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\begin{defn}
+The \textbf{slope} of a line that passes through the points $(x_1,y_1)$ and
+$(x_2,y_2)$ is ``rise over run" \[\dfrac{\Delta y}{\Delta x} = \dfrac{y_2-y_1}{x_2-x_1}.\] This is also called the \textbf{rate of change} of the function.
+
+If a line has equation $y=mx+b$, its slope is $m$.
+\end{defn}
+\end{frame}
+ %--------
+\begin{frame}
+\begin{center}
+\begin{tikzpicture}[xscale=1.3,yscale=1.2]
+\myaxis{x}{0}{6}{y}{0}{3}
+\ycoord{1}{1\mbox{ mil}}
+\xcoord{1}{1990}
+\draw (1,1) node[vertex](1){};
+	\xcoord{2}{2000}
+	\ycoord{1.4}{1.2 \mbox{ mil}}
+	\draw (2,1.4) node[vertex](2){};
+	\draw(1)--(2);
+	\xcoord{3}{2010}
+	\ycoord{1.8}{1.4 \mbox{ mil}}
+	\draw (3,1.8) node[vertex](3){};
+	\draw(3)--(2);
+	\draw (3)--(5,2.6);
+	\draw (5.5,2.6) node{$P(x)$};
+\onslide<2->{
+	\draw[C3, dashed] (1,1)-|(3,1.8);
+	\draw[C3] (2,1) node[below]{$\Delta x$};
+	\draw[C3] (3,1.4) node[right]{$\Delta y$};
+	\draw[C3] (1) node[vertex]{};
+	\draw[C3] (3) node[vertex]{};}
+\end{tikzpicture}\end{center}
+\onslide<3-|handout:0>{
+	\textcolor{C3}{Rate of change: $\dfrac{400,000 \mbox{ people}}{20\mbox{ years}}=20,000~\dfrac{\mbox{people}}{\mbox{year}}$}}
+
+\onslide<4-|handout:0>{ (doesn't depend on the year)}
+	\note<1>{We see that the rate of change is the same whether measuring over one year (given information) or two years (calculated)}
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+
+%\begin{frame}[t]{Rates of Change}
+%Suppose the population of a small country is given in the chart below.\pause
+%\begin{center}
+%\begin{tikzpicture}[scale=0.8]
+%\aaxis{1}{8}{1}{5}
+%\foreach \y in {1,2,3,4}{
+%	\ycoord{\y}{\y\mbox{ mil}}}
+%\xcoord{1}{1990}
+%\xcoord{3}{2000}
+%\xcoord{5}{2010}
+%\xcoord{7}{2020}
+%\draw (1,1)--(7,4) node[right]{$P(x)$};
+%\foreach \x in {1,...,4}
+%	{\draw (2*\x-1,\x) node[vertex]{};}
+%\end{tikzpicture}\end{center}
+%\pause
+%Rate of change: $\dfrac{\Delta P}{\Delta x}$\pause $ =1\mbox{ mil}$ people per ten %years \pause = 100,000 ppl per year
+%\end{frame}
+ %--------
+
+
+%----------------------------------------------------------------------------------------
+
+%\subsection{Non-constant Rates of Change}
+\begin{frame}[t]
+Suppose the population of a small country is given in the chart below.\pause
+\begin{center}
+\begin{tikzpicture}[yscale=0.75]
+\myaxis{x}{0}{8}{y}{0}{5.25}
+\xcoord{1}{1990}
+\xcoord{3}{2000}
+\xcoord{5}{2010}
+\xcoord{7}{2020}
+\foreach \y in {0.1,0.9,2.5,4.9}{
+	\ycoord{\y}{\y\mbox{ mil}}}
+\draw plot[domain=1:7](\x,{\x*\x/10}) node[right]{$P(x)$};
+\draw (1,.1) node[vertex]{};
+\draw (3,.9) node[vertex]{};
+\draw (5,2.5) node[vertex]{};
+\draw (7,4.9) node[vertex]{};
+	\color{W1}
+\onslide<5-|handout:0>{
+	\draw[dashed] (1,.1)-|(3,.9);}
+\onslide<6-|handout:0>{
+	\draw (2,1) node[above]{$\dfrac{0.8\mbox{ mil ppl}}{10\mbox{ years}}$};}
+\onslide<7-|handout:0>{
+	\draw[dashed] (5,2.5)-|(7,4.9);}
+\onslide<8-|handout:0>{
+	\draw (5,4) node[above]{$\dfrac{2.4\mbox{ mil ppl}}{10\mbox{ years}}$};}
+	\color{black}
+\end{tikzpicture}\end{center}
+\pause
+\onslide<handout:0>{Rate of change $\dfrac{\Delta \mbox{ pop}}{\Delta \mbox{ time}}$ \pause depends on time interval}
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+
+\begin{frame}
+\begin{defn}
+Let $y=f(x)$ be a curve that passes through $(x_1,y_1)$ and $(x_2,y_2)$. Then the \textbf{average rate of change} of $f(x)$ when $x_1 \leq x \leq x_2$ is
+\[\frac{\Delta y}{\Delta x} = \dfrac{y_2-y_1}{x_2-x_1}\]
+\end{defn}\end{frame}
+ %--------
+\begin{frame}
+\begin{center}
+\begin{tikzpicture}[yscale=0.6]
+\myaxis{x}{0}{8}{x}{0}{5.25}
+\xcoord{1}{1990}
+\xcoord{3}{2000}
+\xcoord{5}{2010}
+\xcoord{7}{2020}
+\foreach \y in {0.1,0.9,2.5,4.9}{
+	\ycoord{\y}{\y\mbox{ mil}}}
+\draw plot[domain=1:7](\x,{\x*\x/10}) node[right]{$P(x)$};
+\draw (1,.1) node[vertex]{};
+\draw (3,.9) node[vertex]{};
+\draw (5,2.5) node[vertex]{};
+\draw (7,4.9) node[vertex]{};
+\onslide<handout:0>{	\color{W1}
+	\draw[dashed] (1,.1)|-(3,.9);
+	\draw (2,1) node[above]{$\dfrac{0.8\mbox{ mil ppl}}{10\mbox{ years}}$};
+	\draw[dashed] (5,2.5)-|(7,4.9);
+	\draw (5,4) node[above]{$\dfrac{2.4\mbox{ mil ppl}}{10\mbox{ years}}$};}
+\end{tikzpicture}\end{center}
+
+\onslide<handout:0>{Average rate of change from 1990 to 2000:\\ \pause $80,000$ people per year.\\ \vfill
+Average rate of change from 2010 to 2020:\\\pause $240,000$ people per year.}
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]%{Average Rate of Change and Slope}
+\begin{block}{Average Rate of Change and Slope}
+The \alert{average rate of change} of a function $f(x)$ on the interval $[a,b]$ (where $a \neq b$) is ``change in output" divided by 	``change in input:"
+\[\frac{f(b)-f(a)}{b-a}\]\pause
+
+If the function $f(x)$ is a \alert{line}, then the slope of the line is ``rise over run,"
+\[\frac{f(b)-f(a)}{b-a}\]
+\end{block}
+\end{frame}
+%--------------
+\begin{frame}
+\note<1>{Say this frame out loud while \textbf{showing} the previous frame. It sums up our ``big ideas" section.
+
+At the end can add: let's think about what slope might mean in the context of rates of change for functions that aren't lines}
+If a function is a line, its slope is the same as its average rate of change, which is the same for every interval.\vfill
+
+If a function is not a line, its average rate of change might be different for different intervals, and we don't have a definition (yet) for its ``slope."
+%\only<2>{\begin{defn}
+%The \textbf{slope} of a line that passes through the points $(x_1,y_1)$ and
+%$(x_2,y_2)$ is ``rise over run" \[\dfrac{\Delta y}{\Delta x} = \dfrac{y_2-y_1}{x_2-x_1}.\] This is also called the \textbf{rate of change} of the function.
+%
+%If a line has equation $y=mx+b$, its slope is $m$.
+%\end{defn}}
+%
+%\only<3>{\begin{defn}
+%Let $y=f(x)$ be a curve that passes through $(x_1,y_1)$ and $(x_2,y_2)$. Then the \textbf{average rate of change} of $f(x)$ on the interval $x_1 \leq x \leq x_2$ is
+%\[\frac{\Delta y}{\Delta x} = \dfrac{y_2-y_1}{x_2-x_1}\]
+%\end{defn}}
+%
+%\only<4>{\textcolor{C3}{The average rate of change for a straight line is always the same, regardless of the interval we choose. We call it the slope of the line. If a curve is not a straight line, its average rate of change will differ over different intervals.}}
+\end{frame}
+ %--------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%\subsection{Instantaneous Rates of Change}
+\begin{frame}[t]%{Rates of Change}
+How fast was this population growing in the year 2010? (What was its \alert{instantaneous} rate of change?)
+\note<1>{Mention it was slower before 2010, and faster after 2010}
+\note<3>{``We can start by looking at an interval around 2010. " show $\pm 10$ as an example that will make students uncomfortable. Note that the average rate of change is the slope of the line between the two points, but the line and the curve look pretty different.
+
+ Then move to $\pm 1$. ``This is getting hard to see, so let's zoom in." Same, now note the line and the curve are getting closer.
+
+``But we don't care about 2009, or 2019. So let's just look at Jan 2010 to Dec 2010." More zooming. Note it's basically a line now.}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\myaxis{x}{0}{8}{y}{0}{5.25}
+\xcoord{1}{1990}
+\xcoord{3}{2000}
+\xcoord{5}{2010}
+\xcoord{7}{2020}
+\foreach \y in {0.1,0.9,2.5,4.9}{
+	\ycoord{\y}{\y\mbox{ mil}}}
+\draw plot[domain=1:7](\x,{\x*\x/10}) node[right]{$P(x)$};
+\draw (1,.1) node[vertex]{};
+\draw (3,.9) node[vertex]{};
+\draw (5,2.5) node[vertex]{};
+\draw (7,4.9) node[vertex]{};
+
+\onslide<handout:0>{
+	\color{W1}
+\only<1>{
+	\draw[dashed] (1,.1)-|(3,.9);
+	\draw (2,1) node[above]{$\dfrac{0.8\mbox{ mil ppl}}{10\mbox{ years}}$};
+	\draw[dashed] (5,2.5)-|(7,4.9);
+	\draw (5,4) node[above]{$\dfrac{2.4\mbox{ mil ppl}}{10\mbox{ years}}$};}
+
+\color{W1}
+\onslide<3-4>{
+	\draw[thick] (3,.9) node[vertex]{};
+	\draw (7,4.9) node[vertex]{};	
+    	\draw[thick, dashed] (3,.9)-|(7,4.9) ;}
+\onslide<4>{
+	\draw[thick] (2.1,0)--(7.5,5.4);}
+	
+\onslide<5->{
+	\draw(4.8,.2)|-(4.4,-1)node[below,xshift=-2mm]{2009};
+	\draw(5.2,.2)|-(5.8,-1)node[below,xshift=2mm]{2011};
+
+	\draw[thick] (5.2,2.7) node[vertex]{};
+	\draw (4.8,2.3) node[vertex]{};		
+	}
+\onslide<6->{
+	\draw[thick, densely dotted] (4.8,2.3)-|(5.2,2.7) ;	}
+	}%not on handout
+\end{tikzpicture}\end{center}\end{frame}
+%-----------
+\begin{frame}<handout:0>
+How fast was this population growing in the year 2010?
+\begin{center}\begin{tikzpicture}	
+\draw[thick] plot[domain=4.79:5.21,scale=15]({\x},{\x*\x/10});
+\draw (75,37.5)node[vertex]{};
+\draw (75,34.4)--(75,34.2)node[below]{2010};
+\color{W1}
+\draw[dashed] (72,34.56)node(a)[vertex]{}-|(78,40.56)node(b)[vertex]{};
+\draw (72,34.4)--(72,34.2)node[below]{2009};
+\draw (78,34.4)--(78,34.2)node[below]{2011};
+\onslide<2>{
+\draw[very thick] (a)--(b);}
+\end{tikzpicture}\end{center}
+
+
+\end{frame}
+ %--------
+ %--------
+\note{So these are the big ideas we'll be thinking about: rates of change, measured as average over a large interval or over a very small one.
+
+In the case of a line, average rate of change is the slope. In the case or a curve, sometimes we can zoom in close and the curve looks like a line. So the average rate of change over a small interval will look something like the slope of a line. }
+ 
+ %------------------------------------
+\label{1.1start}
+\section{1.1 Drawing Tangents}
+ \begin{frame}{Table of Contents}
+\mapofcontentsA{\aa}
+ \end{frame}
+ %--------
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\only<1-4>{
+\begin{defn}
+The \textbf{secant line} to the curve $y=f(x)$ through points $R$ and $Q$ is a line that
+passes through $R$ and $Q$.\\[1em]
+
+\onslide<4>{We call the slope of the secant line the \textbf{average rate of change of $f(x)$ from $R$ to $Q$.}}
+\end{defn}}
+\only<5->{
+\begin{defn}
+The \textbf{tangent line} to the curve $y=f(x)$ at point $P$ is a line that
+\begin{itemize}
+\item[\textbullet] passes through $P$ and
+\item[\textbullet] has the same slope as $f(x)$ at $P$.
+\end{itemize}
+
+\onslide<8->{We call the slope of the tangent line the \textbf{instantaneous rate of change of $f(x)$ at $P$.}}
+\end{defn}}
+
+\begin{center}\begin{tikzpicture}[scale=0.4]
+\draw plot[domain=.5:7.3](\x,{\x*\x/10});
+\onslide<2->{\draw (1,.1) node[vertex, label=left:$R$]{};}
+\onslide<6->{\draw (5,2.5) node[vertex, label=right:$P$]{};}
+\onslide<2->{\draw (7,4.9) node[vertex, label=left:$Q$]{};}
+\color{W1}
+\onslide<7->{
+	\draw[thick] plot[domain=2:7](\x,{\x-2.5});
+	\draw (7,4) node[right]{tangent line};}
+\onslide<3->{
+	\color{orange}
+	\draw[thick] (1,.1) node[vertex]{}--(7,4.9) node[vertex]{};
+	\draw[thick] plot[domain=-.21:8](\x,{.8*\x-.7}) node[right]{secant line};}
+\only<4>{\draw[orange, dashed] (1,.1)-|(7,4.9);}
+\color{black}
+\end{tikzpicture}\end{center}
+\note<8>{Verbally: we haven't formally defined the slope of a curve yet, but think of it as the slope of the \textit{line} that the curve looks like, if you zoom way in.
+
+When P pops up, draw the tangent by hand before clicking to it, to demonstrate what you mean.}
+\end{frame}
+ %--------
+
+
+\begin{frame}
+\begin{multicols}{2}
+ On the graph below, draw the secant line to the curve through points $P$ and $Q$.
+\begin{center}
+\begin{tikzpicture}%[scale=0.75]
+\myaxis{x}{0}{4.6}{y}{0}{4.2}
+\draw[step=0.25cm, gray, dotted, ultra thin] (0,0) grid (5,4);
+\draw[scale=1,domain=0:4.6,smooth,variable=\x,C2, ultra thick] plot ({\x},{sin(\x r)+2});
+\draw (1,2.82) node[C2, vertex, minimum size=3mm, label=above:$P$]{};
+\draw (3,2.15) node[C2,vertex, minimum size=3mm, label=above:$Q$]{};
+\onslide<2-|handout:0>{
+	\draw[W1, thick] plot[domain=0:4.6](\x,{3.155-.335*\x});}
+\end{tikzpicture}
+\end{center}
+\columnbreak
+
+ On the graph below, draw the tangent line to the curve at point $P$.
+
+\begin{center}
+\begin{tikzpicture}%[scale=0.75]
+\myaxis{x}{0}{4.6}{y}{0}{4.2}
+\draw[step=0.25cm, gray, dotted, ultra thin] (0,0) grid (5,4);
+%\draw[step=1cm, ultra thin] (0,0) grid (5,5);
+\draw[scale=1,domain=0:4.8,smooth,variable=\x,C2, ultra thick] plot ({\x},{sin(\x r)+2});
+\draw (1,2.8) node[C2,vertex,minimum size=3mm, label=above:$P$]{};
+\onslide<3-|handout:0>{
+	\draw[W1, thick] plot[domain=0:3](\x,{2.28+.54*\x});}
+\end{tikzpicture}
+\end{center}
+\end{multicols}
+\end{frame}
+ %--------
+ 
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
