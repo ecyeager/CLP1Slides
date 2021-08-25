@@ -84,7 +84,7 @@ To change the version of the file (beamer, handout, prep), change which headers 
 
 \vfill
 
-Individual .tex files are compiled with pdflatex. From the \texttt{src} folder, \texttt{pdflatex --output-directory ../pdfs  <filename> } will put the PDF into the folder \texttt{pdf}.
+Individual .tex files are compiled with pdflatex. From the \texttt{src} folder, \texttt{pdflatex -output-directory=../pdfs  <filename> }will put the PDF into the folder \texttt{pdf}.
 \end{frame}
 
 %----------------------------------------------------------------------------------------
@@ -139,11 +139,11 @@ There are no further customization options after the lists of sections and weeks
 \end{frame}
 
 %----------------------------------------------------------------------------------------
-\begin{frame}{{BuildPDFs\_slow.py} vs. {BuildPDFs\_parallel.py}}
-\texttt{BuildPDFs\_parallel.py} uses parallel processing to speed things up. It also uses latexmk, which requires Perl to be installed. The parallel file has the option to delete auxiliary files. You only need to run \texttt{BuildPDFs\_parallel.py} once.
+\begin{frame}{{buildPDFs\_slow.py} vs. {buildPDFs\_parallel.py}}
+\texttt{buildPDFs\_parallel.py} uses parallel processing to speed things up. It also uses latexmk, which requires Perl to be installed. The parallel file has the option to delete auxiliary files. You only need to run \texttt{buildPDFs\_parallel.py} once.
 \vfill
 
-\texttt{BuildPDFs\_slow.py} compiles files one-at-a-time using pdflatex. It is slower, but might work out-of-the-box on more machines -- for example, Windows machines without Perl installed. The repository does not track auxiliary files, so using this option you will initially have to compile twice to generate the navigation bars in the headers and to make the internal references work.
+\texttt{buildPDFs\_slow.py} compiles files one-at-a-time using pdflatex. It is slower, but might work out-of-the-box on more machines -- for example, Windows machines without Perl installed. The repository does not track auxiliary files, so using this option you will initially have to compile twice to generate the navigation bars in the headers and to make the internal references work.
 \end{frame}
 
 %----------------------------------------------------------------------------------------
