@@ -37,7 +37,3 @@
 src/*Beamer.tex
 src/*Prep.tex
 src/*Handout.tex
-
-#ignore PDFs to keep the change logs clean, except ReadMe
-*.pdf
-!ReadMe.pdf
