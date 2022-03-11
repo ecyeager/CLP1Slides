@@ -117,17 +117,15 @@ You have a lot of data that more-or-less resembles a line. Which line does it mo
 %----------------------------------------------------------------------------------------
 \begin{frame}[t]
 \begin{block}{Extrema -- Definition~\eref{text}{def:APPlocalMaxMin}}
-Let $a \le b$ and let the function $f(x)$ be defined for all $x$ in the interval $[a,b]$. Let $a \le c \le b$.
+Let $I$ be an interval, and let the function $f(x)$ be defined for all $x \in I$. Now let $c\in I$. 
 \begin{itemize}
-\item We say that $f(x)$ has a \alert{global / absolute minimum} at $x=c$ if $f(x) \ge f(c)$ for all $a \le x \le b$.
-\item We say that $f(x)$ has a \alert{global / absolute maximum} at $x=c$ if $f(x) \le f(c)$ for all $a \le x \le b$.
-\end{itemize}
-Now let $a<c<b$.
-\begin{itemize}
-\item We say that $f(x)$ has a \alert{local minimum} at $x=c$ if there are $a'$ and $b'$ obeying
-$a \le a' < c < b' \le b$ such that $f(x) \ge f(c)$ for all $x$ obeying $a' < c < b'$.
-\item We say that $f(x)$ has a \alert{local maximum} at $x=c$ if there are $a'$ and $b'$ obeying
-$a \le a' < c < b' \le b$ such that $f(x) \le f(c)$ for all $x$ obeying $a' < c < b'$.
+\item  We say that $f(x)$ has a \alert{global (or absolute)
+minimum on the interval $I$} at the point $x=c$ if $f(x)\ge f(c)$ for all $x\in I$.
+\item We say that $f(x)$ has a \alert{global (or absolute)
+maximum on $I$} at $x=c$ if $f(x)\le f(c)$ for all $x\in I$.
+\item We say that $f(x)$ has a \alert{local minimum at $x=c$}
+if $f(x)\ge f(c)$ for all $x\in I$ that are near $c$. 
+\item We say that $f(x)$ has a \alert{local maximum at $x=c$} if $f(x)\le f(c)$ for all $x\in I$ that are near $c$. 
 \end{itemize}
 The maxima and minima of a function are called the \alert{extrema} of that function.
 \end{block}
@@ -206,34 +204,6 @@ If a function $f(x)$ has a local maximum or local minimum at $x=c$ and if $f'(c)
 \end{block}
 \end{frame}
 %----------------------------------------------------------------------------------------
-\begin{frame}[t]{Multiple Choice}
-\AnswerSpace
-\only<1-2>{\AnswerYes\QuestionBar{1}{3}}
-\only<3>{\AnswerBar{1}{3}}
-Suppose $f(x)$ has domain $(-\infty,\infty)$.
-
-If $f$ has a local minimum at $x=2$, then:
-\begin{enumerate}[A.]
-\item $f'(2)=0$
-\item $f'(2)$ DNE
-\alert<3|handout:0>{\item $f'(2)=0$ OR $f'(2)$ DNE}
-\item $f(2)=0$
-\item Not necessarily any of the above
-\end{enumerate}\pause
-
-\only<beamer>{\begin{center}
-\begin{tikzpicture}
-\myaxis{x}{1}{5}{y}{1}{2}
-\draw[ultra thick, C1] plot[domain=-3:3] ({\x+2},{\x*\x/3-1});
-
-\draw (3,-.66) node[vertex](5){};
-
-\draw (5) node[shape=circle, minimum size=1cm, inner sep=0, draw]{};
-
-\end{tikzpicture}\end{center}}
-\note<2>{``If the derivative exists and is nonzero, then the function is higher on one side of $x=2$ and lower on the other, so $x=2$ is neither a max nor a min"}
-
-\end{frame}
 %----------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------
 \begin{frame}[t]{Multiple Choice}
@@ -419,6 +389,7 @@ To find \textcolor{C3}{local extrema}:
 \begin{itemize}
 \item[-] Could be at \onslide<2-|handout:0>{\textcolor{M4}{critical points ($f'(x)=0$)}}
 \item[-] Could be at \onslide<2-|handout:0>{\textcolor{M3}{singular points ($f'(x)$ DNE)}}
+\item[-] Could be at \onslide<2-|handout:0>{\textcolor{M5}{endpoints}}
 \item[-] At these points, check whether there is some interval around $x$ where $f(x)$ is no larger than the other numbers, or no smaller. (A sketch helps. The signs of the derivatives on either side of $x$ are also a clue.)\end{itemize}
 
 To find \textcolor{C3}{global extrema}:
@@ -471,7 +442,7 @@ Of these, -4 is the smallest and $\sqrt[3]{36}$ is the largest, so
 the global max is $\sqrt[3]{36}$ at $x=10$, and the global min is $-4$ at $x=0$.
 
 \vfill
-Then it's pretty clear that $x=0$ is a local min.  Since $-1$ and $10$ are endpoints, they can't be local extrema. So, what of $x=8$? When $x$ is slightly smaller than $8$, or slightly larger than $8$, $f'(x)$ is positive; so $f(x)$ is increasing to the left of 8 and also to the right of 8. Then $8$ is neither a local max nor a local min.\vfill}
+Then it's pretty clear that $x=0$ is a local min. Regarding the endpoints, since $f'(-1)<0$, $x=-1$ is the location of a local maximum. Since $f'(10)>0$ $x=10$ is the location of a local maximum as well. So, what of $x=8$? When $x$ is slightly smaller than $8$, or slightly larger than $8$, $f'(x)$ is positive; so $f(x)$ is increasing to the left of 8 and also to the right of 8. Then $8$ is neither a local max nor a local min.\vfill}
 \end{frame}
 %----------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------
