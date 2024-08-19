@@ -252,7 +252,7 @@ if print_weeks:
 # Make PDFs for miscellaneous files
 #################################################################
 if print_studentworkbook:
-	build_pdf('StudentWorkbook')
+	build_pdf('CLP1StudentWorkbook')
 
 if print_review:
 	for type in type_list:

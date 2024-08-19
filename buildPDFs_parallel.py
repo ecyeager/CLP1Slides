@@ -30,7 +30,7 @@ print_prep = True
 
 ## There are two collections of files: single sections,
 ## sections grouped into weeks
-## There are also miscellaneous files: StudentWorkbook, Review, and ReadMe
+## There are also miscellaneous files: CLP1StudentWorkbook, Review, and ReadMe
 ## To choose which to print, set the following to True or False:
 
 print_sections = True
@@ -328,7 +328,7 @@ if __name__ == "__main__":
 
     # Make PDFs for miscellaneous files
     if print_studentworkbook:
-        tasks.append(("StudentWorkbook", False))
+        tasks.append(("CLP1StudentWorkbook", False))
 
     if print_review:
         for type in type_list:
