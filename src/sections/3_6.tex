@@ -46,7 +46,7 @@ What happens to $f(x)$ near its other endpoint, $x=-1$?\vfill
 %----------------------------------------------------------------------------------------
 \begin{frame}<handout:0>
 \centering
-\note{Remind students they didn't need to know the graph to answer the previous questions. Rather, questions like those will help them fid the graph later on.}
+\note{Remind students they didn't need to know the graph to answer the previous questions. Rather, questions like those will help them find the graph later on.}
 \begin{tikzpicture}
 \myaxis{x}{1}{2}{y}{2}{2}
 \draw[C1,thick] plot[domain=0.1:1.73,smooth,yscale=0.1](\x,{sqrt(3-\x*\x)/ln(\x+1)});
@@ -62,7 +62,7 @@ Good things to check:
 \item[\textbullet] Domain
 \item[\textbullet] Vertical asymptotes: $\displaystyle\lim_{x \rightarrow a} f(x) = \pm\infty$
 \item[\textbullet] Intercepts: $x=0$, $f(x)=0$
-\item[\textbullet] Horizontal asymptotes and end behavior: $\displaystyle\lim_{x \rightarrow \pm \infty} f(x) $
+\item[\textbullet] Horizontal asymptotes and end behaviour: $\displaystyle\lim_{x \rightarrow \pm \infty} f(x) $
 \end{itemize}\end{frame}
 %----------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------
@@ -937,14 +937,14 @@ Sin is periodic; since $\sin x = \sin (2\pi+x)$, then $\sin(\sin x) = \sin (\sin
 Since the function is also odd, if we sketch it on the interval $[0,\pi]$, then we can extrapolate to the interval $[-\pi,0]$. So we consider the interval $[0,\pi]$.
 
 \begin{itemize}
-\item Intercepts: $(0,0)$, $(0,\pi)$
+\item Intercepts: $(0,0)$, $(\pi,0)$
 \item First derivative: $f'(x) = \cos(\sin x)\cdot \cos(x)$ 
 	\begin{itemize}
         \item For $0\le x\le\pi$, we have $0\le\sin x\le 1<\frac{\pi}{2}$ 
             and hence $0<\cos(\sin x)\le 1$.
 	\item CP: $x= \frac\pi2$
 	\item increasing: $(0,\pi/2)$
-	\item decreasing: $(\pi/2,0)$
+	\item decreasing: $(\pi/2,\pi)$
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -1033,7 +1033,7 @@ so $g(x)$ is odd. If we sketch it on the interval $[0,\pi]$, then we can extrapo
 Intercepts in $[0,\pi]$:
 \begin{align*}
 g(0)&=0\\
-0&=g(0) = \sin( 2\pi \sin x) \\
+0&=g(x) = \sin( 2\pi \sin x) \\
 \implies 2\pi \sin x &\in \{0,\pm\pi,\pm2\pi,\pm3\pi,\ldots\}\\
 \implies \sin x &\in \left\{0,\pm\frac12,\pm1,\pm\frac32,\ldots\right\}\\
 \implies x &\in\left\{ 0,\frac{\pi}{6},\frac\pi2, \frac{5\pi}{6},\pi\right\}
@@ -1256,7 +1256,7 @@ g''(x)&=\dfrac{12x(x^2-1)}{(x^2+1)^4}
 \begin{frame}<handout:0>\AnswerBar{2}{3}\unote{Example~\eref{text}{eg_3_6_6}}
 \color{answercolor}
 \[f(x)=\frac{x^2+x}{(x+1)(x^2+1)^2}\]\pause
-When $x \neq 1$, $f(x)=g(x)$. So, $f(x)$ looks like $g(x)$ except it has a removable discontinuity (hole) at $x=1$. Let's graph 
+When $x \neq -1$, $f(x)=g(x)$. So, $f(x)$ looks like $g(x)$ except it has a removable discontinuity (hole) at $x=-1$. Let's graph
 \[g(x)=\frac{x}{(x^2+1)^2}\]
 \begin{itemize}\color{answercolor}
 \item Domain: all real numbers
@@ -1303,12 +1303,12 @@ $\left(\frac1{\sqrt 3} , \frac{3\sqrt3}{16} \right)$
 \myaxis{x}{2}{2}{y}{.5}{.5}
 \xcoord{0.6}{\frac{1}{\sqrt 3}}
 \xcoord{-0.6}{-\frac{1}{\sqrt 3}}
-\ycoord{0.3}{\frac{9\sqrt 3}{16}}
+\ycoord{0.3}{\frac{3\sqrt 3}{16}}
 %\ycoord{-0.3}{-\frac{9\sqrt 3}{16}}
 \ycoord{-0.3}{}
 \xcoord{1}{1} \xcoord{-1}{-1}
 \draw[thick] plot[smooth,domain=-2:2](\x,{\x/(\x*\x+1)^2});
-\draw (1,.25)node[opendot]{};
+\draw (-1,-.25)node[opendot]{};
 \end{tikzpicture}
 \end{center}
 
