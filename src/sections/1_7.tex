@@ -306,7 +306,7 @@ Now, suppose $x<0$ and $|f(x)-1|<\epsilon$:
 }
 \only<3|handout:0>{
 \color{answercolor}
-Now we know the interval over which $|f(x)-1|<\epsilon$, but it's actually more information than we need. We don't need the exact interval; we just need some value of $\delta$ such that $0<|x-1|<\delta$ guarantees $|f(x)-1|<\epsilon$.
+Now we know the interval over which $|f(x)-1|<\epsilon$, but it's actually more information than we need. We don't need the exact interval; we just need some value of $\delta$ such that $0<|x-0|<\delta$ guarantees $|f(x)-1|<\epsilon$.
 \begin{center}\begin{tikzpicture}[xscale=2.5]
 \draw[M5,line width=4pt] (-.25,.75)-- (0,1) plot[domain=0:.5](\x,{1-\x*\x});
 \myaxis{x}{1.5}{1.5}{y}{1.1}{1.25}
@@ -316,8 +316,8 @@ Now we know the interval over which $|f(x)-1|<\epsilon$, but it's actually more 
 \xcoord{-.24}{-\epsilon}
 \end{tikzpicture}\end{center}
 
-If $0<|x-1|<\min\{\epsilon,\sqrt \epsilon\}$, then $0<|x-1|<\epsilon$ and 
-$0<|x-1|<\sqrt\epsilon$ are both true. So we set $\delta = \min\{\epsilon,\sqrt \epsilon\}$. (For $\epsilon<1$, that is $\delta=\epsilon$.)
+If $0<|x-0|<\min\{\epsilon,\sqrt \epsilon\}$, then $0<|x-0|<\epsilon$ and 
+$0<|x-0|<\sqrt\epsilon$ are both true. So we set $\delta = \min\{\epsilon,\sqrt \epsilon\}$. (For $\epsilon<1$, that is $\delta=\epsilon$.)
 }
 \only<4|handout:0>{
 \color{answercolor}
