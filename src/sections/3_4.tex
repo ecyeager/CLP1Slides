@@ -560,7 +560,7 @@ We write $f^{(n)}(x)$ to mean the $n^{\rm th}$ derivative of $f(x)$. By conventi
 
 \begin{block}{Taylor Polynomial -- Definition~\eref{text}{def_3_4_2}}
 Given a function $f(x)$ that is differentiable $n$ times at a point $a$, the $n$-th degree \textbf{ Taylor polynomial} for $f(x)$ about $a$ is
-\[T_n(a)=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k\]
+\[T_n(x)=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k\]
 %\begin{align*}
 %T_n(a)&=f(a)+f'(a)(x-a)+\frac{1}{2!}f''(a)(x-a)^2+\cdots+\frac{1}{n!}f^{(n)}(a)(x-a)^n\\
 %&=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k
@@ -575,7 +575,7 @@ If $a=0$, we also call it a \textbf{ Maclaurin polynomial}.
 \only<1>{\AnswerYes}
 \note<1>{Some students will undoubtedly struggle with interpreting the sigma notation, so I like to go through the indices until at least $k=4$.}
 \begin{align*}
-T_n(a)&=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k\\
+T_n(x)&=\sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k\\
 &=\onslide<2-|handout:0>{\underbrace{f(a)}_{k=0}+
 \underbrace{f'(a)(x-a)}_{k=1}+
 \underbrace{\frac{1}{2!}f''(a)(x-a)^2}_{k=2}+\\
@@ -603,7 +603,7 @@ T_{\only<1>{0}\only<2>{1}\only<3>{2}\only<4>{3}}(a)&=\sum_{k=0}^{\only<1>{0}\onl
 %----------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------
 
-\begin{frame}[t]{\footnotesize $\textcolor{C1}{T_n(a)=f(a)+f'(a)(x-a)+\frac{1}{2!}f''(a)(x-a)^2+\cdots+\frac{1}{n!}f^{(n)}(a)(x-a)^n}$}
+\begin{frame}[t]{\footnotesize $\textcolor{C1}{T_n(x)=f(a)+f'(a)(x-a)+\frac{1}{2!}f''(a)(x-a)^2+\cdots+\frac{1}{n!}f^{(n)}(a)(x-a)^n}$}
 \AnswerSpace
 \begin{QuestionSet}
 \SetQuestion{\AnswerYes\unote{Example~\eref{text}{eg taylor e to the x}}
