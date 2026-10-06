@@ -358,19 +358,19 @@ Using the definition of the derivative, calculate $\ds\diff{}{x}\left\{\dfrac{1}
 \answer{\begin{align*}
 &\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}=\lim_{h \to 0} \frac{\frac{1}{\sqrt{(x+h)^2+x+h}}-\frac{1}{\sqrt{x^2+x}}}{h}\\
 &=\lim_{h \to 0}\frac{1}{h}\left(
-\tfrac{\sqrt{x^2+x}}{\sqrt{(x^2+h)^2+x+h}\sqrt{x^2+x}}-\tfrac{\sqrt{(x+h)^2+x+h}}{\sqrt{(x^2+h)^2+x+h}\sqrt{x^2+x}}
+\tfrac{\sqrt{x^2+x}}{\sqrt{(x+h)^2+x+h}\sqrt{x^2+x}}-\tfrac{\sqrt{(x+h)^2+x+h}}{\sqrt{(x+h)^2+x+h}\sqrt{x^2+x}}
 \right)\\
 &=\lim_{h \to 0}\frac{1}{h}\left(
-\tfrac{\sqrt{x^2+x}-\sqrt{(x+h)^2+x+h}}{\sqrt{(x^2+h)^2+x+h}\sqrt{x^2+x}}
+\tfrac{\sqrt{x^2+x}-\sqrt{(x+h)^2+x+h}}{\sqrt{(x+h)^2+x+h}\sqrt{x^2+x}}
 \right)\left(\tfrac{\sqrt{x^2+x}+\sqrt{(x+h)^2+x+h}}{\sqrt{x^2+x}+\sqrt{(x+h)^2+x+h}}\right)\\
 &=\lim_{h \to 0}\frac{1}{h}\left(
-\tfrac{(x^2+x)-[(x+h)^2+x+h]}{\sqrt{(x^2+h)^2+x+h}\sqrt{x^2+x}\left[\sqrt{x^2+x}+\sqrt{(x+h)^2+x+h}\right]}
+\tfrac{(x^2+x)-[(x+h)^2+x+h]}{\sqrt{(x+h)^2+x+h}\sqrt{x^2+x}\left[\sqrt{x^2+x}+\sqrt{(x+h)^2+x+h}\right]}
 \right)\\
 &=\lim_{h \to 0}\frac{1}{h}\left(
-\tfrac{-(2xh+h^2+h)}{\sqrt{(x^2+h)^2+x+h}\sqrt{x^2+x}\left[\sqrt{x^2+x}+\sqrt{(x+h)^2+x+h}\right]}
+\tfrac{-(2xh+h^2+h)}{\sqrt{(x+h)^2+x+h}\sqrt{x^2+x}\left[\sqrt{x^2+x}+\sqrt{(x+h)^2+x+h}\right]}
 \right)\\
 &=\lim_{h \to 0}
-\tfrac{-(2x+h+1)}{\sqrt{(x^2+h)^2+x+h}\sqrt{x^2+x}\left[\sqrt{x^2+x}+\sqrt{(x+h)^2+x+h}\right]}=\tfrac{-(2x+1)}{2(x^2+x)^{3/2}}
+\tfrac{-(2x+h+1)}{\sqrt{(x+h)^2+x+h}\sqrt{x^2+x}\left[\sqrt{x^2+x}+\sqrt{(x+h)^2+x+h}\right]}=\tfrac{-(2x+1)}{2(x^2+x)^{3/2}}
 \end{align*}}
 
 \end{frame}
