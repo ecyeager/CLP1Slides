@@ -360,8 +360,8 @@ Suppose $|f(x)-L|<\epsilon$ whenever $a-\delta_1<x<a$ and whenever $a<x<a+\delta
 \myaxis{x}{0}{9}{y}{0}{3}
 \draw[thick, C1] plot[domain=0:9,smooth](\x,{40/(\x*\x+16)});
 \ycoord{1}{L}
-\ycoord{1/2}{L+\epsilon}
-\ycoord{1.5}{L-\epsilon}
+\ycoord{1/2}{L-\epsilon}
+\ycoord{1.5}{L+\epsilon}
 \draw[dashed] (.2,1.5)--(9,1.5) (.2,.5)--(9,.5);
 \xcoord{8}{a+\delta_2}
 \xcoord{4.88}{a}
