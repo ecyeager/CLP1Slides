@@ -1178,15 +1178,15 @@ We want $\frac{1}{(n+1)!}\cdot 3^5 \cdot 5^{n+1}<0.001$, and by plugging in diff
 \SetQuestion{Suppose you want to approximate $\log\frac{4}{3}$ using a Taylor polynomial of $f(x)=\log{x}$ centred at $a=1$. If the magnitude of your error must be less than $0.001$, what degree Taylor polynomial should you use?}
 \SetAnswer{Suppose you want to approximate $\log\frac{4}{3}$ using a Taylor polynomial of $f(x)=\log{x}$ centred at $a=1$. If the magnitude of your error must be less than $0.001$, what degree Taylor polynomial should you use?\vfill
 \color{answercolor}\small
-Your error will be: $f(3)-T_n(3) = 
-    \frac{1}{(n+1)!}f^{(n)}(c)\big(\frac{4}{3}-1\big)^{n+1}$ 
+Your error will be: $f(\frac{4}{3})-T_n(\frac{4}{3}) =
+    \frac{1}{(n+1)!}f^{(n+1)}(c)\big(\frac{4}{3}-1\big)^{n+1}$
 for some $c$ in $(1,4/3)$. So, we need to bound $f^{(n)}(c)$. By writing out a number of derivatives of natural log, we notice that for $n \geq 1$, $f^{(n)}(c)=(-1)^{n-1}(n-1)!c^{-n}$. So, $f^{(n+1)}(c) = (-1)^nn!c^{-(n+1)}$. For $c$ in $(1,4/3)$:
 \[\frac{n!}{(4/3)^{n+1}} \leq |f^{(n+1)}(c)| \leq \frac{n!}{1^{n+1}}=n! \]
 
 Now for the error:
 
 \[
-| f(3)-T_n(3)| \leq \frac{1}{(n+1)!} \cdot n! \cdot 
+| f(\frac{4}{3})-T_n(\frac{4}{3})| \leq \frac{1}{(n+1)!} \cdot n! \cdot
 \left(\frac{4}{3}-1\right)^{n+1} = \frac{1}{(n+1)3^{n+1}}\]
 
 Setting this $<0.001$, we find by plugging in values of $n$ that $n=4$ is the smallest $n$ that makes the inequality true. So, using $T_4(x)$ will give us our desired error. }
